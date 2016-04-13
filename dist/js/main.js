@@ -7,28 +7,95 @@
         containers = $(container);
         
         $.each(containers, function () {
+            var container = this;
             var env = getEnvironment(this);
-            console.log("appending h2 to: ", this);
+            
+            // Title
             $(this).append("<h2>" + env.title + "</h2>");
             
-            // todo: add ul
-$('<div>',
-{
-    id: 'test',
-    name: 'test',
-    class: 'test-class'
-}).css(
-{
-    width: '100px',
-    height: '100px',
-    backgroundColor: '#fff'
-});            
+            // Creating Accordion Wrapper
+            var wrapper = $("<div>",
+            {
+                id: env.title,
+                class: "panel-group",
+                
+            }).appendTo(container);
+            
+            // Elements
+            $.each(env.credentials, function (i, val) {
+                // Creating Panel
+                var panel = $("<div>",
+                {
+                    class: "panel panel-default"  
+                }).appendTo(wrapper);
+                
+                // Creating Panel Heading
+                var heading = $("<div>",
+                {
+                    class: "panel-heading"  
+                }).appendTo(panel);                
+                
+                // Creating Title
+                var title = $("<h4>",
+                {
+                    "data-toggle": "collapse",
+                    "data-parent": "#" + env.title,
+                    "data-target": "#" + this.id + i,                     
+                    class: "panel-title",
+                    text: this.app
+                }).appendTo(heading);                 
+                
+                // Creating content
+                var content = $("<div>",
+                {
+                    id: this.id + i,
+                    class: "panel-collapse collapse"
+                }).appendTo(heading);  
+                
+                // Panel body
+                var panelbody = $("<div>",
+                {
+                    class: "panel-body"
+                }).appendTo(content);  
+                
+               createFormRow("URL", this.url).appendTo(panelbody);
+               createFormRow("Username", this.username).appendTo(panelbody);
+               createPasswordRow("Password", this.password).appendTo(panelbody);
+               
+               // Change Password type onlick and reset onblur
+               $('button', content).on('click', function (e) {
+                    $("input:password", panel).attr('type', 'text').blur(function () {
+                        $(this).attr('type', 'password');
+                    }); 
+                });
+            });
         });
     };
     
+    function createFormRow (label, data) {
+        var labelId = label.toLowerCase();
+        return $("<div class=\"form-group row\">" +
+                   "<label for=\"" + labelId + "\" class=\"col-sm-2 form-control-label\">" + label + "</label>" +
+                   "<div class=\"col-sm-10\">" +
+                   "<input type=\"text\" class=\"form-control\" id=\"" + labelId + "\" value=\"" + data + "\" />" +
+                   "</div>" + 
+                   "</div>");
+    };
+    
+    function createPasswordRow (label, data) {
+        var labelId = label.toLowerCase();
+        return $("<div class=\"form-group row\">" +
+                   "<label for=\"" + labelId + "\" class=\"col-sm-2 form-control-label\">" + label + "</label>" +
+                   "<div class=\"col-sm-8\">" +
+                   "<input type=\"password\" class=\"form-control\" id=\"" + labelId + "\" value=\"" + data + "\" />" +
+                   "</div>" +
+                   "<div class=\"col-sm-2\"><button type=\"submit\" class=\"btn btn-primary\">Display</button></div>" + 
+                   "</div>");
+    };
+        
     function getEnvironment(container) {
-            var env = $(container).attr("data-config-environment");
-            return config[env];
+        var env = $(container).attr("data-config-environment");
+        return config[env];
     };
     
     function lookup (array, prop, value) {
@@ -42,42 +109,6 @@ $('<div>',
 
 try { 
   menu.init(".menu");
-} catch( e ) { 
-  console.log( e.message ); 
-}
-
-/*
-    * If element has class .flyout, look for button in li element and attach click event to toggle ul list 
-    * ul.flyout > li > <button> 
-                <ul /> 
-           /li
-*/
-(function( flyout, $, undefined ) { 
-    "use strict"
-    
-    var containers = [];
-    var buttons = [];
-
-    flyout.init = function(container) {
-        containers = $(container);
-        buttons = $("li>button", containers);
-
-        $.each(buttons, function () {
-            var ul = $(this).next("ul");
-                ul.addClass("hidden");
-                $(this).click(function () {
-                    ul.toggleClass("hidden");
-                });
-        });
-    };
-    
-    function removeClass () {
-        $(containers).removeClass('factive');
-    }
-}( window.flyout = window.flyout || {}, jQuery ));
-
-try { 
-  flyout.init(".flyout");
 } catch( e ) { 
   console.log( e.message ); 
 }
