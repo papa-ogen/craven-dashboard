@@ -1,3 +1,29 @@
 .panel-title {
     cursor: pointer;
 }
+
+.dashboard-header {
+    position: relative;
+}
+.dashboard-header img {
+    position: absolute;
+    top: -4px;
+    left: 41%;
+    width: 50px;
+}
+
+.dashboard-logo-epi {
+    width: 200px;
+    height: 27px;                        
+    background: url("../img/logo-epi.jpg") no-repeat;     
+    text-indent: -9999px; 
+    white-space: nowrap;
+}
+
+.dashboard-logo-sharepoint {
+    width: 200px;
+    height: 40px;                        
+    background: url("../img/logo-sharepoint.jpg") no-repeat;     
+    text-indent: -9999px; 
+    white-space: nowrap;
+}

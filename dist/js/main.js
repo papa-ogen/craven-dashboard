@@ -11,14 +11,17 @@
             var env = getEnvironment(this);
             
             // Title
-            $(this).append("<h2>" + env.title + "</h2>");
+            $("<h2>",
+            {
+                class: "dashboard-logo-" + $(container).attr("data-config-environment"),
+                text: env.title
+            }).appendTo(container);
             
             // Creating Accordion Wrapper
             var wrapper = $("<div>",
             {
                 id: env.title,
-                class: "panel-group",
-                
+                class: "panel-group"
             }).appendTo(container);
             
             // Elements
