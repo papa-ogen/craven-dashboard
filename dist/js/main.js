@@ -50,7 +50,7 @@
                 {
                     id: this.id + i,
                     class: "panel-collapse collapse"
-                }).appendTo(heading);  
+                }).appendTo(panel);  
                 
                 // Panel body
                 var panelbody = $("<div>",
@@ -62,7 +62,7 @@
                createFormRow("Username", this.username).appendTo(panelbody);
                createPasswordRow("Password", this.password).appendTo(panelbody);
                
-               // Change Password type onlick and reset onblur
+               // Change Password type onlick and reset onblur on password input
                $('button', content).on('click', function (e) {
                     $("input:password", panel).attr('type', 'text').blur(function () {
                         $(this).attr('type', 'password');
