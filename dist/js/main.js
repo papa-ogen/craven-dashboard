@@ -1,3 +1,8 @@
+
+if(typeof dashboardConfig == 'undefined') {
+    $(".alert").html("<strong>Error!</strong> Please add a config.js file to the project.").removeClass("hidden");
+};
+
 (function( menu, $, config, undefined ) { 
     "use strict"
     
@@ -60,18 +65,31 @@
                 {
                     class: "panel-body"
                 }).appendTo(content);  
-                
-               createFormRow("URL", this.url).appendTo(panelbody);
-               createFormRow("Username", this.username).appendTo(panelbody);
-               createPasswordRow("Password", this.password).appendTo(panelbody);
+               
+               if(this.url.length > 0) {
+                   for(var i = 0; i < this.url.length; i++) {
+                    createFormRow("URL", this.url[i]).appendTo(panelbody);
+                   }
+               }
+               if(this.username.length > 0) createFormRow("Username", this.username).appendTo(panelbody);
+               if(this.password.length > 0) createPasswordRow("Password", this.password).appendTo(panelbody);
                
                // Change Password type onlick and reset onblur on password input
-               $('button', content).on('click', function (e) {
+               $('button', content).on('click', function (e) {                    
                     $("input:password", panel).attr('type', 'text').blur(function () {
                         $(this).attr('type', 'password');
                     }); 
+                    
+                    // Select entire password
+                    $("input[type='text']", panel).click(function () {
+                        $(this).select();
+                    });
                 });
             });
+        });
+        
+        $("input[type='text']").click(function () {
+            $(this).select();
         });
     };
     
@@ -111,7 +129,7 @@
 }( window.menu = window.menu || {}, jQuery, dashboardConfig ));
 
 try { 
-  menu.init(".menu");
+    menu.init(".menu");
 } catch( e ) { 
-  console.log( e.message ); 
-}
+    console.log( e.message ); 
+};

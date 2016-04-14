@@ -13,7 +13,6 @@
 }
 
 .dashboard-logo-epi {
-    width: 200px;
     height: 27px;                        
     background: url("../img/logo-epi.jpg") no-repeat;     
     text-indent: -9999px; 
@@ -21,9 +20,15 @@
 }
 
 .dashboard-logo-sharepoint {
-    width: 200px;
-    height: 40px;                        
+    height: 27px;                        
     background: url("../img/logo-sharepoint.jpg") no-repeat;     
+    text-indent: -9999px; 
+    white-space: nowrap;
+}
+
+.dashboard-logo-misc {
+    height: 27px;                        
+    background: url("../img/logo-misc.png") no-repeat;     
     text-indent: -9999px; 
     white-space: nowrap;
 }
