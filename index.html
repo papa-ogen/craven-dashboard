@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>If Test</title>
+    <title>If Dashboard</title>
     
     <link rel="stylesheet" href="dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="dist/css/style.css" />
@@ -21,8 +21,41 @@
         <div class="col-sm-4 text-left menu" data-config-environment="epi"></div>
         <div class="col-sm-4 text-left menu" data-config-environment="sharepoint"></div>
         <div class="col-sm-4 text-left menu" data-config-environment="misc"></div>
-    </div>
+    </div>  
 </div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="todolist not-done">
+             <h2>Todos</h2>
+                <input type="text" class="form-control add-todo" placeholder="Add todo">
+                    <button id="checkAll" class="btn btn-success">Mark all as done</button>
+                    
+                    <hr>
+                    <ul id="sortable" class="list-unstyled">
+                    <li class="ui-state-default">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" value="" />todo item</label>
+                        </div>
+                    </li>
+                </ul>
+                <div class="todo-footer">
+                    <strong><span class="count-todos"></span></strong> Items Left
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="todolist">
+             <h2>Already Done</h2>
+                <ul id="done-items" class="list-unstyled">
+                    <li>Some item <button class="remove-item btn btn-default btn-xs pull-right"><span class="glyphicon glyphicon-remove"></span></button></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
 
 <script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
 <script src="dist/js/bootstrap.min.js"></script>

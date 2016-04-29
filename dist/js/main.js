@@ -31,6 +31,7 @@ if(typeof dashboardConfig == 'undefined') {
             
             // Elements
             $.each(env.credentials, function (i, val) {
+                console.log("env: ", env.title)
                 // Creating Panel
                 var panel = $("<div>",
                 {
@@ -107,7 +108,7 @@ if(typeof dashboardConfig == 'undefined') {
         var labelId = label.toLowerCase();
         return $("<div class=\"form-group row\">" +
                    "<label for=\"" + labelId + "\" class=\"col-sm-2 form-control-label\">" + label + "</label>" +
-                   "<div class=\"col-sm-8\">" +
+                   "<div class=\"col-sm-6\">" +
                    "<input type=\"password\" class=\"form-control\" id=\"" + labelId + "\" value=\"" + data + "\" />" +
                    "</div>" +
                    "<div class=\"col-sm-2\"><button type=\"submit\" class=\"btn btn-primary\">Display</button></div>" + 
@@ -130,6 +131,123 @@ if(typeof dashboardConfig == 'undefined') {
 
 try { 
     menu.init(".menu");
+} catch( e ) { 
+    console.log( e.message ); 
+};
+
+/* **********************
+    Todo List
+    
+    * Code from: http://bootsnipp.com/snippets/featured/todo-example - credit to http://bootsnipp.com/rgbskills
+    * Added code for local storage
+    
+********************** */
+
+(function( todolist, $, config, undefined ) { 
+    "use strict"
+    
+    var HASLOCALSTORAGE = typeof(Storage) !== "undefined";
+    
+    // all done btn
+    $("#checkAll").click(function(){
+        AllDone();
+    });
+
+    //create todo
+    $('.add-todo').on('keypress',function (e) {
+        e.preventDefault
+        if (e.which == 13) {
+            if($(this).val() != ''){
+            var todo = $(this).val();
+                createTodo(todo); 
+                countTodos();
+            }else{
+                // some validation
+            }
+        }
+    });
+    
+    // mark task as done
+    $('.todolist').on('change','#sortable li input[type="checkbox"]',function(){
+        if($(this).prop('checked')){
+            var doneItem = $(this).parent().parent().find('label').text();
+            $(this).parent().parent().parent().addClass('remove');
+            done(doneItem);
+            countTodos();
+        }
+    });
+
+    //delete done task from "already done"
+    $('.todolist').on('click','.remove-item',function(){
+        removeItem(this);
+    });
+
+    // count tasks
+    function countTodos(){
+        var count = $("#sortable li").length;
+        $('.count-todos').html(count);
+    };
+
+    //create task
+    function createTodo(text){
+        var markup = '<li class="ui-state-default"><div class="checkbox"><label><input type="checkbox" value="" />'+ text +'</label></div></li>';
+        $('#sortable').append(markup);
+        $('.add-todo').val('');
+    };
+
+    //mark task as done
+    function done(doneItem){
+        var done = doneItem;
+        var markup = '<li>'+ done +'<button class="btn btn-default btn-xs pull-right  remove-item"><span class="glyphicon glyphicon-remove"></span></button></li>';
+        $('#done-items').append(markup);
+        $('.remove').remove();
+    };
+
+    //mark all tasks as done
+    function AllDone(){
+        var myArray = [];
+
+        $('#sortable li').each( function() {
+            myArray.push($(this).text());   
+        });
+        
+        // add to done
+        for (var i = 0; i < myArray.length; i++) {
+            $('#done-items').append('<li>' + myArray[i] + '<button class="btn btn-default btn-xs pull-right  remove-item"><span class="glyphicon glyphicon-remove"></span></button></li>');
+        }
+        
+        // myArray
+        $('#sortable li').remove();
+        countTodos();
+    };
+
+    //remove done task from list
+    function removeItem(element){
+        $(element).parent().remove();
+    };
+    
+    //create json array of list items
+    function createJson(data) {
+        
+    };
+    
+    function saveTodoList(data) {
+        
+    };
+    
+    function loadTodoList(data) {
+        
+    };
+
+    todolist.init = function () {
+        countTodos();
+        console.log("Has local storage: ", HASLOCALSTORAGE);
+    };
+    
+}( window.todolist = window.todolist || {}, jQuery, dashboardConfig ));
+
+try { 
+    todolist.init();
 } catch( e ) { 
     console.log( e.message ); 
 };
