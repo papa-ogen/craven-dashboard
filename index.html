@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>If Dashboard</title>
+    <title>Dashboard</title>
     
     <link rel="stylesheet" href="dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="dist/css/style.css" />
@@ -13,8 +13,7 @@
     
 <div class="container-fluid text-center">
     <header class="dashboard-header">
-        <h1>If Dashboard</h1>
-        <img src="https://az801830.vo.msecnd.net/resources/logo.min-sha2UrlX-5wEsrrV0qRDj5z4xoWgLBo.png" alt="Lugn, vi hjälper dig.">
+        <h1>Dashboard</h1>
     </header>
     
     <div class="row">
@@ -22,11 +21,31 @@
         <div class="col-sm-4 text-left menu" data-config-environment="sharepoint"></div>
         <div class="col-sm-4 text-left menu" data-config-environment="misc"></div>
     </div>  
-</div>
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-6">
+    <div class="row text-left">
+        <div class="col-md-4">
+            <h2>Instructions</h2>
+            <ul class="list-unstyled">
+                <li>
+                    <h3>Epi-server license</h3>
+                    <pre class="text-left">
+<a href="https://license.episerver.com/Public/GenerateDemoLicense.aspx">Click to generate Demo license</a>
+Select Bound Input: Mac
+
+View your current Mac (physical address) address: 
+run cmd, ipconfig /all - 74-86-7A-6E-8C-5C
+Submit and get new file in mailbox
+
+Replace your current license file:
+Open Pages\If.OpenPages.Web\_configuration\Dev
+
+Restart Visual Studio
+                    </pre>
+                </li>
+            </ul>
+                
+        </div>
+        <div class="col-md-4">
             <div class="todolist not-done">
              <h2>Todos</h2>
                 <input type="text" class="form-control add-todo" placeholder="Add todo">
@@ -46,7 +65,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4">
             <div class="todolist">
              <h2>Already Done</h2>
                 <ul id="done-items" class="list-unstyled">
@@ -57,9 +76,9 @@
         </div>
     </div>
 
-<script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
-<script src="dist/js/bootstrap.min.js"></script>
-<script src="config.js"></script>
-<script src="dist/js/main.js"></script>
+    <script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
+    <script src="dist/js/bootstrap.min.js"></script>
+    <script src="config.js"></script>
+    <script src="dist/js/main.js"></script>
 </body>
 </html>

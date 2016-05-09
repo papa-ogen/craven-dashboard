@@ -32,3 +32,9 @@
     text-indent: -9999px; 
     white-space: nowrap;
 }
+
+pre {
+    text-align: left;
+    border: none;
+    background: inherit;
+}
