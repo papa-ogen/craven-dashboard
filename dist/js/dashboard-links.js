@@ -17,6 +17,7 @@ if(typeof dashboardConfig == 'undefined') {
                 "\t\t\tusername: \"username\",\n" +
                 "\t\t\tpassword: \"password\"\n" +         
             "\t\t}\n" +
+            "\t\t]\n" +
             "\t}\n" +
             "]" +
             "</pre>";
@@ -64,15 +65,15 @@ if(typeof dashboardConfig == 'undefined') {
                     // Creating Panel Heading
                     var heading = $("<div>",
                     {
+                        "data-toggle": "collapse",
+                        "data-parent": "#" + element.title,
+                        "data-target": "#" + this.id + i,   
                         class: "panel-heading"  
                     }).appendTo(panel);                
                     
                     // Creating Title
                     var title = $("<h4>",
                     {
-                        "data-toggle": "collapse",
-                        "data-parent": "#" + element.title,
-                        "data-target": "#" + this.id + i,                     
                         class: "panel-title",
                         text: this.app
                     }).appendTo(heading);                 
