@@ -1,6 +1,6 @@
 # Dashboard
 Create a config.js file in root folder:
-var dashboardConfig = [
+var dashboardConfig = [\n
     {
         title: "Test",
         credentials: [
