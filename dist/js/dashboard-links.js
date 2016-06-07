@@ -1,7 +1,6 @@
-
 if(typeof dashboardConfig == 'undefined') {
-    var exampleFormat = "<pre>var dashboardConfig = {\n" +
-                        "\tepi: {\n" +
+    var exampleFormat = "<pre>var dashboardConfig = [\n" +
+                        "\t{\n" +
         "\t\ttitle: \"Epi-server\",\n" +
         "\t\tcredentials: [\n" +
             "\t\t{\n" +
@@ -19,40 +18,43 @@ if(typeof dashboardConfig == 'undefined') {
                 "\t\t\tpassword: \"password\"\n" +         
             "\t\t}\n" +
             "\t}\n" +
-            "}" +
+            "]" +
             "</pre>";
     $(".alert").html("<strong>Error!</strong> Please add a config.js file to the project." + exampleFormat).removeClass("hidden");
 } else {
 
-    (function( menu, $, config, undefined ) { 
+    (function( dashboardLinks, $, config, undefined ) { 
         "use strict"
         
-        var containers = [];
+        var environments = config.length;
         
-        menu.init = function (container) {
-            containers = $(container);
+        dashboardLinks.init = function (container) {
+            var container = $(container);
             
-            $.each(containers, function () {
-                var container = this;
-                var env = getEnvironment(this);
-                
-                // Title
-                $("<h2>",
-                {
-                    class: "dashboard-logo-" + $(container).attr("data-config-environment"),
-                    text: env.title
-                }).appendTo(container);
-                
+            var row = addRow().appendTo(container);
+            
+            config.forEach(function(element, index) {
+                if(index % 3 == 0 && index != 0) {
+                    row = addRow().appendTo(container);
+                }
+               // Add environment column
+               var col = addColumn(element);
+               col.appendTo(row);
+               
                 // Creating Accordion Wrapper
                 var wrapper = $("<div>",
                 {
-                    id: env.title,
+                    id: element.title,
                     class: "panel-group"
-                }).appendTo(container);
+                }).appendTo(col);
+                
+                // Sort Credentials
+                element.credentials.sort(function(a, b) {
+                    return a.app.localeCompare(b.app);
+                });
                 
                 // Elements
-                $.each(env.credentials, function (i, val) {
-                    console.log("env: ", env.title)
+                $.each(element.credentials, function (i, val) {
                     // Creating Panel
                     var panel = $("<div>",
                     {
@@ -69,7 +71,7 @@ if(typeof dashboardConfig == 'undefined') {
                     var title = $("<h4>",
                     {
                         "data-toggle": "collapse",
-                        "data-parent": "#" + env.title,
+                        "data-parent": "#" + element.title,
                         "data-target": "#" + this.id + i,                     
                         class: "panel-title",
                         text: this.app
@@ -107,12 +109,19 @@ if(typeof dashboardConfig == 'undefined') {
                             $(this).select();
                         });
                     });
-                });
+                });                
             });
             
             $("input[type='text']").click(function () {
                 $(this).select();
             });
+        };
+        
+        function addRow() {
+            return $("<div class=\"row\"/>");
+        }
+        function addColumn(element) {
+              return $("<div class=\"col-sm-4 text-left dashboardLinks\"><h2>" + element.title + "</h2></div>");
         };
         
         function createFormRow (label, data) {
@@ -146,12 +155,7 @@ if(typeof dashboardConfig == 'undefined') {
                     "<div class=\"col-sm-2\"><button type=\"submit\" class=\"btn btn-primary\">Select Link</button></div>" + 
                     "</div>");
                     
-                    // https://clipboardjs.com/
-        };
-            
-        function getEnvironment(container) {
-            var env = $(container).attr("data-config-environment");
-            return config[env];
+                    // Todo: https://clipboardjs.com/
         };
         
         function lookup (array, prop, value) {
@@ -161,127 +165,10 @@ if(typeof dashboardConfig == 'undefined') {
 
             return null;
         };
-    }( window.menu = window.menu || {}, jQuery, dashboardConfig ));
+    }( window.dashboardLinks = window.dashboardLinks || {}, jQuery, dashboardConfig ));
 
     try { 
-        menu.init(".menu");
-    } catch( e ) { 
-        console.log( e.message ); 
-    };
-
-    /* **********************
-        Todo List
-        
-        * Code from: http://bootsnipp.com/snippets/featured/todo-example - credit to http://bootsnipp.com/rgbskills
-        * Added code for local storage
-        
-    ********************** */
-
-    (function( todolist, $, config, undefined ) { 
-        "use strict"
-        
-        var HASLOCALSTORAGE = typeof(Storage) !== "undefined";
-        
-        // all done btn
-        $("#checkAll").click(function(){
-            AllDone();
-        });
-
-        //create todo
-        $('.add-todo').on('keypress',function (e) {
-            e.preventDefault
-            if (e.which == 13) {
-                if($(this).val() != ''){
-                var todo = $(this).val();
-                    createTodo(todo); 
-                    countTodos();
-                }else{
-                    // some validation
-                }
-            }
-        });
-        
-        // mark task as done
-        $('.todolist').on('change','#sortable li input[type="checkbox"]',function(){
-            if($(this).prop('checked')){
-                var doneItem = $(this).parent().parent().find('label').text();
-                $(this).parent().parent().parent().addClass('remove');
-                done(doneItem);
-                countTodos();
-            }
-        });
-
-        //delete done task from "already done"
-        $('.todolist').on('click','.remove-item',function(){
-            removeItem(this);
-        });
-
-        // count tasks
-        function countTodos(){
-            var count = $("#sortable li").length;
-            $('.count-todos').html(count);
-        };
-
-        //create task
-        function createTodo(text){
-            var markup = '<li class="ui-state-default"><div class="checkbox"><label><input type="checkbox" value="" />'+ text +'</label></div></li>';
-            $('#sortable').append(markup);
-            $('.add-todo').val('');
-        };
-
-        //mark task as done
-        function done(doneItem){
-            var done = doneItem;
-            var markup = '<li>'+ done +'<button class="btn btn-default btn-xs pull-right  remove-item"><span class="glyphicon glyphicon-remove"></span></button></li>';
-            $('#done-items').append(markup);
-            $('.remove').remove();
-        };
-
-        //mark all tasks as done
-        function AllDone(){
-            var myArray = [];
-
-            $('#sortable li').each( function() {
-                myArray.push($(this).text());   
-            });
-            
-            // add to done
-            for (var i = 0; i < myArray.length; i++) {
-                $('#done-items').append('<li>' + myArray[i] + '<button class="btn btn-default btn-xs pull-right  remove-item"><span class="glyphicon glyphicon-remove"></span></button></li>');
-            }
-            
-            // myArray
-            $('#sortable li').remove();
-            countTodos();
-        };
-
-        //remove done task from list
-        function removeItem(element){
-            $(element).parent().remove();
-        };
-        
-        //create json array of list items
-        function createJson(data) {
-            
-        };
-        
-        function saveTodoList(data) {
-            
-        };
-        
-        function loadTodoList(data) {
-            
-        };
-
-        todolist.init = function () {
-            countTodos();
-            console.log("Has local storage: ", HASLOCALSTORAGE);
-        };
-        
-    }( window.todolist = window.todolist || {}, jQuery, dashboardConfig ));
-
-    try { 
-        todolist.init();
+        dashboardLinks.init(".dashboard-container");
     } catch( e ) { 
         console.log( e.message ); 
     };

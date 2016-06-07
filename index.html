@@ -16,12 +16,8 @@
         <h1>Dashboard</h1>
     </header>
     
-    <div class="row">
-        <div class="col-sm-4 text-left menu" data-config-environment="epi"></div>
-        <div class="col-sm-4 text-left menu" data-config-environment="sharepoint"></div>
-        <div class="col-sm-4 text-left menu" data-config-environment="misc"></div>
-    </div>  
-
+    <div class="dashboard-container"></div>
+ 
     <div class="row text-left">
         <div class="col-md-4">
             <h2>Instructions</h2>
@@ -40,6 +36,12 @@ Replace your current license file:
 Open Pages\If.OpenPages.Web\_configuration\Dev
 
 Restart Visual Studio
+                    </pre>
+                    
+                    <h3>GIT</h3>
+                    <pre>
+cd Open\ Pages
+<a href="http://stackoverflow.com/questions/22620393/various-ways-to-remove-local-git-changes">Remove local changes</a>
                     </pre>
                 </li>
             </ul>
@@ -79,6 +81,7 @@ Restart Visual Studio
     <script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
     <script src="dist/js/bootstrap.min.js"></script>
     <script src="config.js"></script>
-    <script src="dist/js/main.js"></script>
+    <script src="dist/js/dashboard-links.js"></script>
+    <script src="dist/js/dashboard-todo.js"></script>
 </body>
 </html>
