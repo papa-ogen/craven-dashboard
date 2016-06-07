@@ -153,7 +153,7 @@ if(typeof dashboardConfig == 'undefined') {
                     "<div class=\"col-sm-6\">" +
                     "<a href=\"" + data + "\" target=\"self\">" + data + "</a>" + 
                     "</div>" +
-                    "<div class=\"col-sm-2\"><button type=\"submit\" class=\"btn btn-primary\">Select Link</button></div>" + 
+                    // Todo: "<div class=\"col-sm-2\"><button type=\"submit\" class=\"btn btn-primary\">Select Link</button></div>" + 
                     "</div>");
                     
                     // Todo: https://clipboardjs.com/
