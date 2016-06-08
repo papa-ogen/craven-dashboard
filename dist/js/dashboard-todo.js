@@ -3,111 +3,141 @@
     
     * Code from: http://bootsnipp.com/snippets/featured/todo-example - credit to http://bootsnipp.com/rgbskills
     * Added code for local storage
-    
 ********************** */
 
-(function( todolist, $, config, undefined ) { 
+(function( dashboardTodo, $, config, undefined ) { 
     "use strict"
     
-    var HASLOCALSTORAGE = typeof(Storage) !== "undefined";
+    var HasLocalStorage = typeof(Storage) !== "undefined";
+    var localStorageId = "dashboardTodo";
+    var taskItem = function(name, checked) {
+      this.name = name;
+      this.checked = checked ? true : false;
+    };
+    var taskItems = [];
+    var addTaskElement = $("#addTask");
+    var taskListElement = $(".dashboard-tasks");
+    var taskListCompleteElement = $(".dashboard-completed-tasks");
     
-    // all done btn
-    $("#checkAll").click(function(){
-        AllDone();
-    });
-
-    //create todo
-    $('.add-todo').on('keypress',function (e) {
-        e.preventDefault
+    function addItem(e) {
+        e.preventDefault;
+        
         if (e.which == 13) {
-            if($(this).val() != ''){
+            if($(this).val() != '') {
             var todo = $(this).val();
-                createTodo(todo); 
-                countTodos();
-            }else{
+                addTodoItem(todo); 
+
+                // Update local storage
+                taskItems.unshift(new taskItem(todo, false));
+                saveData();
+                // Reset input field
+                addTaskElement.val('');     
+            } else {
                 // some validation
             }
         }
-    });
+    };  
     
-    // mark task as done
-    $('.todolist').on('change','#sortable li input[type="checkbox"]',function(){
-        if($(this).prop('checked')){
-            var doneItem = $(this).parent().parent().find('label').text();
-            $(this).parent().parent().parent().addClass('remove');
-            done(doneItem);
-            countTodos();
-        }
-    });
-
-    //delete done task from "already done"
-    $('.todolist').on('click','.remove-item',function(){
-        removeItem(this);
-    });
-
-    // count tasks
-    function countTodos(){
-        var count = $("#sortable li").length;
-        $('.count-todos').html(count);
-    };
-
     //create task
-    function createTodo(text){
-        var markup = '<li class="ui-state-default"><div class="checkbox"><label><input type="checkbox" value="" />'+ text +'</label></div></li>';
-        $('#sortable').append(markup);
-        $('.add-todo').val('');
+    function addTodoItem(name) {
+        var markup = '<li class="ui-state-default"><div class="checkbox"><label><input type="checkbox" value="" />'+ name +'</label></div></li>';
+        taskListElement.prepend(markup);
     };
-
-    //mark task as done
-    function done(doneItem){
-        var done = doneItem;
-        var markup = '<li>'+ done +'<button class="btn btn-default btn-xs pull-right  remove-item"><span class="glyphicon glyphicon-remove"></span></button></li>';
-        $('#done-items').append(markup);
-        $('.remove').remove();
-    };
-
-    //mark all tasks as done
-    function AllDone(){
-        var myArray = [];
-
-        $('#sortable li').each( function() {
-            myArray.push($(this).text());   
-        });
         
-        // add to done
-        for (var i = 0; i < myArray.length; i++) {
-            $('#done-items').append('<li>' + myArray[i] + '<button class="btn btn-default btn-xs pull-right  remove-item"><span class="glyphicon glyphicon-remove"></span></button></li>');
-        }
-        
-        // myArray
-        $('#sortable li').remove();
-        countTodos();
-    };
-
-    //remove done task from list
-    function removeItem(element){
-        $(element).parent().remove();
-        // Todo: saveTodoList(data);
+    function createTodoItem(name) {
+        var markup = '<li class="ui-state-default"><div class="checkbox"><label><input type="checkbox" value="" />'+ name +'</label></div></li>';
+        taskListElement.append(markup);
     };
     
-    function saveTodoList(data) {
-    localStorage.setItem('dbtodolist', JSON.stringify(data));    
+    function createCompletedItem(name) {
+        var markup = ' <li>' + name +'<button class="remove-item btn btn-default btn-xs pull-right"><span class="glyphicon glyphicon-remove"></span></button></li>';
+        taskListCompleteElement.append(markup);
+    };    
+    
+    function saveData() {
+        localStorage.setItem(localStorageId, JSON.stringify(taskItems));    
     };
     
-    function loadTodoList() {
-        var retrievedObject = localStorage.getItem('dbtodolist');
+    function loadData() {
+        var retrievedObject = localStorage.getItem(localStorageId);
         return JSON.parse(retrievedObject);
     };
-
-    todolist.init = function () {
-        countTodos();
-        console.log("Has local storage: ", HASLOCALSTORAGE);
+    
+    function deleteItem(name) {
+        var tasks = [];
+        for(var i=0; i<taskItems.length; i++)
+        {
+            if(taskItems[i].name != name) {
+                tasks.push(taskItems[i]);
+            }
+        }
+        taskItems = tasks;
+        saveData();
     };
     
-}( window.todolist = window.todolist || {}, jQuery, dashboardConfig ));
+    function deleteItemOnClick() {
+        var name = $(this).parent("li").text();
+        deleteItem(name);
+        listTasks();        
+    };
+    
+    function listTasks() {
+        for(var i=0; i<taskItems.length; i++)
+        {
+            if(!taskItems[i].checked) {
+                createTodoItem(taskItems[i].name);
+            } else {
+                createCompletedItem(taskItems[i].name);
+            }
+        } 
+    };
+    
+    function completeItem(name) {
+        for(var i=0; i<taskItems.length; i++)
+        {
+            if(taskItems[i].name == name) {
+                taskItems[i].checked = true;
+                return;
+            }
+        }         
+    }
+    
+    function clearLocalStorage() {
+        localStorage.clear();
+    };
+
+    dashboardTodo.init = function (container) {
+        var container = $(container);
+        
+        if(HasLocalStorage) {
+            var data = loadData();
+            taskItems = data ? data : [];
+        }
+        
+        addTaskElement.on('keypress', addItem);
+        
+        listTasks();
+
+        //delete done task from "already done"
+        taskListCompleteElement.on('click','.remove-item', deleteItemOnClick);
+          
+        // mark task as done
+        taskListElement.on('change','li input[type="checkbox"]', function() {
+            if($(this).prop('checked')) {
+                var name = $(this).parent("label").text();
+                completeItem(name);
+                taskListElement.html("");
+                taskListCompleteElement.html("");
+                listTasks();
+                saveData();
+            }
+        });
+    };
+    
+}( window.dashboardTodo = window.dashboardTodo || {}, jQuery, dashboardConfig ));
 
 try { 
-    todolist.init();
+    dashboardTodo.init(".dashboard-todo");
 } catch( e ) { 
     console.log( e.message ); 
 };
