@@ -1,8 +1,8 @@
 /* **********************
-    Todo List
-    
     * Code from: http://bootsnipp.com/snippets/featured/todo-example - credit to http://bootsnipp.com/rgbskills
     * Added code for local storage
+    
+    Todo: Bug if more than one item has same name
 ********************** */
 
 (function( dashboardTodo, $, config, undefined ) { 
@@ -78,6 +78,8 @@
     function deleteItemOnClick() {
         var name = $(this).parent("li").text();
         deleteItem(name);
+        taskListElement.html("");
+        taskListCompleteElement.html("");
         listTasks();        
     };
     
@@ -100,7 +102,18 @@
                 return;
             }
         }         
-    }
+    };
+    
+    function completeItemOnClick() {
+        if($(this).prop('checked')) {
+            var name = $(this).parent("label").text();
+            completeItem(name);
+            taskListElement.html("");
+            taskListCompleteElement.html("");
+            listTasks();
+            saveData();
+        }
+    };
     
     function clearLocalStorage() {
         localStorage.clear();
@@ -122,16 +135,7 @@
         taskListCompleteElement.on('click','.remove-item', deleteItemOnClick);
           
         // mark task as done
-        taskListElement.on('change','li input[type="checkbox"]', function() {
-            if($(this).prop('checked')) {
-                var name = $(this).parent("label").text();
-                completeItem(name);
-                taskListElement.html("");
-                taskListCompleteElement.html("");
-                listTasks();
-                saveData();
-            }
-        });
+        taskListElement.on('change','li input[type="checkbox"]', completeItemOnClick);
     };
     
 }( window.dashboardTodo = window.dashboardTodo || {}, jQuery, dashboardConfig ));

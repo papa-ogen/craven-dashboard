@@ -38,3 +38,7 @@ pre {
     border: none;
     background: inherit;
 }
+
+.btn-group-xs>.btn, .btn-xs {
+    font-size: 11px;
+}
