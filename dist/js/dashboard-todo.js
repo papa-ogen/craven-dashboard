@@ -2,7 +2,10 @@
     * Code from: http://bootsnipp.com/snippets/featured/todo-example - credit to http://bootsnipp.com/rgbskills
     * Added code for local storage
     
-    Todo: Bug if more than one item has same name
+    Todo: 
+    * Bug if more than one item has same name (Add id)
+    * Don't rewrite entire DOM on add/delete/check
+    * Add timestamp on added item
 ********************** */
 
 (function( dashboardTodo, $, config, undefined ) { 
@@ -10,26 +13,35 @@
     
     var HasLocalStorage = typeof(Storage) !== "undefined";
     var localStorageId = "dashboardTodo";
-    var taskItem = function(name, checked) {
-      this.name = name;
-      this.checked = checked ? true : false;
+    var taskItem = function(data) {
+      this.id = data.id;
+      this.created = data.created;
+      this.name = data.name;
+      this.checked = data.checked ? true : false;
     };
     var taskItems = [];
     var addTaskElement = $("#addTask");
     var taskListElement = $(".dashboard-tasks");
     var taskListCompleteElement = $(".dashboard-completed-tasks");
     
-    function addItem(e) {
+    function addItemOnClick(e) {
         e.preventDefault;
         
         if (e.which == 13) {
             if($(this).val() != '') {
-            var todo = $(this).val();
-                addTodoItem(todo); 
+                var name = $(this).val();
 
                 // Update local storage
-                taskItems.unshift(new taskItem(todo, false));
+                var item = new taskItem({
+                    id: guid(),
+                    created: Date.now(),
+                    name: name, 
+                    checked: false
+                });
+                taskItems.unshift(item);
+                addTodoItem(item.id, item.name); 
                 saveData();
+                
                 // Reset input field
                 addTaskElement.val('');     
             } else {
@@ -39,18 +51,18 @@
     };  
     
     //create task
-    function addTodoItem(name) {
-        var markup = '<li class="ui-state-default"><div class="checkbox"><label><input type="checkbox" value="" />'+ name +'</label></div></li>';
+    function addTodoItem(id, name) {
+        var markup = '<li class="ui-state-default"><div class="checkbox"><label><input type="checkbox" value="" id=' + id + ' />'+ name +'</label></div></li>';
         taskListElement.prepend(markup);
     };
-        
-    function createTodoItem(name) {
-        var markup = '<li class="ui-state-default"><div class="checkbox"><label><input type="checkbox" value="" />'+ name +'</label></div></li>';
+    
+    function createTodoItem(id, name) {
+        var markup = '<li class="ui-state-default"><div class="checkbox"><label><input type="checkbox" value="" id=' + id + ' />'+ name +'</label></div></li>';
         taskListElement.append(markup);
     };
     
-    function createCompletedItem(name) {
-        var markup = ' <li>' + name +'<button class="remove-item btn btn-default btn-xs pull-right"><span class="glyphicon glyphicon-remove"></span></button></li>';
+    function createCompletedItem(id, name) {
+        var markup = ' <li>' + name +'<button class="remove-item btn btn-default btn-xs pull-right" id=' + id + '><span class="glyphicon glyphicon-remove"></span></button></li>';
         taskListCompleteElement.append(markup);
     };    
     
@@ -87,9 +99,9 @@
         for(var i=0; i<taskItems.length; i++)
         {
             if(!taskItems[i].checked) {
-                createTodoItem(taskItems[i].name);
+                createTodoItem(taskItems[i].id, taskItems[i].name);
             } else {
-                createCompletedItem(taskItems[i].name);
+                createCompletedItem(taskItems[i].id, taskItems[i].name);
             }
         } 
     };
@@ -118,6 +130,16 @@
     function clearLocalStorage() {
         localStorage.clear();
     };
+    
+    function guid() {
+        function s4() {
+            return Math.floor((1 + Math.random()) * 0x10000)
+            .toString(16)
+            .substring(1);
+        }
+        return "id" + s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+            s4() + '-' + s4() + s4() + s4();
+    };
 
     dashboardTodo.init = function (container) {
         var container = $(container);
@@ -127,8 +149,8 @@
             taskItems = data ? data : [];
         }
         
-        addTaskElement.on('keypress', addItem);
-        
+        addTaskElement.on('keypress', addItemOnClick);
+        console.log(taskItems);
         listTasks();
 
         //delete done task from "already done"
