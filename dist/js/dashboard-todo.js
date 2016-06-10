@@ -1,6 +1,5 @@
 /* **********************
     Todo: 
-    * Bug if more than one item has same name (Add id)
     * Don't rewrite entire DOM on add/delete/check
 ********************** */
 
@@ -15,17 +14,7 @@
       this.name = data.name;
       this.checked = data.checked ? true : false;
     };
-    TaskItem.prototype.formatDate = function() {
-        var today = new Date(this.created);
-        var dd = today.getDate();
-        var mm = today.getMonth()+1; //January is 0!
-        var yyyy = today.getFullYear();
-        
-        if(dd<10) { dd='0'+dd } 
-        if(mm<10) { mm='0'+mm }
-        
-        return yyyy + "-" + mm + "-" + dd;
-    }
+
     TaskItem.prototype.someMethod = function () {};
 
     var taskItems = [];
@@ -37,7 +26,7 @@
         e.preventDefault;
         
         if (e.which == 13) {
-            if($(this).val() != '') {
+            if($(this).val() != "") {
                 var name = $(this).val();
 
                 // Update local storage
@@ -51,22 +40,22 @@
                 addTodoItem(item); 
                 saveData();
                 
-                // Reset input field
-                addTaskElement.val('');     
+                addTaskElement.val("");     
+                $(this).parent("div").removeClass("has-error");
             } else {
-                // some validation
+                $(this).parent("div").addClass("has-error");
             }
         }
     };  
     
     //create task
     function addTodoItem(item) {
-        var markup = '<li class="ui-state-default" title="' + item.formatDate() + '"><div class="checkbox"><label><input type="checkbox" value="" id=' + item.id + ' />'+ item.name +'</label></div></li>';
+        var markup = '<li class="ui-state-default" title="' + formatDate(item.created) + '"><div class="checkbox"><label><input type="checkbox" value="" id=' + item.id + ' />'+ item.name +'</label></div></li>';
         taskListElement.prepend(markup);
     };
     
     function createCompletedItem(item) {
-        var markup = ' <li title="' + item.created + '">' + item.formatDate() +'<button class="btn btn-danger btn-xs pull-right" id=' + item.id + '><span class="glyphicon glyphicon-remove"></span></button></li>';
+        var markup = ' <li title="' + formatDate(item.created) + '">' + item.name +'<button class="remove-item btn btn-danger btn-xs pull-right" id=' + item.id + '><span class="glyphicon glyphicon-remove"></span></button></li>';
         taskListCompleteElement.prepend(markup);
     };    
     
@@ -79,11 +68,11 @@
         return JSON.parse(retrievedObject);
     };
     
-    function deleteItem(name) {
+    function deleteItem(id) {
         var tasks = [];
         for(var i=0; i<taskItems.length; i++)
         {
-            if(taskItems[i].name != name) {
+            if(taskItems[i].id != id) {
                 tasks.push(taskItems[i]);
             }
         }
@@ -92,8 +81,8 @@
     };
     
     function deleteItemOnClick() {
-        var name = $(this).parent("li").text();
-        deleteItem(name);
+        var id = $(this).attr("id");
+        deleteItem(id);
         taskListElement.html("");
         taskListCompleteElement.html("");
         listTasks();        
@@ -110,10 +99,10 @@
         } 
     };
     
-    function completeItem(name) {
+    function completeItem(id) {
         for(var i=0; i<taskItems.length; i++)
         {
-            if(taskItems[i].name == name) {
+            if(taskItems[i].id == id) {
                 taskItems[i].checked = true;
                 return;
             }
@@ -122,8 +111,8 @@
     
     function completeItemOnClick() {
         if($(this).prop('checked')) {
-            var name = $(this).parent("label").text();
-            completeItem(name);
+            var id = $(this).attr("id");
+            completeItem(id);
             taskListElement.html("");
             taskListCompleteElement.html("");
             listTasks();
@@ -165,7 +154,7 @@
         
     dashboardTodo.init = function (container) {
         var container = $(container);
-
+//clearLocalStorage();
         if(HasLocalStorage) {
             var data = loadData();
             taskItems = data ? data : [];
