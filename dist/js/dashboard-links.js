@@ -142,7 +142,7 @@ if(typeof dashboardConfig == 'undefined') {
                     "<div class=\"col-sm-6\">" +
                     "<input type=\"password\" class=\"form-control\" id=\"" + labelId + "\" value=\"" + data + "\" />" +
                     "</div>" +
-                    "<div class=\"col-sm-2\"><button type=\"submit\" class=\"btn btn-primary\">Display</button></div>" + 
+                    "<div class=\"col-sm-2\"><button type=\"submit\" class=\"btn btn-info\">Display</button></div>" + 
                     "</div>");
         };
         
@@ -150,7 +150,7 @@ if(typeof dashboardConfig == 'undefined') {
             var labelId = label.toLowerCase();
             return $("<div class=\"form-group row\">" +
                     "<label for=\"" + labelId + "\" class=\"col-sm-2 form-control-label\">" + label + "</label>" +
-                    "<div class=\"col-sm-6\">" +
+                    "<div class=\"col-sm-10\">" +
                     "<a href=\"" + data + "\" target=\"self\">" + data + "</a>" + 
                     "</div>" +
                     // Todo: "<div class=\"col-sm-2\"><button type=\"submit\" class=\"btn btn-primary\">Select Link</button></div>" + 

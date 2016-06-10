@@ -1,4 +1,4 @@
-.panel-title {
+.panel-heading {
     cursor: pointer;
 }
 
@@ -37,8 +37,13 @@ pre {
     text-align: left;
     border: none;
     background: inherit;
+    color: #fff;
 }
 
 .btn-group-xs>.btn, .btn-xs {
     font-size: 11px;
 }
+
+ .dashboard-completed-tasks li {
+     word-break: break-word;
+ }

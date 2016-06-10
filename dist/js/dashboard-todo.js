@@ -1,11 +1,7 @@
 /* **********************
-    * Code from: http://bootsnipp.com/snippets/featured/todo-example - credit to http://bootsnipp.com/rgbskills
-    * Added code for local storage
-    
     Todo: 
     * Bug if more than one item has same name (Add id)
     * Don't rewrite entire DOM on add/delete/check
-    * Add timestamp on added item
 ********************** */
 
 (function( dashboardTodo, $, config, undefined ) { 
@@ -39,7 +35,7 @@
                     checked: false
                 });
                 taskItems.unshift(item);
-                addTodoItem(item.id, item.name); 
+                addTodoItem(item); 
                 saveData();
                 
                 // Reset input field
@@ -51,19 +47,14 @@
     };  
     
     //create task
-    function addTodoItem(id, name) {
-        var markup = '<li class="ui-state-default"><div class="checkbox"><label><input type="checkbox" value="" id=' + id + ' />'+ name +'</label></div></li>';
+    function addTodoItem(item) {
+        var markup = '<li class="ui-state-default" title="' + formatDate(item.created) + '"><div class="checkbox"><label><input type="checkbox" value="" id=' + item.id + ' />'+ item.name +'</label></div></li>';
         taskListElement.prepend(markup);
     };
     
-    function createTodoItem(id, name) {
-        var markup = '<li class="ui-state-default"><div class="checkbox"><label><input type="checkbox" value="" id=' + id + ' />'+ name +'</label></div></li>';
-        taskListElement.append(markup);
-    };
-    
-    function createCompletedItem(id, name) {
-        var markup = ' <li>' + name +'<button class="remove-item btn btn-default btn-xs pull-right" id=' + id + '><span class="glyphicon glyphicon-remove"></span></button></li>';
-        taskListCompleteElement.append(markup);
+    function createCompletedItem(item) {
+        var markup = ' <li title="' + formatDate(item.created) + '">' + item.name +'<button class="btn btn-danger btn-xs pull-right" id=' + item.id + '><span class="glyphicon glyphicon-remove"></span></button></li>';
+        taskListCompleteElement.prepend(markup);
     };    
     
     function saveData() {
@@ -99,9 +90,9 @@
         for(var i=0; i<taskItems.length; i++)
         {
             if(!taskItems[i].checked) {
-                createTodoItem(taskItems[i].id, taskItems[i].name);
+                addTodoItem(taskItems[i]);
             } else {
-                createCompletedItem(taskItems[i].id, taskItems[i].name);
+                createCompletedItem(taskItems[i]);
             }
         } 
     };
@@ -140,17 +131,37 @@
         return "id" + s4() + s4() + '-' + s4() + '-' + s4() + '-' +
             s4() + '-' + s4() + s4() + s4();
     };
-
+    
+    function sortItems(objects) {
+        // Todo: 
+        objects.sort(function(a, b) {
+            return parseFloat(a.created) - parseFloat(b.created);
+        });    
+    };
+    
+    function formatDate(date) {
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth()+1; //January is 0!
+        var yyyy = today.getFullYear();
+        
+        if(dd<10) { dd='0'+dd } 
+        if(mm<10) { mm='0'+mm }
+        
+        return yyyy + "-" + mm + "-" + dd;
+    };
+    
     dashboardTodo.init = function (container) {
         var container = $(container);
         
         if(HasLocalStorage) {
             var data = loadData();
             taskItems = data ? data : [];
+            sortItems(taskItems);
         }
         
         addTaskElement.on('keypress', addItemOnClick);
-        console.log(taskItems);
+        
         listTasks();
 
         //delete done task from "already done"

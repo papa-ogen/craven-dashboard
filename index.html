@@ -18,15 +18,25 @@
     
     <div class="dashboard-container"></div>
  
-
     <div class="row text-left">
-     <!--
+
+        <div class="col-md-4 dashboard-todo">
+            <div class="col-md-6">
+                <h3 class="text-info">Current Tasks</h3>
+                <input type="text" class="form-control" id="addTask" value="Add Item">
+                <ul class="list-unstyled dashboard-tasks"></ul>
+            </div>
+            <div class="col-md-6">
+                <h3 class="text-success">Completed Tasks</h3>
+                <ul class="list-unstyled dashboard-completed-tasks"></ul>
+            </div>            
+        </div>
         <div class="col-md-4">
             <h2>Instructions</h2>
             <ul class="list-unstyled">
                 <li>
                     <h3>Epi-server license</h3>
-                    <pre class="text-left">
+                    <pre class="text-left well">
 <a href="https://license.episerver.com/Public/GenerateDemoLicense.aspx">Click to generate Demo license</a>
 Select Bound Input: Mac
 
@@ -48,18 +58,6 @@ cd Open\ Pages
                 </li>
             </ul>
                 
-        </div>
-        -->
-        <div class="col-md-4 dashboard-todo">
-            <div class="col-md-6">
-                <h3>Current Tasks</h3>
-                <input type="text" class="form-control" id="addTask" value="Add Item">
-                <ul class="list-unstyled dashboard-tasks"></ul>
-            </div>
-            <div class="col-md-6">
-                <h3>Completed Tasks</h3>
-                <ul class="list-unstyled dashboard-completed-tasks"></ul>
-            </div>            
         </div>
     </div>
 
