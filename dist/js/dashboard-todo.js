@@ -9,17 +9,30 @@
     
     var HasLocalStorage = typeof(Storage) !== "undefined";
     var localStorageId = "dashboardTodo";
-    var taskItem = function(data) {
+    function TaskItem(data) {
       this.id = data.id;
       this.created = data.created;
       this.name = data.name;
       this.checked = data.checked ? true : false;
     };
+    TaskItem.prototype.formatDate = function() {
+        var today = new Date(this.created);
+        var dd = today.getDate();
+        var mm = today.getMonth()+1; //January is 0!
+        var yyyy = today.getFullYear();
+        
+        if(dd<10) { dd='0'+dd } 
+        if(mm<10) { mm='0'+mm }
+        
+        return yyyy + "-" + mm + "-" + dd;
+    }
+    TaskItem.prototype.someMethod = function () {};
+
     var taskItems = [];
     var addTaskElement = $("#addTask");
     var taskListElement = $(".dashboard-tasks");
     var taskListCompleteElement = $(".dashboard-completed-tasks");
-    
+
     function addItemOnClick(e) {
         e.preventDefault;
         
@@ -28,7 +41,7 @@
                 var name = $(this).val();
 
                 // Update local storage
-                var item = new taskItem({
+                var item = new TaskItem({
                     id: guid(),
                     created: Date.now(),
                     name: name, 
@@ -48,12 +61,12 @@
     
     //create task
     function addTodoItem(item) {
-        var markup = '<li class="ui-state-default" title="' + formatDate(item.created) + '"><div class="checkbox"><label><input type="checkbox" value="" id=' + item.id + ' />'+ item.name +'</label></div></li>';
+        var markup = '<li class="ui-state-default" title="' + item.formatDate() + '"><div class="checkbox"><label><input type="checkbox" value="" id=' + item.id + ' />'+ item.name +'</label></div></li>';
         taskListElement.prepend(markup);
     };
     
     function createCompletedItem(item) {
-        var markup = ' <li title="' + formatDate(item.created) + '">' + item.name +'<button class="btn btn-danger btn-xs pull-right" id=' + item.id + '><span class="glyphicon glyphicon-remove"></span></button></li>';
+        var markup = ' <li title="' + item.created + '">' + item.formatDate() +'<button class="btn btn-danger btn-xs pull-right" id=' + item.id + '><span class="glyphicon glyphicon-remove"></span></button></li>';
         taskListCompleteElement.prepend(markup);
     };    
     
@@ -118,10 +131,6 @@
         }
     };
     
-    function clearLocalStorage() {
-        localStorage.clear();
-    };
-    
     function guid() {
         function s4() {
             return Math.floor((1 + Math.random()) * 0x10000)
@@ -133,7 +142,6 @@
     };
     
     function sortItems(objects) {
-        // Todo: 
         objects.sort(function(a, b) {
             return parseFloat(a.created) - parseFloat(b.created);
         });    
@@ -151,9 +159,13 @@
         return yyyy + "-" + mm + "-" + dd;
     };
     
+    function clearLocalStorage() {
+        localStorage.clear();
+    };
+        
     dashboardTodo.init = function (container) {
         var container = $(container);
-        
+
         if(HasLocalStorage) {
             var data = loadData();
             taskItems = data ? data : [];
