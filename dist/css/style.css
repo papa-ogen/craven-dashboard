@@ -47,3 +47,24 @@ pre {
  .dashboard-completed-tasks li {
      word-break: break-word;
  }
+ 
+ .panel {
+    animation: opacity 1s;
+ }
+  
+  @keyframes opacity {
+	0% {
+		-webkit-filter: opacity(0);
+	}
+	100% {
+        visibility: visible;
+        opacity: 1;
+	}
+}
+
+.countdown-text {
+    margin-top: 0;
+    width: 100%;
+    font-size: 39em;
+    text-align: center;
+}

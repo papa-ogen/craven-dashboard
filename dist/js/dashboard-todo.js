@@ -1,6 +1,6 @@
 /* **********************
     Todo: 
-    * Don't rewrite entire DOM on add/delete/check
+    * Don't rewrite entire DOM on add/delete/check, suggestion: add element to object.
 ********************** */
 
 (function( dashboardTodo, $, config, undefined ) { 
@@ -50,8 +50,10 @@
     
     //create task
     function addTodoItem(item) {
-        var markup = '<li class="ui-state-default" title="' + formatDate(item.created) + '"><div class="checkbox"><label><input type="checkbox" value="" id=' + item.id + ' />'+ item.name +'</label></div></li>';
+        var markup = $('<li class="ui-state-default" title="' + formatDate(item.created) + '"><div class="checkbox"><label><input type="checkbox" value="" id=' + item.id + ' />'+ item.name +'</label></div></li>');
         taskListElement.prepend(markup);
+        markup.hide();
+        markup.fadeIn('slow');
     };
     
     function createCompletedItem(item) {
@@ -89,10 +91,12 @@
     };
     
     function listTasks() {
+        var time = 0;
+        var taskitem = "";
         for(var i=0; i<taskItems.length; i++)
         {
             if(!taskItems[i].checked) {
-                addTodoItem(taskItems[i]);
+               addTodoItem(taskItems[i]); 
             } else {
                 createCompletedItem(taskItems[i]);
             }
