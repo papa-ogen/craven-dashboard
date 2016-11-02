@@ -2,8 +2,8 @@
 Simple tool for storing your most common urls, usernames and passwords. It's not meant for secure password storing.
 
 ## Installation
-1. Download source code.
-2. Create a config.js file in root folder:
+* Download source code.
+* Create a config.js file in root folder:
 ```
 var dashboardConfig = [
     {
@@ -38,5 +38,5 @@ var dashboardConfig = [
         ]
     }    
 ]
-```
-3. Open index.html in browser
+  ```
+* Open index.html in browser
