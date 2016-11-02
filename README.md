@@ -40,3 +40,6 @@ var dashboardConfig = [
 ]
   ```
 * Open index.html in browser
+
+## Tasklist
+Is using local storage. **If your clear browser cache your entries will be deleted.**
