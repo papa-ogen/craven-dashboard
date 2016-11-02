@@ -1,5 +1,5 @@
 # Dashboard - Your daily credential library
-Simple tool for storing your most common urls, usernames and passwords. It's not meant for secure password storing.
+Simple tool for storing your most common urls, usernames and passwords. It's **not** meant for secure password storing.
 
 ## Installation
 * Download source code.
