@@ -4,7 +4,7 @@ Simple tool for storing your most common urls, usernames and passwords. It's not
 ## Installation
 * Download source code.
 * Create a config.js file in root folder:
-```
+```json
 var dashboardConfig = [
     {
         title: "Environment1",
