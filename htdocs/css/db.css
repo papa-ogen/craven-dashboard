@@ -1,0 +1,199 @@
+@import url('http://fonts.googleapis.com/css?family=Lato');
+
+body, html{
+  height: 100%;
+  background: #272b30;
+  color: #c8c8c8;
+  font-family: 'Lato', Tahoma, Geneva, sans-serif;
+}
+
+a {
+  color: #fff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+header {
+  text-align: center;
+}
+
+html, body, ul, ol, h1, h2, h3, h4 {
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4 {
+  font-family: "Arial Black", Gadget, sans-serif;
+}
+
+h1, h2 {
+  margin: 6px 0 4px 0;
+}
+
+h2 {
+  position: relative;
+  padding-left: 25px;
+  line-height: 20px;
+  border-bottom: 1px solid #F5B041;
+}
+
+h2:before {
+  position: absolute;
+  left: 0;
+  top: 0;
+  content: "";
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: #F5B041;
+  margin-right: 7px;
+}
+
+.db-header-color-blue h2 {
+  border-color: #5bc0de;
+}
+
+.db-header-color-blue h2:before {
+  background: #5bc0de;
+}
+
+.db-header-color-green h2 {
+  border-color: #62c462;
+}
+
+.db-header-color-green h2:before {
+  background: #62c462;
+}
+
+.db-links-header {
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+ul, ol {
+  list-style-type: none;
+}
+
+.db-container {
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.db-grid-content {
+  padding: 0;
+  margin-right: 10px;
+}
+
+/* Colors */
+.db-color-blue {
+  color: #5bc0de;
+}
+
+.db-color-green {
+  color: #62c462;
+}
+
+/* Link List */
+.db-links-collection {
+  margin-bottom: 20px;
+}
+
+.db-links > li {
+  line-height: 30px;
+  margin-bottom: 10px;
+  border: 1px solid #000;
+  border-radius: 5px 3px;
+}
+
+.db-links > li > label > h4 {
+  padding: 2px 8px;
+  background: #3e444c;
+  border-radius: 5px 3px;
+}
+
+.db-details {
+  padding: 0;
+  max-height: 0;
+  transition: max-height 0.25s ease-out;
+  overflow: hidden;
+}
+
+.db-toggle:checked ~ .db-details {
+  max-height: 500px;
+  transition: max-height 0.5s ease-in;
+}
+
+.db-links > li > label:hover {
+  cursor: pointer;
+}
+
+.db-details ul {
+  padding: 6px 8px;
+}
+
+.db-links > li > .db-details label {
+  float: left;
+  width: 100px;
+}
+
+input {
+  margin: 4px 0;
+  padding: 6px 8px;
+  background-color: #EBF5FB;
+  border: 1px solid #000;
+  border-radius: 4px;
+  font-size: 1.2em;
+  font-family: Tahoma, Geneva, sans-serif;
+  transition: background-color 0.2s linear;
+}
+
+input:focus { 
+  outline:none;
+  background-color: #fff;
+  border: 1px solid #3498DB;
+  border-radius: 4px;
+}
+
+.db-toggle {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+}
+
+/* Grid */
+[class*="db-size-"] {
+  float: left;
+  width: 100%;
+}
+
+@media only screen and (min-width: 600px) {
+  .db-size-1of2{ width: 50%; }
+  .db-size-1of3 , .db-size-2of3 { width: 100% }
+}
+
+@media only screen and (min-width: 768px) {
+  .db-size-1of2 { width: 50%; }
+  .db-size-1of3 { width: 33.333%; }
+  .db-size-2of3 { width: 66.666% }
+}
+
+/* States */
+.db-error {
+  height: 100%;
+  min-height: 100%;
+  background: #EC7063;
+  color: #922B21;
+}
+
+.db-error div {
+  width: 960px;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+
+.db-error pre {
+  color: #fff;
+}
