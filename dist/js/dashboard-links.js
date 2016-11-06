@@ -55,7 +55,11 @@ if(typeof dashboardConfig == 'undefined') {
                 });
                 
                 // Elements
+<<<<<<< Updated upstream:dist/js/dashboard-links.js
                 $.each(element.credentials, function (i, val) {
+=======
+                $.each(env.credentials, function (i, val) {
+>>>>>>> Stashed changes:dist/js/main.js
                     // Creating Panel
                     var panel = $("<div>",
                     {

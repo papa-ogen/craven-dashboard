@@ -31,7 +31,7 @@ var dashboardConfig = [
             {
                 id: "websiteId2",
                 app: "My Website2",
-                url: ["http://example2.com, "http://example3.com", "http://example4.com"],
+                url: ["http://example2.com", "http://example3.com", "http://example4.com"],
                 username: "username",
                 password: "password"
             }            
