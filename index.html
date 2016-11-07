@@ -22,25 +22,28 @@
   <section id="db-links-container" class="db-size-2of3"></section>
 
   <aside class="db-todo db-size-1of3">
-            <div class="db-size-1of2">
-                <h3 class="db-color-blue">Current Tasks</h3>
-                <div class="form-group">
-                    <input type="text" class="form-control" id="addTask" placeholder="Add Item">
-                </div>
-                <ul class="list-unstyled dashboard-tasks"><li class="ui-state-default" title="2016-11-03" style="display: list-item;"><div class="checkbox"><label><input type="checkbox" value="" id="id84d4e8be-32a6-457b-fcd0-8be92a69e32d">Compliance Education</label></div></li><li class="ui-state-default" title="2016-11-03" style="display: list-item;"><div class="checkbox"><label><input type="checkbox" value="" id="id55f5798f-8592-0347-7e0f-3d76ebf8dccc">Vattenflaska</label></div></li><li class="ui-state-default" title="2016-11-03" style="display: list-item;"><div class="checkbox"><label><input type="checkbox" value="" id="idf5b30653-3de4-354b-d844-6e4b669f4acf">Mouse &amp; Keyboard</label></div></li><li class="ui-state-default" title="2016-11-03" style="display: list-item;"><div class="checkbox"><label><input type="checkbox" value="" id="id762500b5-7d0a-57ab-d477-f71f7e447357">Clarity</label></div></li><li class="ui-state-default" title="2016-11-03" style="display: list-item;"><div class="checkbox"><label><input type="checkbox" value="" id="id74fd4e32-48fd-3a81-4422-7f833f32ab29">JIRA</label></div></li><li class="ui-state-default" title="2016-11-03" style="display: list-item;"><div class="checkbox"><label><input type="checkbox" value="" id="id48e20146-1b23-404e-24c0-301fb12f9bb3">TP Cable</label></div></li></ul>
-            </div>
-            <div class="db-size-1of2">
-                <h3 class="db-color-green">Completed Tasks</h3>
-                <ul class="list-unstyled dashboard-completed-tasks"> 
-<li title="2016-11-03">Micro USB<button class="remove-item btn btn-danger btn-xs pull-right" id="id44e9e50a-2d49-9131-2735-20eb05639b5f"><span class="glyphicon glyphicon-remove"></span></button></li> <li title="2016-11-03">Local admin<button class="remove-item btn btn-danger btn-xs pull-right" id="id6b7d11f5-4878-e15a-5cd7-d397c5870099"><span class="glyphicon glyphicon-remove"></span></button></li></ul>
-            </div>            
-        </div>
-  </aside>
+    <div class="db-size-1of2">
+      <h3 class="db-color-blue">Current Tasks</h3>
+
+      <input type="text" id="db-addTask" placeholder="Add Item">
+            
+      <ul class="db-tasks" id="db-todo"></ul>
+
+    </div>
+
+    <div class="db-size-1of2">
+      <h3 class="db-color-green">Completed Tasks</h3>
+
+        <ul class="db-completed-tasks" id="db-complete"></ul>
+
+     </div>            
+    </aside>
 
 </main>
 
 <script src="config.js"></script>
 <script src="htdocs/js/db-links.js"></script>
+<script src="htdocs/js/db-todo.js"></script>
 
 </body>
 

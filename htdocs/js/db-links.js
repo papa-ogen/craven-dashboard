@@ -1,8 +1,8 @@
 if (typeof dashboardConfig === "undefined") {
 
     var dbApp = document.getElementById("db-app");
-    dbApp.innerHTML = "<div><strong>Error!</strong> Please add a <strong>config.js</strong> file to the project. <br /><br />" +
-                      "Go to <a href=\"https://github.com/papa-ogen/DashBoard/blob/master/README.md\" target=\"self\">DashBoard on GitHub</a> for more information and correct syntax.</div>";
+    dbApp.innerHTML = '<div><strong>Error!</strong> Please add a <strong>config.js</strong> file to the project. <br /><br />' +
+                      'Go to <a href="https://github.com/papa-ogen/DashBoard/blob/master/README.md" target="self">DashBoard on GitHub</a> for more information and correct syntax.</div>';
     dbApp.className += " db-error";
 
 } else {
@@ -14,13 +14,16 @@ if (typeof dashboardConfig === "undefined") {
         var id = "toggle-";
         var linkCount = 0;
         var credentialCount = 0;
+        var col1 = _createElement ("div", { classList: "db-size-1of2" }, c);
+        var col2 = _createElement ("div", { classList: "db-size-1of2" }, c); 
 
         config.forEach(addMarkup);
 
         function addMarkup (element, index) {
-            var col = _createElement ("div", { classList: "db-size-1of2 db-links-collection" }, c);
+            var mainCol = index % 2 ? col1 : col2;
+            var col = _createElement ("div", { classList: "db-size-1of1 db-links-collection" }, mainCol);
             var subCol = _createElement ("div", { classList: "db-grid-content" }, col);
-            var header = _createElement ("header", { classList: "db-links-header db-header-color-blue" }, subCol);
+            var header = _createElement ("header", { classList: "db-links-header " + setHeaderColor(index) }, subCol);
             var title = _createElement ("h2", { text: element.title }, header);
             var linkList = _createElement ("ul", { classList: "db-links" }, subCol);
 
@@ -31,15 +34,16 @@ if (typeof dashboardConfig === "undefined") {
                 var checkbox = _createElement ("input", { classList: "db-toggle", attr: [ [ "type", "checkbox" ], [ "id", id+linkCount ] ] }, li);
                 var details = _createElement ("div", { classList: "db-details" }, li);
                 var links = _createElement("ul", {}, details);
-                
+
                 addLinks(links, element.credentials[i]);
 
                 linkCount++;
             }
 
-        };
+        }
 
         function addLinks (linkList, credentials) {
+
             var li, label, ahref, input, url, username, password;
 
             if(credentials.url !== undefined) {
@@ -59,23 +63,23 @@ if (typeof dashboardConfig === "undefined") {
             if(username !== undefined && username)  {
 
                 li = _createElement ("li", {}, linkList);
-                
+
                 label = _createElement ("label", {
                     text: "Username",
                     attr: [ [ "for", "name"+credentialCount ] ]
                 }, li);
-                
+
                 input = _createElement ("input", {
                     attr: [ [ "type", "text" ], [ "id", "name"+credentialCount ], [ "value", username ] ]
-                }, li);                 
-                
+                }, li);
+
                 credentialCount++;
             }
 
-            if(password !== undefined && password) { 
-                
+            if(password !== undefined && password) {
+
                 li = _createElement ("li", {}, linkList);
-                
+
                 label = _createElement ("label", {
                     text: "Password",
                     attr: [ [ "for", "name"+credentialCount ] ]
@@ -83,11 +87,11 @@ if (typeof dashboardConfig === "undefined") {
 
                 input = _createElement ("input", {
                     attr: [ [ "type", "password" ], [ "id", "name"+credentialCount ], [ "value", password ] ]
-                }, li); 
+                }, li);
 
                 credentialCount++;
             }
-        };
+        }
 
         /*
             Create a HTML Object dynamically
@@ -98,30 +102,47 @@ if (typeof dashboardConfig === "undefined") {
             };
             var e = createElement("div", obj, li);
         */
-        function _createElement (element, obj, appendTo) {
+        function _createElement (element, obj, parent, insertBefore) {
             var e = document.createElement(element);
 
             if(obj.text) {
                 var t = document.createTextNode(obj.text);
                 e.appendChild(t);
-            } 
+            }
 
             if(obj.classList) {
                 e.classList = obj.classList;
             }
 
             if(obj.attr) {
-                for(var i = 0; i < obj.attr.length; i++) {
-                    e.setAttribute(obj.attr[i][0], obj.attr[i][1]);
-                }
+                obj.attr.forEach(function (attr) {
+                    e.setAttribute(attr[0], attr[1]);
+                });
             }
 
-            appendTo.appendChild(e);
+            if(insertBefore) {
+                parent.insertBefore(e, parent.children[0]);
+            } else {
+                parent.appendChild(e);
+            }
 
-            return e;            
-        };
+            return e;
+        }
 
-        // Todo: Add event receiver on focus text: http://stackoverflow.com/questions/480735/select-all-contents-of-textbox-when-it-receives-focus-javascript-or-jquery
+        function setHeaderColor(index) {
+
+            switch(index) {
+                case 0:
+                default:
+                    return "db-header-color-blue";
+                case 1:
+                    return "db-header-color-green";
+                case 2:
+                    return "db-header-color-yellow";   
+                case 3:
+                    return "db-header-color-red";                                       
+            }
+        }
 
     })(dashboardConfig);
 }
