@@ -20,7 +20,7 @@ if (typeof dashboardConfig === "undefined") {
         config.forEach(addMarkup);
 
         function addMarkup (element, index) {
-            var mainCol = index % 2 ? col1 : col2;
+            var mainCol = index % 2 ? col2 : col1;
             var col = _createElement ("div", { classList: "db-size-1of1 db-links-collection" }, mainCol);
             var subCol = _createElement ("div", { classList: "db-grid-content" }, col);
             var header = _createElement ("header", { classList: "db-links-header " + setHeaderColor(index) }, subCol);
