@@ -263,13 +263,19 @@ input:focus {
   cursor: pointer;  
   padding: 0 10px;
   transition: 0.5s ease;
+  background: none;
 }
 
-.db-tasks .db-task:hover {
+.db-tasks .db-task:hover,
+.db-tasks .db-task:hover .db-date {
   color: #fff;
   text-decoration: line-through;
 }
 
+.db-tasks .db-task:hover,
+.db-completed-tasks > li:hover {
+  background: #3e444c;
+}
 .db-date {
   float: right;
   font-size: 0.6em;
@@ -279,6 +285,8 @@ input:focus {
   line-height: 40px;
   font-size: 1.1em;
   padding: 0 10px;
+  transition: 0.5s ease;
+  background: none;  
 }
 
 .db-completed-tasks > li > span {
@@ -291,14 +299,21 @@ input:focus {
 
 .db-btn-delete {
   box-shadow: rgb(181, 75, 58) 0px 34px 0px -15px inset; 
-  background-color: rgb(167, 63, 45); 
+  background-color: #A73F2D;
   border: 1px solid rgb(36, 29, 19); 
   display: inline-block; 
   cursor: pointer; 
   color: rgb(255, 255, 255); 
   font-weight: bold; 
+  margin-top: 5px;
   padding: 6px 10px; 
   text-shadow: rgb(122, 42, 29) 0px -1px 0px;
+  transition: 1s ease;
+}
+
+.db-btn-delete:hover {
+  box-shadow: #BD4F3E 0px 34px 0px -15px inset; 
+  background-color: #B04330;
 }
 
 .db-right { float: right; }

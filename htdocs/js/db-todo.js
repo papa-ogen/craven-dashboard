@@ -173,12 +173,15 @@
         e.preventDefault;
 
         var id = e.target.id;
+        var r = confirm("Are you sure?");
 
-        completedList.removeChild(e.target.parentNode);
+        if (r == true) {
+            completedList.removeChild(e.target.parentNode);
 
-        deleteItem(id);
+            deleteItem(id);
 
-        saveData();
+            saveData();
+        }
     }
 
     function deleteItem(id) {
