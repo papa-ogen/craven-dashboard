@@ -8,7 +8,7 @@ Simple tool for storing your most common urls, usernames and passwords. It's **n
 var dashboardConfig = [
     {
         title: "Development",
-	expanded: true,
+		expanded: true,
         credentials: [
             {
                 id: "github",
