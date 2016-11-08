@@ -55,16 +55,21 @@
         localStorage.clear();
     }
 
-    function formatDate(date) {
-        var today = new Date();
-        var dd = today.getDate();
-        var mm = today.getMonth()+1; //January is 0!
-        var yyyy = today.getFullYear();
+    function formatDate(time) {
+        var today = new Date().setHours(0, 0, 0, 0);
+        var date = new Date(time);
+        var dd = date.getDate();
+        var mm = date.getMonth()+1; //January is 0!
+        var yyyy = date.getFullYear();
 
         if(dd<10) { dd="0"+dd; }
         if(mm<10) { mm="0"+mm; }
 
-        return yyyy + "-" + mm + "-" + dd;
+        var dateStr = yyyy + "-" + mm + "-" + dd;
+
+        if(date.setHours(0, 0, 0, 0) === today) dateStr = "today";
+
+        return dateStr;
     }
 
     function guid() {
@@ -100,6 +105,7 @@
             text: item.name,
             attr: [ ["title", "Complete Item\nAdded: " + formatDate(item.created) ], ["id", item.id] ]
         }, todoList, true);
+        var itemCreated = _createElement("span", {text: "["+formatDate(item.created)+"]", classList: "db-date"}, li);
 
         li.addEventListener("click", completeItemOnClick);
     }

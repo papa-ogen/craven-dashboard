@@ -2,7 +2,7 @@ if (typeof dashboardConfig === "undefined") {
 
     var dbApp = document.getElementById("db-app");
     dbApp.innerHTML = '<div><strong>Error!</strong> Please add a <strong>config.js</strong> file to the project. <br /><br />' +
-                      'Go to <a href="https://github.com/papa-ogen/DashBoard/blob/master/README.md" target="self">DashBoard on GitHub</a> for more information and correct syntax.</div>';
+                      'Go to <a href="https://github.com/papa-ogen/cravenDashBoard/blob/master/README.md" target="self">DashBoard on GitHub</a> for more information and correct syntax.</div>';
     dbApp.className += " db-error";
 
 } else {
@@ -14,14 +14,16 @@ if (typeof dashboardConfig === "undefined") {
         var id = "toggle-";
         var linkCount = 0;
         var credentialCount = 0;
-        var col1 = _createElement ("div", { classList: "db-size-1of2" }, c);
-        var col2 = _createElement ("div", { classList: "db-size-1of2" }, c); 
+        var cols = {
+            col1: _createElement ("div", { classList: "db-size-1of2" }, c),
+            col2: _createElement ("div", { classList: "db-size-1of2" }, c) 
+        }
 
         config.forEach(addMarkup);
 
         function addMarkup (element, index) {
-            var mainCol = index % 2 ? col2 : col1;
-            var col = _createElement ("div", { classList: "db-size-1of1 db-links-collection" }, mainCol);
+            var mainCol = index % 2 ? cols.col2 : cols.col1;
+            var col = _createElement ("div", { classList: "db-size-1of1 db-links-collection" }, element.col !== undefined ? cols[element.col] : mainCol);
             var subCol = _createElement ("div", { classList: "db-grid-content" }, col);
             var header = _createElement ("header", { classList: "db-links-header " + setHeaderColor(index) }, subCol);
             var title = _createElement ("h2", { text: element.title }, header);
@@ -74,6 +76,8 @@ if (typeof dashboardConfig === "undefined") {
                     attr: [ [ "type", "text" ], [ "id", "name"+credentialCount ], [ "value", username ] ]
                 }, li);
 
+                input.addEventListener("focus", selectIinputValue);
+
                 credentialCount++;
             }
 
@@ -91,10 +95,27 @@ if (typeof dashboardConfig === "undefined") {
                     attr: [ [ "type", "password" ], [ "id", "name"+credentialCount ], [ "value", password ] ]
                 }, li);
 
+                input.addEventListener("focus", togglePassword);
+                input.addEventListener("blur", togglePassword);
+
                 credentialCount++;
             }
         }
 
+        function selectIinputValue(e) {
+            e.preventDefault;
+
+            var text = e.target.value;
+            e.target.select();
+        }
+
+        function togglePassword(e) {
+            var input = e.target;
+
+            input.type = input.type === "text" ? "password" : "text";
+
+            if(e.type === "focus") input.select();
+        }
         /*
             Create a HTML Object dynamically
             Example: 
@@ -144,10 +165,13 @@ if (typeof dashboardConfig === "undefined") {
                 default:
                     return "db-header-color-blue";
                 case 1:
+                case 4:
                     return "db-header-color-green";
                 case 2:
+                case 5:
                     return "db-header-color-yellow";   
                 case 3:
+                case 6:
                     return "db-header-color-red";                                       
             }
         }

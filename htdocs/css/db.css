@@ -118,6 +118,11 @@ ul, ol {
 .db-container {
   margin: 0 auto;
   padding: 0 15px;
+  min-height: 100%;
+}
+
+.db-loaded {
+  background: red;
 }
 
 .db-grid-content {
@@ -263,6 +268,11 @@ input:focus {
 .db-tasks .db-task:hover {
   color: #fff;
   text-decoration: line-through;
+}
+
+.db-date {
+  float: right;
+  font-size: 0.6em;
 }
 
 .db-completed-tasks li {
