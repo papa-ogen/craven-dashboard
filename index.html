@@ -5,6 +5,7 @@
 <title>cravenDashBoard</title>
 
 <link rel="stylesheet" href="htdocs/css/db.css" />
+<link rel="stylesheet" href="htdocs/css/db-countdown.css" />
 <link rel="icon" type="image/png" href="htdocs/img/db-favicon16x16.png" sizes="16x16" />
 <link rel="icon" type="image/png" href="htdocs/img/db-favicon32x32.png" sizes="32x32" />
 <link rel="icon" type="image/png" href="htdocs/img/db-favicon128x128.png" sizes="128x128" />
@@ -13,37 +14,49 @@
 
 <body>
 
-<main id="db-app" class="db-container">
+<main id="db-app">
 
-  <header>
-    <h1>DashBoard</h1>
-  </header>
+  <div class="db-container">
 
-  <section id="db-links-container" class="db-size-2of3"></section>
+    <header>
+      <h1>DashBoard</h1>
 
-  <aside class="db-todo db-size-1of3">
-    <div class="db-size-1of2">
-      <h3 class="db-color-blue">Current Tasks</h3>
+      <div class="db-countdown">
+        <time>5 days left</time>
+        <div class="db-overlay">
+          <p class="db-text-big">Don't forget to submit your timesheet today!</p>
+        </div>
+      </div>
+    </header>
 
-      <input type="text" id="db-addTask" placeholder="Add Item">
-            
-      <ul class="db-tasks" id="db-todo"></ul>
+    <section id="db-links-container" class="db-size-2of3"></section>
+
+    <aside class="db-todo db-size-1of3">
+      <div class="db-size-1of2">
+        <h3 class="db-color-blue">Current Tasks</h3>
+
+        <input type="text" id="db-addTask" placeholder="Add Item">
+              
+        <ul class="db-tasks" id="db-todo"></ul>
+
+      </div>
+
+      <div class="db-size-1of2">
+        <h3 class="db-color-green">Completed Tasks</h3>
+
+          <ul class="db-completed-tasks" id="db-complete"></ul>
+
+      </div>            
+      </aside>
 
     </div>
-
-    <div class="db-size-1of2">
-      <h3 class="db-color-green">Completed Tasks</h3>
-
-        <ul class="db-completed-tasks" id="db-complete"></ul>
-
-     </div>            
-    </aside>
 
 </main>
 
 <script src="config.js"></script>
 <script src="htdocs/js/db-links.js"></script>
 <script src="htdocs/js/db-todo.js"></script>
+<script src="htdocs/js/db-countdown.js"></script>
 
 </body>
 

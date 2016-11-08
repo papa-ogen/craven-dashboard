@@ -316,4 +316,10 @@ input:focus {
   background-color: #B04330;
 }
 
+
+
 .db-right { float: right; }
+
+.db-text-big {
+  font-size: 2.0em;
+}

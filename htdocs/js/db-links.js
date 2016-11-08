@@ -19,7 +19,7 @@ if (typeof dashboardConfig === "undefined") {
             col2: _createElement ("div", { classList: "db-size-1of2" }, c) 
         }
 
-        config.forEach(addMarkup);
+        config.dblinks.forEach(addMarkup);
 
         function addMarkup (element, index) {
             var mainCol = index % 2 ? cols.col2 : cols.col1;
