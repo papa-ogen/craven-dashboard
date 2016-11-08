@@ -1,10 +1,3 @@
-# Dashboard - Your daily credential library
-Simple tool for storing your most common urls, usernames and passwords. It's **not** meant for secure password storing but a help tool for people using a lot of different URLs and credentials.
-
-## Installation
-* Download source code.
-* Create a config.js file in root folder:
-```javascript
 var dashboardConfig = {
   dblinks: [{
     title: "Development",
@@ -42,7 +35,7 @@ var dashboardConfig = {
   },
   {
     title: "Social",
-    //col: "col1", // Move linklist to specific column col1 or col2 
+    //col: "col1", /***** Move linklist to specific column col1 or col2 *****/
     credentials: [{
       id: "facebook",
       name: "Facebook",
@@ -71,13 +64,3 @@ var dashboardConfig = {
     reportDay: 25
   }
 }
-  ```
-* Open index.html in browser
-
-## Tasklist
-Is using local storage. **If your clear browser cache your entries will be deleted.**
-
-## Coundown
-If property exist.
-
-Set last day you need to submit time sheet. cDB will try to remind you with a counter and if on the same day, an alert is shown.
