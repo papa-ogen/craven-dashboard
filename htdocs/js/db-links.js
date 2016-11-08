@@ -30,9 +30,11 @@ if (typeof dashboardConfig === "undefined") {
             for(var i=0; i < element.credentials.length; i++) {
                 var li = _createElement ("li", {}, linkList);
                 var label = _createElement ("label", { attr: [ [ "for", id+linkCount ] ] }, li);
-                var h4 = _createElement ("h4", { text: element.credentials[i].app }, label);
-                var checkbox = _createElement ("input", { classList: "db-toggle", attr: [ [ "type", "checkbox" ], [ "id", id+linkCount ] ] }, li);
+                var h4 = _createElement ("h4", { text: element.credentials[i].name }, label);
+                var expanded = element.expanded !== undefined && element.expanded || false;
+                var checkbox = _createElement ("input", { classList: "db-toggle", attr: [ [ "type", "checkbox", expanded ], [ "id", id+linkCount ] ] }, li);
                 var details = _createElement ("div", { classList: "db-details" }, li);
+                var descr = _createElement ("summary", { text: element.credentials[i].descr, classList: "db-descr" }, details);
                 var links = _createElement("ul", {}, details);
 
                 addLinks(links, element.credentials[i]);
@@ -49,8 +51,6 @@ if (typeof dashboardConfig === "undefined") {
             if(credentials.url !== undefined) {
                 for(var i=0; i < credentials.url.length; i++) {
                     url = credentials.url[i];
-                    username = credentials.username;
-                    password = credentials.password;
 
                     if(url) {
                         li = _createElement("li", {}, linkList);
@@ -60,7 +60,8 @@ if (typeof dashboardConfig === "undefined") {
                 }
             }
 
-            if(username !== undefined && username)  {
+            if(credentials.username !== undefined && credentials.username)  {
+                username = credentials.username;
 
                 li = _createElement ("li", {}, linkList);
 
@@ -76,7 +77,8 @@ if (typeof dashboardConfig === "undefined") {
                 credentialCount++;
             }
 
-            if(password !== undefined && password) {
+            if(credentials.password !== undefined && credentials.password) {
+                password = credentials.password;
 
                 li = _createElement ("li", {}, linkList);
 
@@ -116,7 +118,13 @@ if (typeof dashboardConfig === "undefined") {
 
             if(obj.attr) {
                 obj.attr.forEach(function (attr) {
+
+                    if(attr[0] === "type" && attr[1] === "checkbox") {
+                        e.checked = attr[2];
+                    }
+                    
                     e.setAttribute(attr[0], attr[1]);
+                
                 });
             }
 

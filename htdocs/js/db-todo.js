@@ -30,7 +30,8 @@
                 id: guid(),
                 created: Date.now(),
                 name: e.target.value,
-                checked: false
+                complete: false,
+                completed: {}
             };
 
             tasks.unshift(item);
@@ -82,7 +83,7 @@
     }
 
     function listTasks (task) {
-        if(!task.checked) {
+        if(!task.complete) {
 
             addTodoItem(task);
 
@@ -97,7 +98,7 @@
         var li = _createElement("li", {
             classList: "db-task",
             text: item.name,
-            attr: [ ["title", formatDate(item.created)], ["id", item.id] ]
+            attr: [ ["title", "Complete Item\nAdded: " + formatDate(item.created) ], ["id", item.id] ]
         }, todoList, true);
 
         li.addEventListener("click", completeItemOnClick);
@@ -105,14 +106,15 @@
 
     function addCompletedItem(item) {
         var li = _createElement("li", {}, completedList, true);
-        var span = _createElement("span", { text: item.name, attr: [ [ "title", formatDate(item.created) ] ] }, li);
+        var span = _createElement("span", { text: item.name, attr: [ [ "title", "Undo" ] ] }, li);
         var btn = _createElement("button", {
             text: "x",
             classList: "db-btn-delete db-right",
-            attr: [ [ "title", formatDate(item.created) ], [ "id", item.id ] ]
+            attr: [ [ "title", "Delete" ], [ "id", item.id ] ]
         }, li);
 
         btn.addEventListener("click", deleteItemOnClick);
+        span.addEventListener("click", unCompleteItemOnClick);
     }
 
     function completeItemOnClick(e) {
@@ -132,10 +134,34 @@
             return task.id === id;
         });
 
-        task[0].checked = true;
+        task[0].complete = true;
+        task[0].completed = Date.now();
 
         return task[0];
     }
+
+    function unCompleteItemOnClick(e) {
+        e.preventDefault;
+
+        var id = e.target.nextSibling.id;
+        var item = inCompleteItem(id);
+
+        saveData();
+
+        addTodoItem(item);
+
+        completedList.removeChild(e.target.parentNode);
+    }
+
+    function inCompleteItem(id) {
+        var task = tasks.filter(function (task) {
+            return task.id === id;
+        });
+
+        task[0].complete = false;
+
+        return task[0];
+    }    
 
     function deleteItemOnClick(e) {
         e.preventDefault;

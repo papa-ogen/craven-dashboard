@@ -168,6 +168,10 @@ ul, ol {
   overflow: hidden;
 }
 
+.db-descr {
+  padding: 6px 8px 0;
+}
+
 .db-toggle:checked ~ .db-details {
   max-height: 500px;
   transition: max-height 0.5s ease-in;
@@ -265,7 +269,14 @@ input:focus {
   line-height: 40px;
   font-size: 1.1em;
   padding: 0 10px;
+}
+
+.db-completed-tasks > li > span {
   text-decoration: line-through;
+}
+.db-completed-tasks > li > span:hover {
+  cursor: pointer;
+  text-decoration: none;
 }
 
 .db-btn-delete {
