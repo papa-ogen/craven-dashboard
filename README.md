@@ -7,31 +7,40 @@ Simple tool for storing your most common urls, usernames and passwords. It's **n
 ```javascript
 var dashboardConfig = [
     {
-        title: "Environment1",
+        title: "Development",
+	expanded: true,
         credentials: [
             {
-                id: "websiteId",
-                app: "My Website",
-                url: ["http://example.com"],
-                username: "username",
-                password: "password"
-            }
-        ]
-    },
-    {
-        title: "Environment2",
-        credentials: [
-            {
-                id: "websiteId",
-                app: "My Website",
+                id: "github",
+                name: "Github",
+		descr: "GitHub is a web-based Git repository hosting service.",
                 url: ["http://example.com"],
                 username: "username",
                 password: "password"
             },
             {
-		        "id": "styleguide",
-		        "app": "Style Guides",
-		        "url": ["https://google.github.io/styleguide/javascriptguide.xml", "https://google.github.io/styleguide/htmlcssguide.xml"]
+		"id": "styleguide",
+		"app": "Style Guides",
+		"url": ["https://google.github.io/styleguide/javascriptguide.xml", "https://google.github.io/styleguide/htmlcssguide.xml"]
+            } 	    
+        ]
+    },
+    {
+        title: "Business",
+        credentials: [
+            {
+                id: "trello",
+                name: "Trello",
+                url: ["https://trello.com"],
+                username: "username",
+                password: "password"
+            },
+            {
+		"id": "slack",
+		"app": "Slack",
+		"url": ["https://slack.com/"],
+                username: "username",
+                password: "password"		
             }            
         ]
     }    
