@@ -1,6 +1,9 @@
 # Dashboard - Your daily credential library
 Simple tool for storing your most common urls, usernames and passwords. It's **not** meant for secure password storing but a help tool for people using a lot of different URLs and credentials.
 
+## Demo
+Go to http://db.craven-studio.com/demo.html to try it out!
+
 ## Installation
 * Download source code.
 * Create a config.js file in root folder:
