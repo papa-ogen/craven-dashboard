@@ -15,18 +15,18 @@ if (typeof dashboardConfig === "undefined") {
         var linkCount = 0;
         var credentialCount = 0;
         var cols = {
-            col1: _createElement ("div", { classList: "db-size-1of2" }, c),
-            col2: _createElement ("div", { classList: "db-size-1of2" }, c) 
+            col1: _createElement ("div", { classList: "size-1of2" }, c),
+            col2: _createElement ("div", { classList: "size-1of2" }, c) 
         }
 
         config.dblinks.forEach(addMarkup);
 
         function addMarkup (element, index) {
             var mainCol = index % 2 ? cols.col2 : cols.col1;
-            var col = _createElement ("div", { classList: "db-size-1of1 db-links-collection" }, element.col !== undefined ? cols[element.col] : mainCol);
+            var col = _createElement ("div", { classList: "size-1of1 db-links-collection" }, element.col !== undefined ? cols[element.col] : mainCol);
             var subCol = _createElement ("div", { classList: "db-grid-content" }, col);
             var header = _createElement ("header", { classList: "db-links-header " + setHeaderColor(index) }, subCol);
-            var title = _createElement ("h2", { text: element.title }, header);
+            var title = _createElement ("h2", { text: element.title, classList: "db-sub-header" }, header);
             var linkList = _createElement ("ul", { classList: "db-links" }, subCol);
 
             for(var i=0; i < element.credentials.length; i++) {
@@ -47,11 +47,11 @@ if (typeof dashboardConfig === "undefined") {
 
         function addLinks (parent, credentials) {
             var li, label, ahref, input, url, username, password;
-            var linkList = _createElement("ul", { classList: "db-list db-size-1of1" }, parent);
+            var linkList = _createElement("ul", { classList: "db-list size-1of1" }, parent);
 
             if(credentials.url !== undefined) {
                 li = _createElement("li", {}, linkList);
-                label = _createElement("label", { text: "URL", classList: "db-size-1of5" }, li);
+                label = _createElement("label", { text: "URL", classList: "size-1of5" }, li);
 
                 if(credentials.url.length === 1) {
                     url = credentials.url[0];
@@ -60,7 +60,7 @@ if (typeof dashboardConfig === "undefined") {
                         ahref = _createElement("a", { text: url, attr: [ [ "href", url ], [ "target", "self" ] ] }, li);
                     }
                 } else {
-                    var numberedLinkList = _createElement("dl", { classList: "db-numbered-list db-size-2of3" }, li);
+                    var numberedLinkList = _createElement("dl", { classList: "db-numbered-list size-2of3" }, li);
 
                     for(var i=0; i < credentials.url.length; i++) {
                         url = credentials.url[i];
@@ -83,12 +83,12 @@ if (typeof dashboardConfig === "undefined") {
 
                 label = _createElement ("label", {
                     text: "Username",
-                    classList: "db-size-1of5",
+                    classList: "size-1of5",
                     attr: [ [ "for", "name"+credentialCount ] ]
                 }, li);
 
                 input = _createElement ("input", {
-                    classList: "db-size-2of3",
+                    classList: "size-2of3",
                     attr: [ [ "type", "text" ], [ "id", "name"+credentialCount ], [ "value", username ] ]
                 }, li);
 
@@ -104,12 +104,12 @@ if (typeof dashboardConfig === "undefined") {
 
                 label = _createElement ("label", {
                     text: "Password",
-                    classList: "db-size-1of5",
+                    classList: "size-1of5",
                     attr: [ [ "for", "name"+credentialCount ] ]
                 }, li);
 
                 input = _createElement ("input", {
-                    classList: "db-size-2of3",
+                    classList: "size-2of3",
                     attr: [ [ "type", "password" ], [ "id", "name"+credentialCount ], [ "value", password ] ]
                 }, li);
 

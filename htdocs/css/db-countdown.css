@@ -16,6 +16,8 @@
   height: 0;
   background: rgba(192, 57, 43, 1);
   border: 2px solid #7B241C;
+  border-right-width: 0;
+  border-left-width: 0;
   opacity: 0;
   transition: 1s ease-in-out;
 }
