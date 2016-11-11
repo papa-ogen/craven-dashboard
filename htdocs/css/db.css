@@ -17,10 +17,11 @@ a:hover {
 }
 
 header {
+  position: relative;
   text-align: center;
 }
 
-html, body, ul, ol, h1, h2, h3, h4 {
+html, body, ul, ol, dl, h1, h2, h3, h4 {
   margin: 0;
   padding: 0;
 }
@@ -111,7 +112,7 @@ h2:before {
   margin-bottom: 10px;
 }
 
-ul, ol {
+ul, ol, dl {
   list-style-type: none;
 }
 
@@ -186,13 +187,17 @@ ul, ol {
   cursor: pointer;
 }
 
-.db-details ul {
+.db-details .db-list {
   padding: 6px 8px;
 }
 
-.db-links > li > .db-details label {
-  float: left;
-  width: 100px;
+.db-numbered-list {
+	counter-reset: db-counter;
+}
+.db-numbered-list dt:before {
+  margin-right:5px;
+	content: counter(db-counter)".";
+	counter-increment: db-counter;
 }
 
 input {
@@ -234,6 +239,10 @@ input:focus {
   .db-size-1of2 { width: 50%; }
   .db-size-1of3 { width: 33.333%; }
   .db-size-2of3 { width: 66.666% }
+  .db-size-1of4 { width: 25% }
+  .db-size-3of4 { width: 75% }
+  .db-size-1of5 { width: 20% }
+  .db-size-4of5 { width: 80%; }
 }
 
 /* States */
@@ -316,10 +325,12 @@ input:focus {
   background-color: #B04330;
 }
 
-
-
 .db-right { float: right; }
 
 .db-text-big {
-  font-size: 2.0em;
+  font-size: 1.5em;
+}
+
+.db-text-small {
+  font-size: 0.8em;
 }

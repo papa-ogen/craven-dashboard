@@ -13,20 +13,21 @@ if (typeof dashboardConfig === "undefined") {
         if(config.dbcountdown === undefined) return;
 
         var countDownElement = document.querySelector(".db-countdown").getElementsByTagName('time')[0];
-        var overlayElement = document.querySelector(".db-countdown").getElementsByTagName('div')[0];
+        var overlayElement = document.querySelector(".db-alert");
         var reportDay = config.dbcountdown.reportDay;
         var reportText = "";
         var d = new Date();
         var today = d.getDate();
 
         if(today === reportDay) {
+
             reportText = "Today!";
-            countDownElement.classList += "db-alert";
             overlayElement.classList += " db-active";
 
             overlayElement.addEventListener("click", function() {
-                this.style.display = "none";
+                this.classList = "db-alert";
             });
+
         } else if (today+1 === reportDay) {
             reportText = "Towmorrow!";
         } else if (reportDay < today) {

@@ -37,27 +37,41 @@ if (typeof dashboardConfig === "undefined") {
                 var checkbox = _createElement ("input", { classList: "db-toggle", attr: [ [ "type", "checkbox", expanded ], [ "id", id+linkCount ] ] }, li);
                 var details = _createElement ("div", { classList: "db-details" }, li);
                 var descr = _createElement ("summary", { text: element.credentials[i].descr, classList: "db-descr" }, details);
-                var links = _createElement("ul", {}, details);
 
-                addLinks(links, element.credentials[i]);
+                addLinks(details, element.credentials[i]);
 
                 linkCount++;
             }
 
         }
 
-        function addLinks (linkList, credentials) {
-
+        function addLinks (parent, credentials) {
             var li, label, ahref, input, url, username, password;
+            var linkList = _createElement("ul", { classList: "db-list db-size-1of1" }, parent);
 
             if(credentials.url !== undefined) {
-                for(var i=0; i < credentials.url.length; i++) {
-                    url = credentials.url[i];
+                li = _createElement("li", {}, linkList);
+                label = _createElement("label", { text: "URL", classList: "db-size-1of5" }, li);
 
-                    if(url) {
-                        li = _createElement("li", {}, linkList);
-                        label = _createElement("label", { text: "URL" }, li);
+                if(credentials.url.length === 1) {
+                    url = credentials.url[0];
+
+                    if(url.length > 0) {
                         ahref = _createElement("a", { text: url, attr: [ [ "href", url ], [ "target", "self" ] ] }, li);
+                    }
+                } else {
+                    var numberedLinkList = _createElement("dl", { classList: "db-numbered-list db-size-2of3" }, li);
+
+                    for(var i=0; i < credentials.url.length; i++) {
+                        url = credentials.url[i];
+
+                        if(url.length > 0) {
+                            li = _createElement("dt", {}, numberedLinkList);
+                            ahref = _createElement("a", { 
+                                text: url, 
+                                classList: url.length > 55 ? "db-text-small" : "", 
+                                attr: [ [ "href", url ], [ "target", "self" ] ] }, li);
+                        }
                     }
                 }
             }
@@ -69,10 +83,12 @@ if (typeof dashboardConfig === "undefined") {
 
                 label = _createElement ("label", {
                     text: "Username",
+                    classList: "db-size-1of5",
                     attr: [ [ "for", "name"+credentialCount ] ]
                 }, li);
 
                 input = _createElement ("input", {
+                    classList: "db-size-2of3",
                     attr: [ [ "type", "text" ], [ "id", "name"+credentialCount ], [ "value", username ] ]
                 }, li);
 
@@ -88,10 +104,12 @@ if (typeof dashboardConfig === "undefined") {
 
                 label = _createElement ("label", {
                     text: "Password",
+                    classList: "db-size-1of5",
                     attr: [ [ "for", "name"+credentialCount ] ]
                 }, li);
 
                 input = _createElement ("input", {
+                    classList: "db-size-2of3",
                     attr: [ [ "type", "password" ], [ "id", "name"+credentialCount ], [ "value", password ] ]
                 }, li);
 

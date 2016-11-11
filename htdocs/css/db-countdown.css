@@ -8,40 +8,34 @@
   font-size: 1.1em;
 }
 
-.db-overlay {
-  display: none;
-  position: fixed;
+.db-alert {
+  position: relative;
   z-index: 10;
-  top: 0;
-  right: 0;
-  align-items: center;
-  justify-content: center;    
+  text-align: center;
   width: 100%;
-  height: 100%;
-  background: rgba(192, 57, 43, 0.6);
+  height: 0;
+  background: rgba(192, 57, 43, 1);
+  border: 2px solid #7B241C;
   opacity: 0;
-  transition: opacity 1s ease-in-out;
+  transition: 1s ease-in-out;
 }
 
-.db-overlay.db-active {
-  display: flex;
+.db-alert:hover {
+  cursor: pointer;
+}
+
+.db-alert.db-active {
+  height: 50px;
   opacity: 1;
 }
 
-.db-overlay > p {
-  background: #A93226;
-  border: 4px solid #7B241C;
-  padding: 25px;
+.db-alert.db-active > p {
+  padding-top: 8px;
+  display: block;
 }
 
-@keyframes alert {
-  from {color:#c8c8c8; font-size: 16px;}
-  to {color: #A93226; font-size: 24px;}
-}
-
-.db-alert {
-  animation-name: alert;
-  animation-duration: 2s;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;  
+.db-alert > p {
+  display: none;
+  margin: 0;
+  padding: 5px;
 }
