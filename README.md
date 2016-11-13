@@ -85,6 +85,3 @@ Is using local storage. **If your clear browser cache your entries will be delet
 If property exist.
 
 Set last day you need to submit time sheet. cDB will try to remind you with a counter and if on the same day, an alert is shown.
-
-## Demo
-Coming soon.
