@@ -115,7 +115,7 @@
         var span = _createElement("span", { text: item.name, attr: [ [ "title", "Undo" ] ] }, li);
         var btn = _createElement("button", {
             text: "x",
-            classList: "db-btn-delete db-right",
+            classList: "db-btn-delete right",
             attr: [ [ "title", "Delete" ], [ "id", item.id ] ]
         }, li);
 

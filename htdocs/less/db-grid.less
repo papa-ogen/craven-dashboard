@@ -1,3 +1,6 @@
+/********** **********/
+  /** CSS RESET **/
+/********** **********/
 * {
   margin: 0;
   padding: 0;
@@ -5,18 +8,19 @@
 
 body, html{
   height: 100%;
-  background: #272b30;
-  color: #c8c8c8;
-  font-family: 'Lato', Tahoma, Geneva, sans-serif;
+  background: @background-color;
+  color: @text-color;
+  font-family: @main-font;
 }
 
 a {
-  color: #fff;
+  color: @link-color-active;
   text-decoration: none;
-}
 
-a:hover {
-  text-decoration: underline;
+  &:hover {
+    color: @link-color-hover;
+    text-decoration: underline;
+  }
 }
 
 header, footer {
@@ -25,7 +29,7 @@ header, footer {
 }
 
 h1, h2, h3, h4 {
-  font-family: "Arial Black", Gadget, sans-serif;
+  font-family: @header-font;
 }
 
 h1, h2 {
@@ -36,22 +40,24 @@ ul, ol, dl {
   list-style-type: none;
 }
 
-.clearfix:after {
-  visibility: hidden;
+.clearfix {
   display: block;
-  font-size: 0;
-  content: " ";
-  clear: both;
-  height: 0;
+  zoom: 1;
+
+  &:after {
+    content: " ";
+    display: block;
+    font-size: 0;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+  }
 }
 
-.clearfix { display: inline-block; }
-/* start commented backslash hack \*/
-* html .clearfix { height: 1%; }
-.clearfix { display: block; }
-/* close commented backslash hack */
+/********** **********/
+     /** GRID **/
+/********** **********/
 
-/**** Grid ****/
 [class*="size-"] {
   float: left;
   width: 100%;
@@ -71,4 +77,74 @@ ul, ol, dl {
   .size-1of4 { width: 25% }
   .size-3of4 { width: 75% }
   .size-4of5 { width: 80%; }
+}
+
+.right { float: right; }
+.left { float: left; }
+
+
+/********** **********/
+    /** Colors **/
+/********** **********/
+
+@text-color: #c8c8c8;
+@background-color: #272b30;
+
+@background-blue: #5bc0de;
+@color-blue: #5bc0de;
+@background-green: #62c462;
+@color-green: #62c462;
+@background-yellow: #F1C40F;
+@color-yellow: #F1C40F;
+@background-orange: #dc8000;
+@color-orange: #dc8000;
+@color-red: #C0392B;
+
+@link-color-active: #fff;
+@link-color-hover: #fff;
+
+.color-blue {
+  color: @color-blue;
+}
+
+.color-green {
+  color: @color-green;
+}
+
+.color-yellow {
+  color: @color-yellow;
+}
+
+.color-orange {
+  color: @color-orange;
+}
+
+.color-red {
+  color: @color-red;
+}
+
+/********** **********/
+/** Notifications **/
+/********** **********/
+
+
+/********** **********/
+  /** Typography **/
+/********** **********/
+
+@import url('http://fonts.googleapis.com/css?family=Lato');
+
+@main-font: "Lato", Tahoma, Geneva, sans-serif;
+@header-font: "Arial Black", Gadget, sans-serif;
+
+.text-reset {
+  font-size: 1.0em;
+}
+
+.text-big {
+  font-size: 1.5em;
+}
+
+.text-small {
+  font-size: 0.8em;
 }

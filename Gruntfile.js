@@ -10,7 +10,7 @@ module.exports = function (grunt) {
            paths: ["./htdocs/less"]
          },
          files: [
-         {src: ["htdocs/less/db-grid.less", "htdocs/less/db-countdown.less", "htdocs/less/db.less"], dest: "dist/css/db.css"}
+         {src: ["htdocs/less/db-main.less"], dest: "dist/css/db.css"}
         ],
       }
     },

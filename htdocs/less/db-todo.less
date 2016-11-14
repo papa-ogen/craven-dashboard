@@ -1,0 +1,49 @@
+/********** **********/
+    /** Tasks **/
+/********** **********/
+
+.db-tasks {
+  font-size: 1.1em;
+}
+
+.db-task {
+  line-height: 30px;
+  cursor: pointer;  
+  padding: 0 10px;
+  transition: 0.5s ease;
+  background: none;
+
+  &:hover,
+  &:hover .db-date {
+    color: #fff;
+    text-decoration: line-through;
+    background: #3e444c;
+  }
+}
+
+.db-date {
+  float: right;
+  font-size: 0.6em;
+}
+
+.db-completed-tasks li {
+  line-height: 40px;
+  font-size: 1.1em;
+  padding: 0 10px;
+  transition: 0.5s ease;
+  background: none;
+
+  &:hover {
+    background: #3e444c;
+  }
+
+  & > span {
+    text-decoration: line-through;
+
+    &:hover {
+      cursor: pointer;
+      text-decoration: none;
+    }
+  }
+}
+

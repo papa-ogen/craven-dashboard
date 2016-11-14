@@ -34,7 +34,7 @@ if (typeof dashboardConfig === "undefined") {
                 var label = _createElement ("label", { attr: [ [ "for", id+linkCount ] ] }, li);
                 var h4 = _createElement ("h4", { text: element.credentials[i].name }, label);
                 var expanded = element.expanded !== undefined && element.expanded || false;
-                var checkbox = _createElement ("input", { classList: "db-toggle", attr: [ [ "type", "checkbox", expanded ], [ "id", id+linkCount ] ] }, li);
+                var checkbox = _createElement ("input", { classList: "toggle", attr: [ [ "type", "checkbox", expanded ], [ "id", id+linkCount ] ] }, li);
                 var details = _createElement ("div", { classList: "db-details" }, li);
                 var descr = _createElement ("summary", { text: element.credentials[i].descr, classList: "db-descr" }, details);
 
@@ -312,7 +312,7 @@ if (typeof dashboardConfig === "undefined") {
         var span = _createElement("span", { text: item.name, attr: [ [ "title", "Undo" ] ] }, li);
         var btn = _createElement("button", {
             text: "x",
-            classList: "db-btn-delete db-right",
+            classList: "db-btn-delete right",
             attr: [ [ "title", "Delete" ], [ "id", item.id ] ]
         }, li);
 
