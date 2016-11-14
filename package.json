@@ -1,12 +1,22 @@
 {
   "name": "cravenDashBoard",
+  "description": "Simple credential and link tool.",
+  "author": "Jörgen Thelin",
+  "url": "http://db.craven-studio.com/",
   "version": "1.0.0",
   "devDependencies": {
     "grunt": "^1.0.1",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-cssmin": "^1.0.2",
     "grunt-contrib-jshint": "^1.0.0",
     "grunt-contrib-less": "^1.4.0",
     "grunt-contrib-nodeunit": "~0.4.1",
     "grunt-contrib-uglify": "^2.0.0",
     "grunt-contrib-watch": "^1.0.0"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/papa-ogen/cravenDashBoard.git"
   }
 }
