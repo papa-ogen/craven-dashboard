@@ -19,7 +19,37 @@ if (typeof dashboardConfig === "undefined") {
             col2: _createElement ("div", { classList: "size-1of2" }, c) 
         }
 
+        config.dblinks.sort(sortTitle);
+
         config.dblinks.forEach(addMarkup);
+
+        function sortTitle (a, b) {
+            var nameA = a.title.toUpperCase(); // ignore upper and lowercase
+            var nameB = b.title.toUpperCase(); // ignore upper and lowercase
+            if (nameA < nameB) {
+                return -1;
+            }
+            if (nameA > nameB) {
+                return 1;
+            }
+
+            // names must be equal
+            return 0;
+        }
+
+        function sortLinks (a, b) {
+            var nameA = a.name.toUpperCase(); // ignore upper and lowercase
+            var nameB = b.name.toUpperCase(); // ignore upper and lowercase
+            if (nameA < nameB) {
+                return -1;
+            }
+            if (nameA > nameB) {
+                return 1;
+            }
+
+            // names must be equal
+            return 0;
+        }
 
         function addMarkup (element, index) {
             var mainCol = index % 2 ? cols.col2 : cols.col1;
@@ -28,6 +58,11 @@ if (typeof dashboardConfig === "undefined") {
             var header = _createElement ("header", { classList: "db-links-header " + setHeaderColor(index) }, subCol);
             var title = _createElement ("h2", { text: element.title, classList: "db-sub-header" }, header);
             var linkList = _createElement ("ul", { classList: "db-links" }, subCol);
+
+            // Todo: Implement in V3
+            //var sortBy = element.sortBy !== undefined ? sortBy : "ASC";
+
+            element.credentials.sort(sortLinks);
 
             for(var i=0; i < element.credentials.length; i++) {
                 var li = _createElement ("li", {}, linkList);
@@ -42,7 +77,6 @@ if (typeof dashboardConfig === "undefined") {
 
                 linkCount++;
             }
-
         }
 
         function addLinks (parent, credentials) {

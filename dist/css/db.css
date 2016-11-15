@@ -131,6 +131,9 @@ dl {
 .text-small {
   font-size: 0.8em;
 }
+/********** **********/
+/** Forms **/
+/********** **********/
 input {
   margin: 4px 0;
   padding: 6px 8px;
@@ -138,7 +141,7 @@ input {
   border: 1px solid #000;
   border-radius: 4px;
   font-size: 1.2em;
-  font-family: Tahoma, Geneva, sans-serif;
+  font-family: "Lato", Tahoma, Geneva, sans-serif;
   transition: background-color 0.2s linear;
 }
 input:focus {
