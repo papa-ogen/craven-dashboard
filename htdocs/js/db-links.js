@@ -11,17 +11,20 @@ if (typeof dashboardConfig === "undefined") {
         "use strict";
 
         var c = document.getElementById("db-links-container");
+        var df = document.createDocumentFragment();
         var id = "toggle-";
         var linkCount = 0;
         var credentialCount = 0;
         var cols = {
-            col1: _createElement ("div", { classList: "size-1of2" }, c),
-            col2: _createElement ("div", { classList: "size-1of2" }, c) 
+            col1: _createElement ("div", { classList: "size-1of2" }, df),
+            col2: _createElement ("div", { classList: "size-1of2" }, df) 
         }
 
         config.dblinks.sort(sortTitle);
 
         config.dblinks.forEach(addMarkup);
+
+        c.appendChild(df);
 
         function sortTitle (a, b) {
             var nameA = a.title.toUpperCase(); // ignore upper and lowercase
