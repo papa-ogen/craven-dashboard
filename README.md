@@ -1,5 +1,5 @@
-# Dashboard - Your daily credential library
-Simple tool for storing your most common urls, usernames and passwords. It's **not** meant for secure password storing but a help tool for people using a lot of different URLs and credentials.
+# Dashboard 2.0 - Your daily credential library
+Simple tool for storing your most common urls, usernames and passwords. It's **not meant for secure password storing but a help tool for people using a lot of different URLs and credentials**.
 
 ## Demo
 Go to http://db.craven-studio.com/demo.html to try it out!
@@ -10,20 +10,20 @@ Go to http://db.craven-studio.com/demo.html to try it out!
 ```javascript
 var dashboardConfig = {
   dblinks: [{
-    title: "Development",
-    expanded: true,
-    credentials: [{
-      id: "github",
-      name: "Github",
-      descr: "GitHub is a web-based Git repository hosting service.",
-      url: ["https://github.com/papa-ogen/cravenDashBoard"],
-      username: "username",
-      password: "password"
+    "title": "Development",
+    "expanded": true,
+    "credentials": [{
+      "id": "github",
+      "name": "Github",
+      "descr": "GitHub is a web-based Git repository hosting service.",
+      "url": ["https://github.com/papa-ogen/cravenDashBoard"],
+      "username": "username",
+      "password": "password"
     },
     {
-      id: "styleguide",
-      name: "Style Guides",
-      url: ["https://google.github.io/styleguide/javascriptguide.xml", 
+      "id": "styleguide",
+      "name": "Style Guides",
+      "url": ["https://google.github.io/styleguide/javascriptguide.xml",
             "https://google.github.io/styleguide/htmlcssguide.xml"]
     }]
   },
@@ -46,7 +46,7 @@ var dashboardConfig = {
   },
   {
     title: "Social",
-    //col: "col1", // Move linklist to specific column col1 or col2 
+    //col: "col1", // Move linklist to specific column col1 or col2
     credentials: [{
       id: "facebook",
       name: "Facebook",
@@ -71,12 +71,17 @@ var dashboardConfig = {
       url: ["http://www.hongkiat.com", "https://css-tricks.com/", "http://9gag.com/"]
     }]
   }],
-  dbcountdown: {
-    reportDay: 25
+  "dbcountdown": {
+    "reportDay": 25
   }
 }
   ```
 * Open index.html in browser
+
+## Development
+* Open up terminal and type: npm run build and start webpack-dev hot reload
+* Using Eslint Google preset
+* Using Stylelint Config Standard
 
 ## Tasklist
 Is using local storage. **If your clear browser cache your entries will be deleted.**
