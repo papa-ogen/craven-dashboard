@@ -1,22 +1,30 @@
 {
-  "name": "cravenDashBoard",
+  "name": "cravendashboard",
   "description": "Simple credential and link tool.",
   "author": "Jörgen Thelin",
   "url": "http://db.craven-studio.com/",
   "version": "1.0.0",
   "devDependencies": {
-    "grunt": "^1.0.1",
-    "grunt-contrib-concat": "^1.0.1",
-    "grunt-contrib-cssmin": "^1.0.2",
-    "grunt-contrib-jshint": "^1.0.0",
-    "grunt-contrib-less": "^1.4.0",
-    "grunt-contrib-nodeunit": "~0.4.1",
-    "grunt-contrib-uglify": "^2.0.0",
-    "grunt-contrib-watch": "^1.0.0"
+    "babel-core": "^6.24.1",
+    "babel-loader": "^6.4.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "sass-loader": "^6.0.3",
+    "style-loader": "^0.16.1",
+    "webpack": "^2.3.3",
+    "webpack-dev-server": "^2.4.2"
   },
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git://github.com/papa-ogen/cravenDashBoard.git"
+  },
+  "dependencies": {
+    "flexboxgrid": "^6.3.1",
+    "underscore": "^1.8.3"
+  },
+  "scripts": {
+    "build": "webpack -d && copy src\\app\\index.html dist\\index.html && webpack-dev-server --hot --inline --colors --progress --content-base src/",
+    "build-prod": "webpack -p && copy src/app/index.html dist/index.html"
   }
 }
