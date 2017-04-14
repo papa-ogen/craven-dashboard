@@ -1,5 +1,3 @@
 {
-  "rules": {
-    "selector-no-id": true
-  }
+  "extends": "stylelint-config-standard"
 }

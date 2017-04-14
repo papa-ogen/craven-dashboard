@@ -3,7 +3,8 @@
   padding: 0;
 }
 
-body, html{
+body,
+html {
   height: 100%;
   background: $background-color;
   color: $text-color;
@@ -20,20 +21,27 @@ a {
   }
 }
 
-header, footer {
+header,
+footer {
   position: relative;
   text-align: center;
 }
 
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
   font-family: $header-font;
 }
 
-h1, h2 {
-  margin: 6px 0 4px 0;
+h1,
+h2 {
+  margin: 6px 0 4px;
 }
 
-ul, ol, dl {
+ul,
+ol,
+dl {
   list-style-type: none;
 }
 
@@ -41,7 +49,7 @@ ul, ol, dl {
   display: block;
   zoom: 1;
 
-  &:after {
+  &::after {
     content: " ";
     display: block;
     font-size: 0;
@@ -49,4 +57,181 @@ ul, ol, dl {
     clear: both;
     visibility: hidden;
   }
+}
+
+.db-header-color-blue h2 {
+  border-color: $color-blue;
+}
+
+.db-header-color-blue h2::before {
+  background: $color-blue;
+}
+
+.db-header-color-green h2 {
+  border-color: $color-green;
+}
+
+.db-header-color-green h2::before {
+  background: $color-green;
+}
+
+.db-header-color-yellow h2 {
+  border-color: $color-yellow;
+}
+
+.db-header-color-yellow h2::before {
+  background: $color-yellow;
+}
+
+.db-header-color-red h2 {
+  border-color: $color-red;
+}
+
+.db-header-color-red h2::before {
+  background: $color-red;
+}
+
+.db-header-color-blue h2:hover,
+.db-header-color-green h2:hover,
+.db-header-color-yellow h2:hover,
+.db-header-color-red h2:hover {
+  border-color: $color-white;
+}
+
+.db-header-color-blue h2:hover::before,
+.db-header-color-green h2:hover::before,
+.db-header-color-yellow h2:hover::before,
+.db-header-color-red h2:hover::before {
+  background: $color-white;
+}
+
+.db-links-header {
+  text-align: left;
+  margin-bottom: 10px;
+
+  & > h2 {
+    position: relative;
+    padding-left: 25px;
+    line-height: 20px;
+    border-bottom: 1px solid $color-yellow;
+    transition: color 1s ease;
+    transition: border-color 1s ease;
+
+    &:hover {
+      color: $color-white;
+    }
+
+    &::before {
+      position: absolute;
+      left: 0;
+      top: 0;
+      content: '';
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      background: $color-yellow;
+      transition: background 1s ease;
+      margin-right: 7px;
+    }
+  }
+}
+
+/* Link List */
+.db-links-collection {
+  margin-bottom: 20px;
+}
+
+.db-links > li {
+  line-height: 30px;
+  margin-bottom: 10px;
+  border: 1px solid $color-black;
+  border-radius: 5px 3px;
+}
+
+.db-links > li > label > h4 {
+  padding: 2px 8px;
+  background: #3e444c;
+  border-radius: 5px 3px;
+  transition: background 1s ease;
+}
+
+.db-links > li > label > h4:hover {
+  background: #4a515b;
+}
+
+.db-details {
+  padding: 0;
+  max-height: 0;
+  transition: max-height 0.25s ease-out;
+  overflow: hidden;
+}
+
+.db-descr {
+  padding: 6px 8px 0;
+}
+
+.toggle {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+}
+
+.toggle:checked ~ .db-details {
+  max-height: 500px;
+  transition: max-height 0.5s ease-in;
+}
+
+.db-links > li > label:hover {
+  cursor: pointer;
+}
+
+.db-details .db-list {
+  padding: 6px 8px;
+}
+
+.db-numbered-list {
+  counter-reset: db-counter;
+}
+
+.db-numbered-list dt::before {
+  margin-right: 5px;
+  content: counter(db-counter) ".";
+  counter-increment: db-counter;
+}
+
+/* States */
+.db-error {
+  height: 100%;
+  min-height: 100%;
+  background: #ec7063;
+  color: #922b21;
+}
+
+.db-error div {
+  width: 960px;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+
+.db-error pre {
+  color: $color-white;
+}
+
+.db-btn-delete {
+  box-shadow: rgb(181, 75, 58) 0 34px 0 -15px inset;
+  background-color: #a73f2d;
+  border: 1px solid rgb(36, 29, 19);
+  display: inline-block;
+  cursor: pointer;
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  margin-top: 5px;
+  padding: 6px 10px;
+  text-shadow: rgb(122, 42, 29) 0 -1px 0;
+  transition: 1s ease;
+}
+
+.db-btn-delete:hover {
+  box-shadow: #bd4f3e 0 34px 0 -15px inset;
+  background-color: #b04330;
 }
