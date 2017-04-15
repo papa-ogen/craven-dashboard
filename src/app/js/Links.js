@@ -32,7 +32,7 @@ class Links {
   * Link SubHeader
   @param {object} link - link object
   @param {number} count - link iteration number
-  @return {string} - sub header markup
+  @returns {string} - sub header markup
   */
   linkSubHeader(count, link) {
    return `<label for="toggle-${count}"><h4>${ link.name }</h4></label>
