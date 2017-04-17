@@ -1,3 +1,6 @@
+/* global document */
+/* eslint no-undef: "error" */
+
 /**
 * Countdown
 */
@@ -23,11 +26,11 @@ class Countdown {
       body.insertBefore(div, body.firstChild);
     }
 
-    if(this.daysLeft) {
-      let div = document.getElementsByClassName('db-countdown-text')[0];
-      let span = div.getElementsByTagName('span')[0];
-      span.innerHTML = this.daysLeft;
-    }
+    // if(this.daysLeft) {
+    //   let div = document.getElementsByClassName('db-countdown-text')[0];
+    //   let span = div.getElementsByTagName('span')[0];
+    //   span.innerHTML = this.daysLeft;
+    // }
   }
 
   /**
@@ -39,6 +42,7 @@ class Countdown {
   calculateReportDay(today, reportDay) {
     let d = new Date(today);
 
+    if(reportDay === 'last') reportDay = this.lastDayOfMonth();
     d.setDate(reportDay);
 
     if(d.getDay() === 6) {
@@ -93,6 +97,21 @@ class Countdown {
     nextMonth.setMonth(currentDate.getMonth() + 1);
 
     return nextMonth;
+  }
+
+  /**
+  * last day of current month
+  * @param {date} currentDate - current date
+  * @return {number} - last day
+  */
+  lastDayOfMonth() {
+    let year = this.today.getFullYear(),
+        month = this.today.getMonth(),
+        day = this.today.getDate();
+    let nextMonth = new Date(year, month+1, 1);
+    let d = new Date(nextMonth - 1);
+
+    return d.getDate();
   }
 
   /**

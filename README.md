@@ -9,21 +9,21 @@ Go to http://db.craven-studio.com/demo.html to try it out!
 * Create a config.js file in root folder:
 ```javascript
 var dashboardConfig = {
-  dblinks: [{
-    "title": "Development",
-    "expanded": true,
-    "credentials": [{
-      "id": "github",
-      "name": "Github",
-      "descr": "GitHub is a web-based Git repository hosting service.",
-      "url": ["https://github.com/papa-ogen/cravenDashBoard"],
-      "username": "username",
-      "password": "password"
+  links: [{
+    title: "Development",
+    expanded: true,
+    credentials: [{
+      id: "github",
+      name: "Github",
+      descr: "GitHub is a web-based Git repository hosting service.",
+      url: ["https://github.com/papa-ogen/cravenDashBoard"],
+      username: "username",
+      password: "password"
     },
     {
-      "id": "styleguide",
-      "name": "Style Guides",
-      "url": ["https://google.github.io/styleguide/javascriptguide.xml",
+      id: "styleguide",
+      name: "Style Guides",
+      url: ["https://google.github.io/styleguide/javascriptguide.xml",
             "https://google.github.io/styleguide/htmlcssguide.xml"]
     }]
   },
@@ -71,8 +71,8 @@ var dashboardConfig = {
       url: ["http://www.hongkiat.com", "https://css-tricks.com/", "http://9gag.com/"]
     }]
   }],
-  "dbcountdown": {
-    "reportDay": 25
+  countdown: {
+    reportDay: 25
   }
 }
   ```
@@ -86,7 +86,11 @@ var dashboardConfig = {
 ## Tasklist
 Is using local storage. **If your clear browser cache your entries will be deleted.**
 
-## Coundown
-If property exist.
+## Countdown
+```javascript
+"countdown": {
+  "reportDay": {number}||last
+}
+  ```
 
 Set last day you need to submit time sheet. cDB will try to remind you with a counter and if on the same day, an alert is shown.
