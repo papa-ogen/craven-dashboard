@@ -1,5 +1,5 @@
 {
-  "name": "cravenDashBoard",
+  "name": "craven-dashboard",
   "description": "Simple credential and link tool.",
   "author": "Jörgen Thelin",
   "url": "http://db.craven-studio.com/",
@@ -17,6 +17,6 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git://github.com/papa-ogen/cravenDashBoard.git"
+    "url": "git://github.com/papa-ogen/craven-dashboard.git"
   }
 }
