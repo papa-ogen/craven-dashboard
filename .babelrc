@@ -1,1 +1,1 @@
-{ "presets": ["solid", "@babel/preset-typescript"] }
+{ "presets": ["solid"] }
