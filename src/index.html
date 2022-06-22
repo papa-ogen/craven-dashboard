@@ -1,26 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>cravenDashBoard</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
-    <script>
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            colors: {
-              clifford: "#da373d",
-            },
-          },
-        },
-      };
-    </script>
     <script type="module" src="index.tsx"></script>
   </head>
-  <body>
-    <main id="craven-dashboard" class="dark"></main>
+  <body class="bg-white dark:bg-darkGray">
+    <main id="craven-dashboard"></main>
   </body>
 </html>
