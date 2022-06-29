@@ -1,25 +1,44 @@
+import { ErrorBoundary, onMount } from "solid-js";
+import { createStore } from "solid-js/store";
+import { getTasks } from "../svc/taskSvc";
+import { iTask } from "../types";
 import dashboardConfig from "../__mocks__/dbConfig";
-import Links from "./Links";
+import Links from "./Links/Links";
+import Tasks from "./Tasks";
 
 const Header = () => {
   return (
-    <h1 class="text-4xl font-extrabold tracking-wide text-center p-2">
+    <h1 class="text-4xl font-extrabold tracking-wide text-center pb-2">
       <span class="text-orange">craven</span>
       <span class="text-lightGray">Dashboard</span>
     </h1>
   );
 };
 
-const App = () => (
-  <div class="flex flex-col">
-    <Header />
-    <div class="text-lightGray flex">
-      <div class="grow p-4">
-        <Links links={dashboardConfig.dblinks} />
+const App = () => {
+  const [tasks, setTasks] = createStore([]);
+
+  onMount(async () => {
+    const _tasks = await getTasks();
+
+    if (_tasks) setTasks(_tasks);
+  });
+
+  return (
+    <ErrorBoundary fallback={(err: any) => err}>
+      <div class="flex flex-col p-4">
+        <Header />
+        <div class="text-lightGray flex space-x-4">
+          <div class="grow">
+            <Links links={dashboardConfig.dblinks} />
+          </div>
+          <div class="w-1/3">
+            <Tasks tasks={tasks} setTasks={setTasks} />
+          </div>
+        </div>
       </div>
-      <div class="max-w-xs">todo</div>
-    </div>
-  </div>
-);
+    </ErrorBoundary>
+  );
+};
 
 export default App;

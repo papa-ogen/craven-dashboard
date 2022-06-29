@@ -20,4 +20,11 @@ interface IConfig {
   };
 }
 
-export { ICredential, ILink, IConfig };
+interface iTask {
+  id: string;
+  title: string;
+  createdAt: number;
+  isCompleted?: boolean;
+}
+
+export { ICredential, ILink, IConfig, iTask };
