@@ -2,7 +2,7 @@ import { ErrorBoundary, onMount } from "solid-js";
 import { createStore } from "solid-js/store";
 import { getTasks } from "../svc/taskSvc";
 import { getLinks } from "../svc/linksSvc";
-import { iTask, IConfig, ILink } from "../types";
+import { iTask, ILink } from "../types";
 import Links from "./Links/Links";
 import Tasks from "./Tasks";
 

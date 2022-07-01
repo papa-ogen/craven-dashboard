@@ -8,8 +8,8 @@ const formatDate = (date: number):string => {
   const CurrentTask = ({ task, onCompleteTask, isComplete }: { task: iTask; onCompleteTask?: (task: iTask) => void; isComplete?:boolean }) => {
     const formatedDate = formatDate(task.createdAt)
     return (
-      <div class={`flex items-center${isComplete ? ' line-through': ''}`} onClick={() => onCompleteTask(task)}>
-        <p class="grow truncate pr-2">{task.title}</p>
+      <div class={`flex items-center${isComplete ? ' line-through': ''}`} onClick={() => onCompleteTask(task)} title={task.title}>
+        <p class="grow truncate pr-2 max-w-[160px]">{task.title}</p>
         <p class="text-[10px] break-normal">{formatedDate}</p>
       </div>
     );

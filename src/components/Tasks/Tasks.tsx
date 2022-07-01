@@ -8,7 +8,6 @@ type TasksProps = {
 };
 
 const Tasks = ({ tasks, setTasks }: TasksProps) => {
-  console.log( tasks.length)
   return (
     <div class="flex space-x-4">
       <CurrentTasks tasks={tasks} setTasks={setTasks} />
