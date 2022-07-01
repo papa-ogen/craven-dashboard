@@ -1,0 +1,117 @@
+    {
+        "dblinks": [
+            {
+                "title": "Development",
+                "expanded": true,
+                "credentials": [
+                    {
+                        "id": "lynx-dev",
+                        "name": "Lynx Dev",
+                        "url": [
+                            "https://lynx.dev.siriuspt.net/"
+                        ]
+                    },
+                    {
+                        "id": "lynx-test",
+                        "name": "Lynx Test",
+                        "url": [
+                            "https://lynx-test.dev.siriuspt.net/"
+                        ]
+                    },
+                    {
+            "id": "profile-api",
+            "name": "Profile API",
+            "url": [
+                            "https://lynx.dev.siriuspt.net/api/user/profile"
+                        ]
+                    },
+                    {
+            "id": "user-api",
+            "name": "User API",
+            "url": [
+                            "https://lynx.dev.siriuspt.net/api/user/usersettings"
+                        ]
+                    },
+                    {
+            "id": "lynx",
+            "name": "Citrix",
+            "url": [
+                            "https://connect.siriuspt.com/logon/LogonPoint/tmindex.html"
+                        ]
+                    },
+                    {
+            "id": "b-o",
+            "name": "Business Overview",
+            "url": [
+                            "https://po-client-dev.azurewebsites.net/"
+                        ]
+                    },
+                    {
+            "id": "b-o-code",
+            "name": "Business Overview REPO",
+            "url": [
+                            "https://dev.azure.com/siriusgroup/UWSystems/_git/ProgramOverview"
+                        ]
+                    }
+                ]
+            },
+            {
+        "title": "Business",
+        "credentials": [
+                    {
+            "id": "trello",
+            "name": "Trello",
+            "url": [
+                            "https://trello.com"
+                        ],
+            "username": "username",
+            "password": "password"
+                    },
+                    {
+            "id": "slack",
+            "name": "Slack",
+            "url": ["https://slack.com"],
+            "username": "username",
+            "password": "password"
+                    }
+                ]
+            },
+            {
+        "title": "Social",
+        "credentials": [
+                    {
+            "id": "facebook",
+            "name": "Facebook",
+            "url": ["https://facebook.com"],
+            "username": "username",
+            "password": "password"
+                    },
+                    {
+            "id": "instagram",
+            "name": "Instagram",
+            "url": ["https://instagram.com"],
+            "username": "username",
+            "password": "password"
+                    }
+                ]
+            },
+            {
+        "title": "Personal",
+        "expanded": true,
+        "credentials": [
+                    {
+            "id": "favs",
+            "name": "Favourites",
+            "url": ["http://www.hongkiat.com",
+                            "https://css-tricks.com/",
+                            "http://9gag.com/",
+                            "https://rmolinamir.github.io/typescript-cheatsheet/"
+                        ]
+                    }
+                ]
+            }
+        ],
+    "dbcountdown": {
+        "reportDay": 25
+        }
+    }

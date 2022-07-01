@@ -8,3 +8,14 @@ export const getLinks = async (): Promise<ILink[]> => {
 
   return Promise.resolve(formatedData)
 };
+
+export const addLinks = (links: ILink[]): ILink[] => {
+    localStorage.setItem(nameSpace, JSON.stringify(links));
+  
+    return links;
+  };
+
+  export const deleteLinks = () => {
+    localStorage.setItem(nameSpace, undefined);
+  };
+  

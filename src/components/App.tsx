@@ -2,7 +2,7 @@ import { ErrorBoundary, onMount } from "solid-js";
 import { createStore } from "solid-js/store";
 import { getTasks } from "../svc/taskSvc";
 import { getLinks } from "../svc/linksSvc";
-import { iTask, IConfig } from "../types";
+import { iTask, IConfig, ILink } from "../types";
 import Links from "./Links/Links";
 import Tasks from "./Tasks";
 
@@ -16,25 +16,16 @@ const Header = () => {
 };
 
 const App = () => {
-  const [config, setConfig] = createStore<IConfig>({
-    dblinks: [],
-    tasks: []
-  });
+  const [task, setTask] = createStore<iTask[]>([])
+  const [links, setLinks] = createStore<ILink[]>([])
 
   onMount(async () => {
     const dblinks = await getLinks();
     const tasks = await getTasks();
 
-    setConfig({
-      ...config,
-      dblinks,
-      tasks
-    })
+    setTask(tasks)
+    setLinks(dblinks)
   });
-
-  const onSetTasks = (tasks: iTask[]) => { 
-    setConfig({...config, tasks})
-   } 
 
    return (
      <ErrorBoundary fallback={(err: any) => err}>
@@ -42,10 +33,10 @@ const App = () => {
         <Header />
         <div class="text-lightGray flex">
           <div class="grow">
-            <Links links={config.dblinks} />
+            <Links links={links} setLinks={setLinks} />
           </div>
           <div class="w-[500px]">
-            <Tasks tasks={config.tasks} setTasks={onSetTasks} />
+            <Tasks tasks={task} setTasks={setTask} />
           </div>
         </div>
       </div>
