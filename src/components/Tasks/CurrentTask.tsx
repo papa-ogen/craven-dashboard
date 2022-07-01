@@ -10,7 +10,7 @@ const formatDate = (date: number):string => {
     return (
       <div class={`flex items-center${isComplete ? ' line-through': ''}`} onClick={() => onCompleteTask(task)}>
         <p class="grow truncate pr-2">{task.title}</p>
-        <p class="text-xs">{formatedDate}</p>
+        <p class="text-[10px] break-normal">{formatedDate}</p>
       </div>
     );
   };

@@ -16,7 +16,7 @@ const Header = () => {
 };
 
 const App = () => {
-  const [tasks, setTasks] = createStore([]);
+  const [tasks, setTasks] = createStore<iTask[]>([]);
 
   onMount(async () => {
     const _tasks = await getTasks();
