@@ -28,11 +28,11 @@ const App = () => {
     <ErrorBoundary fallback={(err: any) => err}>
       <div class="flex flex-col p-4">
         <Header />
-        <div class="text-lightGray flex space-x-4">
+        <div class="text-lightGray flex">
           <div class="grow">
             <Links links={dashboardConfig.dblinks} />
           </div>
-          <div class="w-1/3">
+          <div class="w-[500px]">
             <Tasks tasks={tasks} setTasks={setTasks} />
           </div>
         </div>

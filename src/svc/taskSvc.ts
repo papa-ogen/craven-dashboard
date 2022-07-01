@@ -21,6 +21,20 @@ export const addTask = (title: string): iTask => {
   return task;
 };
 
+export const updateTask = (task: iTask): iTask => {
+  const tasks: iTask[] = getTasks();
+  const updatedTasks = tasks.map(t => {
+    if(task.id === t.id) return task
+    return {...t}
+  })
+
+  localStorage.setItem(nameSpace, JSON.stringify(updatedTasks));
+
+  return task;
+};
+
+
+
 export const deleteTask = (id: string) => {
   const tasks = getTasks();
   // localStorage.setItem(`${nameSpace}-${id}`, data);
