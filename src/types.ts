@@ -14,10 +14,11 @@ interface ILink {
 }
 
 interface IConfig {
-  dblinks: ILink[];
+  dblinks?: ILink[];
   dbcountdown?: {
     reportDay?: number;
   };
+  tasks?: iTask[]
 }
 
 interface iTask {

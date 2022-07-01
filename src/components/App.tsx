@@ -1,8 +1,8 @@
 import { ErrorBoundary, onMount } from "solid-js";
 import { createStore } from "solid-js/store";
 import { getTasks } from "../svc/taskSvc";
-import { iTask } from "../types";
-import dashboardConfig from "../__mocks__/dbConfig";
+import { getLinks } from "../svc/linksSvc";
+import { iTask, IConfig } from "../types";
 import Links from "./Links/Links";
 import Tasks from "./Tasks";
 
@@ -16,24 +16,36 @@ const Header = () => {
 };
 
 const App = () => {
-  const [tasks, setTasks] = createStore<iTask[]>([]);
-
-  onMount(async () => {
-    const _tasks = await getTasks();
-
-    if (_tasks) setTasks(_tasks);
+  const [config, setConfig] = createStore<IConfig>({
+    dblinks: [],
+    tasks: []
   });
 
-  return (
-    <ErrorBoundary fallback={(err: any) => err}>
+  onMount(async () => {
+    const dblinks = await getLinks();
+    const tasks = await getTasks();
+
+    setConfig({
+      ...config,
+      dblinks,
+      tasks
+    })
+  });
+
+  const onSetTasks = (tasks: iTask[]) => { 
+    setConfig({...config, tasks})
+   } 
+
+   return (
+     <ErrorBoundary fallback={(err: any) => err}>
       <div class="flex flex-col p-4">
         <Header />
         <div class="text-lightGray flex">
           <div class="grow">
-            <Links links={dashboardConfig.dblinks} />
+            <Links links={config.dblinks} />
           </div>
           <div class="w-[500px]">
-            <Tasks tasks={tasks} setTasks={setTasks} />
+            <Tasks tasks={config.tasks} setTasks={onSetTasks} />
           </div>
         </div>
       </div>

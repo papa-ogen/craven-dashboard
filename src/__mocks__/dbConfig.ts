@@ -82,6 +82,7 @@ const dashboardConfig: IConfig = {
   dbcountdown: {
     reportDay: 25,
   },
+  tasks: []
 };
 
 export default dashboardConfig;
