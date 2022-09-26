@@ -33,7 +33,11 @@ export const updateTask = (task: iTask): iTask => {
   return task
 }
 
-export const deleteTask = (id: string) => {
+export const deleteTask = (id: string): iTask[] => {
   const tasks = getTasks()
-  // localStorage.setItem(`${nameSpace}-${id}`, data);
+  const updatedTasks = tasks.filter(task => task.id !== id)
+
+  localStorage.setItem(nameSpace, JSON.stringify(updatedTasks))
+
+  return updatedTasks
 }
