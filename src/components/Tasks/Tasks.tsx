@@ -1,17 +1,11 @@
-import { iTask } from '../../types'
-import CompletedTasks from './CompletedTasks'
 import CurrentTasks from './CurrentTasks'
+import CompletedTasks from './CompletedTasks'
 
-type TasksProps = {
-  tasks: iTask[]
-  setTasks: (tasks: iTask[]) => void
-}
-
-const Tasks = ({ tasks, setTasks }: TasksProps) => {
+const Tasks = () => {
   return (
     <div className="flex space-x-4">
-      <CurrentTasks tasks={tasks} setTasks={setTasks} />
-      <CompletedTasks tasks={tasks} />
+      <CurrentTasks />
+      <CompletedTasks />
     </div>
   )
 }

@@ -1,9 +1,11 @@
-import { useEffect, useState } from 'react'
-import { ILink, iTask } from '../types'
-import Links from './Links'
+import { useContext } from 'react'
 import Tasks from './Tasks'
-import { getLinks } from '../svc/linksSvc'
-import { getTasks } from '../svc/tasksSvc'
+import { GlobalStateContext, useContextMachine } from '../stateMachine'
+import { useSelector } from '@xstate/react'
+import { tasksSvc } from '../svc'
+const isLoading = state => {
+  return state.matches('loadingTasks')
+}
 
 const Header = () => {
   return (
@@ -15,30 +17,16 @@ const Header = () => {
 }
 
 const App = () => {
-  const [task, setTask] = useState<iTask[]>([])
-  const [links, setLinks] = useState<ILink[]>([])
-
-  useEffect(() => {
-    const getData = async () => {
-      const dblinks = await getLinks()
-      const tasks = await getTasks()
-
-      setTask(tasks)
-      setLinks(dblinks)
-    }
-
-    getData()
-  }, [])
-
+  const [state] = useContextMachine()
+  // tasksSvc.deleteAllTasks()
+  console.log(state?.context, isLoading(state), state.matches('loadingTasks'))
   return (
     <div className="flex flex-col p-4">
       <Header />
       <div className="text-lightGray flex">
-        <div className="grow">
-          <Links links={links} setLinks={setLinks} />
-        </div>
+        <div className="grow">{/* <Links /> */}</div>
         <div className="w-[500px]">
-          <Tasks tasks={task} setTasks={setTask} />
+          <Tasks />
         </div>
       </div>
     </div>

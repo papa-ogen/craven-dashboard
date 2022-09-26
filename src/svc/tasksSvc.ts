@@ -21,7 +21,7 @@ export const addTask = (title: string): iTask => {
   return task
 }
 
-export const updateTask = (task: iTask): iTask => {
+export const updateTask = (task: iTask): iTask[] => {
   const tasks: iTask[] = getTasks()
   const updatedTasks = tasks.map(t => {
     if (task.id === t.id) return task
@@ -30,7 +30,7 @@ export const updateTask = (task: iTask): iTask => {
 
   localStorage.setItem(nameSpace, JSON.stringify(updatedTasks))
 
-  return task
+  return updatedTasks
 }
 
 export const deleteTask = (id: string): iTask[] => {
@@ -40,4 +40,8 @@ export const deleteTask = (id: string): iTask[] => {
   localStorage.setItem(nameSpace, JSON.stringify(updatedTasks))
 
   return updatedTasks
+}
+
+export const deleteAllTasks = () => {
+  localStorage.removeItem(nameSpace)
 }
