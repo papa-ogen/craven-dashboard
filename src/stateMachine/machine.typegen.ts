@@ -3,6 +3,11 @@
 export interface Typegen0 {
   '@@xstate/typegen': true
   internalEvents: {
+    'done.invoke.(machine).addingLink:invocation[0]': {
+      type: 'done.invoke.(machine).addingLink:invocation[0]'
+      data: unknown
+      __tip: 'See the XState TS docs to learn how to strongly type this.'
+    }
     'done.invoke.(machine).addingTask:invocation[0]': {
       type: 'done.invoke.(machine).addingTask:invocation[0]'
       data: unknown
@@ -31,6 +36,7 @@ export interface Typegen0 {
     'xstate.init': { type: 'xstate.init' }
   }
   invokeSrcNameMap: {
+    addLinkService: 'done.invoke.(machine).addingLink:invocation[0]'
     addTaskService: 'done.invoke.(machine).addingTask:invocation[0]'
     deleteTaskService: 'done.invoke.(machine).deletingTask:invocation[0]'
     linkService: 'done.invoke.(machine).loadingLinks:invocation[0]'
@@ -44,6 +50,7 @@ export interface Typegen0 {
     delays: never
   }
   eventsCausingActions: {
+    addLink: 'done.invoke.(machine).addingLink:invocation[0]'
     addTask: 'done.invoke.(machine).addingTask:invocation[0]'
     deleteTask: 'done.invoke.(machine).deletingTask:invocation[0]'
     setLinks: 'done.invoke.(machine).loadingLinks:invocation[0]'
@@ -51,6 +58,7 @@ export interface Typegen0 {
     updateTasks: 'done.invoke.(machine).updatingTasks:invocation[0]'
   }
   eventsCausingServices: {
+    addLinkService: 'ADD_LINK'
     addTaskService: 'ADD_TASK'
     deleteTaskService: 'DELETE_TASK'
     linkService: 'done.invoke.(machine).loadingTasks:invocation[0]'
@@ -60,6 +68,7 @@ export interface Typegen0 {
   eventsCausingGuards: {}
   eventsCausingDelays: {}
   matchesStates:
+    | 'addingLink'
     | 'addingTask'
     | 'deletingTask'
     | 'idle'

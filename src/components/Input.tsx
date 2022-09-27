@@ -34,7 +34,7 @@ const Input = forwardRef<Ref, InputProps>((props, ref) => {
         id={id}
         type={type}
         value={value || ''}
-        className="text-darkGray rounded-sm"
+        className="text-darkGray rounded-sm px-1 py-0.5 w-full outline-0"
         placeholder={placeholder}
         onKeyDown={onKeyDown}
         onFocus={onFocus}

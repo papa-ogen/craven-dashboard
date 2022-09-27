@@ -1,8 +1,7 @@
-import { useContext } from 'react'
 import Tasks from './Tasks'
-import { GlobalStateContext, useContextMachine } from '../stateMachine'
-import { useSelector } from '@xstate/react'
-import { tasksSvc } from '../svc'
+import Links from './Links'
+import { useContextMachine } from '../stateMachine'
+
 const isLoading = state => {
   return state.matches('loadingTasks')
 }
@@ -24,7 +23,9 @@ const App = () => {
     <div className="flex flex-col p-4">
       <Header />
       <div className="text-lightGray flex">
-        <div className="grow">{/* <Links /> */}</div>
+        <div className="grow">
+          <Links />
+        </div>
         <div className="w-[500px]">
           <Tasks />
         </div>

@@ -1,16 +1,14 @@
 import { useState } from 'react'
-import { ILink } from '../../types'
 import Show from '../Show'
 import Link from './Link'
 import AddLinkConfig from './AddLinkConfig'
 import AddLink from './AddLink'
+import { useContextMachine } from '../../stateMachine'
 
-type LinksProps = {
-  links?: ILink[]
-  setLinks: (links: ILink[]) => void
-}
+const LinkDistributor = () => {
+  const [state] = useContextMachine()
+  const { links } = state.context
 
-const LinkDistributor = ({ links }: LinksProps) => {
   const middleIndex = Math.ceil(links.length / 2)
 
   const firstHalf = [...links].splice(0, middleIndex)
@@ -18,14 +16,15 @@ const LinkDistributor = ({ links }: LinksProps) => {
 
   return (
     <Show
-      when={links.length > 2}
+      when={links && links.length > 2}
       fallback={
         <ul className="max-w-[600px] min-w-[400px]">
-          {links.map(link => (
-            <li className="pb-4">
-              <Link key={link.title} link={link} />
-            </li>
-          ))}
+          {links &&
+            links.map(link => (
+              <li className="pb-4">
+                <Link key={link.title} link={link} />
+              </li>
+            ))}
         </ul>
       }
     >
@@ -49,7 +48,7 @@ const LinkDistributor = ({ links }: LinksProps) => {
   )
 }
 
-const NoLinksYet = ({ setLinks }: { setLinks: (links: ILink[]) => void }) => {
+const NoLinksYet = () => {
   const [state, setState] = useState(0)
 
   return (
@@ -69,20 +68,20 @@ const NoLinksYet = ({ setLinks }: { setLinks: (links: ILink[]) => void }) => {
           Add Links
         </button>
       </div>
-      {state === 1 && <AddLinkConfig setLinks={setLinks} />}
+      {state === 1 && <AddLinkConfig />}
       {state === 2 && <AddLink />}
     </div>
   )
 }
 
-const Links = ({ links = [], setLinks }: LinksProps) => {
+const Links = () => {
+  const [state] = useContextMachine()
+  const { links } = state.context
+
   return (
     <div className="flex space-x-4">
-      <Show
-        when={links.length > 0}
-        fallback={<NoLinksYet setLinks={setLinks} />}
-      >
-        <LinkDistributor links={links} setLinks={setLinks} />
+      <Show when={links && links.length > 0} fallback={<NoLinksYet />}>
+        <LinkDistributor />
       </Show>
     </div>
   )

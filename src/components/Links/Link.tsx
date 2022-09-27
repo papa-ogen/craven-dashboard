@@ -8,13 +8,14 @@ const Link = ({ link }: { link: ILink }) => {
     <div>
       <LinkTitle title={link.title} />
       <Show
-        when={link.credentials.length > 0}
+        when={link.credentials && link.credentials.length > 0}
         fallback={<p className="text-red">No credentials</p>}
       >
         <ul>
-          {link.credentials.map(credential => (
-            <Credential key={credential.id} credential={credential} />
-          ))}
+          {link.credentials &&
+            link.credentials.map(credential => (
+              <Credential key={credential.id} credential={credential} />
+            ))}
         </ul>
       </Show>
     </div>

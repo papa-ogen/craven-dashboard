@@ -16,15 +16,22 @@ export type StateUpdateTaskEvent = {
   type: 'UPDATE_TASK'
   task: iTask
 }
+
 export type StateDeleteTaskEvent = {
   type: 'DELETE_TASK'
   id: string
+}
+
+export type StateAddLinkEvent = {
+  type: 'ADD_LINK'
+  title: string
 }
 
 export type StateEvent =
   | StateAddTaskEvent
   | StateUpdateTaskEvent
   | StateDeleteTaskEvent
+  | StateAddLinkEvent
 
 export type TaskService = {
   data: iTask[]
@@ -63,6 +70,9 @@ const machine = createMachine(
           },
           DELETE_TASK: {
             target: 'deletingTask',
+          },
+          ADD_LINK: {
+            target: 'addingLink',
           },
         },
       },
@@ -111,6 +121,15 @@ const machine = createMachine(
           },
         },
       },
+      addingLink: {
+        invoke: {
+          src: 'addLinkService',
+          onDone: {
+            target: 'idle',
+            actions: 'addLink',
+          },
+        },
+      },
     },
   },
   {
@@ -130,6 +149,9 @@ const machine = createMachine(
       linkService: async () => {
         return linksSvc.getLinks()
       },
+      addLinkService: async (_, event) => {
+        return linksSvc.addLink(event)
+      },
     },
     actions: {
       setTasks: assign({
@@ -139,13 +161,16 @@ const machine = createMachine(
         tasks: (_, event) => event.data as iTask[],
       }),
       addTask: assign({
-        tasks: (context, event) => [...context.tasks, event.data] as iTask[],
+        tasks: (context, event) => event.data as iTask[],
       }),
       deleteTask: assign({
         tasks: (_, event) => event.data as iTask[],
       }),
       setLinks: assign({
         links: (_, event) => event.data,
+      }),
+      addLink: assign({
+        links: (_, event) => event.data as ILink[],
       }),
     },
   }

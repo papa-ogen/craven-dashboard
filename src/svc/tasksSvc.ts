@@ -8,7 +8,7 @@ export const getTasks = (): iTask[] => {
   return data ? JSON.parse(data) : []
 }
 
-export const addTask = (title: string): iTask => {
+export const addTask = (title: string): iTask[] => {
   const tasks: iTask[] = getTasks()
   const task: iTask = {
     id: `task-${tasks.length}`,
@@ -16,9 +16,11 @@ export const addTask = (title: string): iTask => {
     createdAt: Date.now(),
   }
 
-  localStorage.setItem(nameSpace, JSON.stringify([...tasks, task]))
+  const udatedTasks = [...tasks, task]
 
-  return task
+  localStorage.setItem(nameSpace, JSON.stringify(udatedTasks))
+
+  return udatedTasks
 }
 
 export const updateTask = (task: iTask): iTask[] => {

@@ -1,18 +1,14 @@
 import { addLinks } from '../../svc/linksSvc'
-import { IConfig, ILink } from '../../types'
+import { IConfig } from '../../types'
 
-const AddLinkConfig = ({
-  setLinks,
-}: {
-  setLinks: (links: ILink[]) => void
-}) => {
+const AddLinkConfig = () => {
   let textarea: HTMLTextAreaElement
   const onAddlinks = () => {
     try {
       const { dblinks } = JSON.parse(textarea.value) as IConfig
       if (dblinks) {
         addLinks(dblinks)
-        setLinks(dblinks)
+        // setLinks(dblinks)
         return
       }
     } catch (e) {
