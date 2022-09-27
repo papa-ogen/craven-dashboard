@@ -16,8 +16,15 @@ export type StateUpdateTaskEvent = {
   type: 'UPDATE_TASK'
   task: iTask
 }
+export type StateDeleteTaskEvent = {
+  type: 'DELETE_TASK'
+  id: string
+}
 
-export type StateEvent = StateAddTaskEvent | StateUpdateTaskEvent
+export type StateEvent =
+  | StateAddTaskEvent
+  | StateUpdateTaskEvent
+  | StateDeleteTaskEvent
 
 export type TaskService = {
   data: iTask[]
@@ -54,6 +61,9 @@ const machine = createMachine(
           UPDATE_TASK: {
             target: 'updatingTasks',
           },
+          DELETE_TASK: {
+            target: 'deletingTask',
+          },
         },
       },
       loadingTasks: {
@@ -88,7 +98,16 @@ const machine = createMachine(
           src: 'updateTaskService',
           onDone: {
             target: 'idle',
-            actions: 'updatingTasks',
+            actions: 'updateTasks',
+          },
+        },
+      },
+      deletingTask: {
+        invoke: {
+          src: 'deleteTaskService',
+          onDone: {
+            target: 'idle',
+            actions: 'deleteTask',
           },
         },
       },
@@ -105,6 +124,9 @@ const machine = createMachine(
       updateTaskService: async (_, event) => {
         return tasksSvc.updateTask(event.task)
       },
+      deleteTaskService: async (_, event) => {
+        return tasksSvc.deleteTask(event.id)
+      },
       linkService: async () => {
         return linksSvc.getLinks()
       },
@@ -113,11 +135,14 @@ const machine = createMachine(
       setTasks: assign({
         tasks: (_, event) => event.data as iTask[],
       }),
-      updatingTasks: assign({
+      updateTasks: assign({
         tasks: (_, event) => event.data as iTask[],
       }),
       addTask: assign({
         tasks: (context, event) => [...context.tasks, event.data] as iTask[],
+      }),
+      deleteTask: assign({
+        tasks: (_, event) => event.data as iTask[],
       }),
       setLinks: assign({
         links: (_, event) => event.data,

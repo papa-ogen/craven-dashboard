@@ -8,6 +8,11 @@ export interface Typegen0 {
       data: unknown
       __tip: 'See the XState TS docs to learn how to strongly type this.'
     }
+    'done.invoke.(machine).deletingTask:invocation[0]': {
+      type: 'done.invoke.(machine).deletingTask:invocation[0]'
+      data: unknown
+      __tip: 'See the XState TS docs to learn how to strongly type this.'
+    }
     'done.invoke.(machine).loadingLinks:invocation[0]': {
       type: 'done.invoke.(machine).loadingLinks:invocation[0]'
       data: unknown
@@ -27,6 +32,7 @@ export interface Typegen0 {
   }
   invokeSrcNameMap: {
     addTaskService: 'done.invoke.(machine).addingTask:invocation[0]'
+    deleteTaskService: 'done.invoke.(machine).deletingTask:invocation[0]'
     linkService: 'done.invoke.(machine).loadingLinks:invocation[0]'
     taskService: 'done.invoke.(machine).loadingTasks:invocation[0]'
     updateTaskService: 'done.invoke.(machine).updatingTasks:invocation[0]'
@@ -39,12 +45,14 @@ export interface Typegen0 {
   }
   eventsCausingActions: {
     addTask: 'done.invoke.(machine).addingTask:invocation[0]'
+    deleteTask: 'done.invoke.(machine).deletingTask:invocation[0]'
     setLinks: 'done.invoke.(machine).loadingLinks:invocation[0]'
     setTasks: 'done.invoke.(machine).loadingTasks:invocation[0]'
-    updatingTasks: 'done.invoke.(machine).updatingTasks:invocation[0]'
+    updateTasks: 'done.invoke.(machine).updatingTasks:invocation[0]'
   }
   eventsCausingServices: {
     addTaskService: 'ADD_TASK'
+    deleteTaskService: 'DELETE_TASK'
     linkService: 'done.invoke.(machine).loadingTasks:invocation[0]'
     taskService: 'xstate.init'
     updateTaskService: 'UPDATE_TASK'
@@ -53,6 +61,7 @@ export interface Typegen0 {
   eventsCausingDelays: {}
   matchesStates:
     | 'addingTask'
+    | 'deletingTask'
     | 'idle'
     | 'loadingLinks'
     | 'loadingTasks'
