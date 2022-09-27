@@ -26,7 +26,9 @@ const CompletedTasks = () => {
                   key={task.id}
                   className="py-2 px-1 cursor-pointer hover:bg-gray flex"
                 >
-                  <CurrentTask task={task} isComplete />
+                  <div className="grow">
+                    <CurrentTask task={task} isComplete />
+                  </div>
                   <button type="button" onClick={() => onDeleteTask(task.id)}>
                     <BsTrash
                       size={24}
