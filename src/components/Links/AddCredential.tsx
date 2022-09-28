@@ -75,10 +75,11 @@ const AddCredential = ({ linkId }: { linkId: number }) => {
       />
       <div className="pt-1">
         <Button
-          label="Add Credential"
           onClick={() => onAddCredential()}
           disabled={!credential || !credential.name}
-        />
+        >
+          Add Credential
+        </Button>
       </div>
     </div>
   )

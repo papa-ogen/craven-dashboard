@@ -19,5 +19,6 @@ export type StateService = {
   deleteTaskService: TaskService
   linkService: LinkService
   addLinkService: LinkService
+  deleteLinkService: LinkService
   addCredentialService: CredentialService
 }

@@ -10,7 +10,7 @@ const AddLink = () => {
   const [link, setLink] = useState<ILink>({ id: Date.now(), title: null })
 
   const onAddLink = () => {
-    send('ADD_LINK', { ...link })
+    send('ADD_LINK', { link })
 
     setLink({ id: Date.now(), title: null })
   }
@@ -29,11 +29,9 @@ const AddLink = () => {
         onChange={e => setLink({ ...link, title: e.target.value })}
         value={link.title}
       />
-      <Button
-        label="Add Category"
-        onClick={() => onAddLink()}
-        disabled={!link.title}
-      />
+      <Button onClick={() => onAddLink()} disabled={!link.title}>
+        Add Category
+      </Button>
     </div>
   )
 }

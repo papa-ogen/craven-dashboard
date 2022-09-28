@@ -16,7 +16,7 @@ const NoCredentialsYet = ({ linkId }: { linkId: number }) => {
 const Link = ({ link }: { link: ILink }) => {
   return (
     <div>
-      <LinkTitle title={link.title} />
+      <LinkTitle link={link} />
       <Show
         when={link.credentials && link.credentials.length > 0}
         fallback={<NoCredentialsYet linkId={link.id} />}

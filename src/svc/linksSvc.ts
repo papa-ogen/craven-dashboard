@@ -21,8 +21,12 @@ export const addLink = (link: ILink): ILink[] => {
   return updatedLinks
 }
 
-export const deleteLinks = () => {
-  localStorage.setItem(nameSpace, undefined)
+export const deleteLink = (links: ILink[], linkId: number): ILink[] => {
+  const updatedLinks = links.filter(link => link.id !== linkId)
+
+  localStorage.setItem(nameSpace, JSON.stringify(updatedLinks))
+
+  return updatedLinks
 }
 
 export const deleteAllLinks = () => {

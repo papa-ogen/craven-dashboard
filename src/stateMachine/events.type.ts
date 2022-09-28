@@ -1,4 +1,4 @@
-import { ICredential, iTask } from '../types'
+import { ICredential, ILink, iTask } from '../types'
 
 export type StateAddTaskEvent = {
   type: 'ADD_TASK'
@@ -17,9 +17,14 @@ export type StateDeleteTaskEvent = {
 
 export type StateAddLinkEvent = {
   type: 'ADD_LINK'
-  id: number
-  title: string
+  link: ILink
 }
+
+export type StateDeleteLinkEvent = {
+  type: 'DELETE_LINK'
+  linkId: number
+}
+
 export type StateAddCredentialEvent = {
   type: 'ADD_CREDENTIAL'
   linkId: number
@@ -31,4 +36,5 @@ export type StateEvent =
   | StateUpdateTaskEvent
   | StateDeleteTaskEvent
   | StateAddLinkEvent
+  | StateDeleteLinkEvent
   | StateAddCredentialEvent
