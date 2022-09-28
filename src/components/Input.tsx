@@ -33,7 +33,7 @@ const Input = forwardRef<Ref, InputProps>((props, ref) => {
         ref={ref}
         id={id}
         type={type}
-        value={value || ''}
+        defaultValue={value || ''}
         className="text-darkGray rounded-sm px-1 py-0.5 w-full outline-0"
         placeholder={placeholder}
         onKeyDown={onKeyDown}

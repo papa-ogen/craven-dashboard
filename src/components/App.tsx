@@ -1,6 +1,7 @@
 import Tasks from './Tasks'
 import Links from './Links'
 import { useContextMachine } from '../stateMachine'
+// import { linksSvc } from '../svc'
 
 const isLoading = state => {
   return state.matches('loadingTasks')
@@ -17,8 +18,12 @@ const Header = () => {
 
 const App = () => {
   const [state] = useContextMachine()
-  // tasksSvc.deleteAllTasks()
+  // linksSvc.deleteAllLinks()
   console.log(state?.context, isLoading(state), state.matches('loadingTasks'))
+
+  if (state.matches('error'))
+    return <p className="text-red">{state.context.error}</p>
+
   return (
     <div className="flex flex-col p-4">
       <Header />

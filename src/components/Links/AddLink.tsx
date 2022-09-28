@@ -2,16 +2,19 @@ import { useState } from 'react'
 import Input from '../Input'
 import Button from '../Button'
 import { useContextMachine } from '../../stateMachine'
+import { ILink } from '../../types'
 
 const AddLink = () => {
   const [, send] = useContextMachine()
 
-  const [title, setTitle] = useState(null)
+  const [link, setLink] = useState<ILink>({ id: Date.now(), title: null })
 
   const onAddLink = () => {
-    send('ADD_LINK', { title })
-    setTitle(null)
+    send('ADD_LINK', { ...link })
+
+    setLink({ id: Date.now(), title: null })
   }
+
   return (
     <div>
       <label
@@ -23,13 +26,13 @@ const AddLink = () => {
       <Input
         id="link-title"
         placeholder="category title"
-        onChange={e => setTitle(e.target.value)}
-        value={title}
+        onChange={e => setLink({ ...link, title: e.target.value })}
+        value={link.title}
       />
       <Button
         label="Add Category"
         onClick={() => onAddLink()}
-        disabled={!title}
+        disabled={!link.title}
       />
     </div>
   )

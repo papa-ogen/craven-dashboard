@@ -1,49 +1,13 @@
 import { createMachine, assign } from 'xstate'
 import { ILink, iTask } from '../types'
 import { linksSvc, tasksSvc } from '../svc/'
+import { StateEvent } from './events.type'
+import { StateService } from './service.type'
 
 export type StateContext = {
   tasks: iTask[]
   links: ILink[]
-}
-
-export type StateAddTaskEvent = {
-  type: 'ADD_TASK'
-  task: string
-}
-
-export type StateUpdateTaskEvent = {
-  type: 'UPDATE_TASK'
-  task: iTask
-}
-
-export type StateDeleteTaskEvent = {
-  type: 'DELETE_TASK'
-  id: string
-}
-
-export type StateAddLinkEvent = {
-  type: 'ADD_LINK'
-  title: string
-}
-
-export type StateEvent =
-  | StateAddTaskEvent
-  | StateUpdateTaskEvent
-  | StateDeleteTaskEvent
-  | StateAddLinkEvent
-
-export type TaskService = {
-  data: iTask[]
-}
-
-export type LinkService = {
-  data: ILink[]
-}
-
-export type StateService = {
-  taskService: TaskService
-  linkService: LinkService
+  error: unknown
 }
 
 const machine = createMachine(
@@ -58,6 +22,7 @@ const machine = createMachine(
     context: {
       tasks: null,
       links: null,
+      error: null,
     },
     states: {
       idle: {
@@ -73,6 +38,9 @@ const machine = createMachine(
           },
           ADD_LINK: {
             target: 'addingLink',
+          },
+          ADD_CREDENTIAL: {
+            target: 'addingCredential',
           },
         },
       },
@@ -130,6 +98,20 @@ const machine = createMachine(
           },
         },
       },
+      addingCredential: {
+        invoke: {
+          src: 'addCredentialService',
+          onDone: {
+            target: 'idle',
+            actions: 'addCredential',
+          },
+          onError: {
+            target: 'error',
+            actions: 'setError',
+          },
+        },
+      },
+      error: {},
     },
   },
   {
@@ -152,6 +134,9 @@ const machine = createMachine(
       addLinkService: async (_, event) => {
         return linksSvc.addLink(event)
       },
+      addCredentialService: async (_, { linkId, credential }) => {
+        return linksSvc.addCredential(linkId, credential)
+      },
     },
     actions: {
       setTasks: assign({
@@ -161,7 +146,7 @@ const machine = createMachine(
         tasks: (_, event) => event.data as iTask[],
       }),
       addTask: assign({
-        tasks: (context, event) => event.data as iTask[],
+        tasks: (_, event) => event.data as iTask[],
       }),
       deleteTask: assign({
         tasks: (_, event) => event.data as iTask[],
@@ -171,6 +156,12 @@ const machine = createMachine(
       }),
       addLink: assign({
         links: (_, event) => event.data as ILink[],
+      }),
+      addCredential: assign({
+        links: (_, event) => event.data as ILink[],
+      }),
+      setError: assign({
+        error: (_, event) => event.toString() as unknown,
       }),
     },
   }

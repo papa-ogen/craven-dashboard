@@ -1,4 +1,4 @@
-import { ILink } from '../types'
+import { ICredential, ILink } from '../types'
 
 const nameSpace = 'craven-dashboard-links'
 
@@ -23,4 +23,36 @@ export const addLink = (link: ILink): ILink[] => {
 
 export const deleteLinks = () => {
   localStorage.setItem(nameSpace, undefined)
+}
+
+export const deleteAllLinks = () => {
+  localStorage.removeItem(nameSpace)
+}
+
+export const addCredential = (
+  linkId: number,
+  credential: ICredential
+): ILink[] => {
+  const links = getLinks()
+  const updatedLinks = links.map(link => {
+    if (link.id === linkId) {
+      if (!link.credentials) {
+        return {
+          ...link,
+          credentials: [credential],
+        }
+      }
+
+      return {
+        ...link,
+        credentials: [...link.credentials, credential],
+      }
+    }
+
+    return link
+  })
+
+  localStorage.setItem(nameSpace, JSON.stringify(updatedLinks))
+
+  return updatedLinks
 }

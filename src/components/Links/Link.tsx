@@ -2,6 +2,16 @@ import { ILink } from '../../types'
 import LinkTitle from './LinkTitle'
 import Credential from './Credential'
 import Show from '../Show'
+import AddCredential from './AddCredential'
+
+const NoCredentialsYet = ({ linkId }: { linkId: number }) => {
+  return (
+    <div>
+      <p className="text-red">No credentials</p>
+      <AddCredential linkId={linkId} />
+    </div>
+  )
+}
 
 const Link = ({ link }: { link: ILink }) => {
   return (
@@ -9,7 +19,7 @@ const Link = ({ link }: { link: ILink }) => {
       <LinkTitle title={link.title} />
       <Show
         when={link.credentials && link.credentials.length > 0}
-        fallback={<p className="text-red">No credentials</p>}
+        fallback={<NoCredentialsYet linkId={link.id} />}
       >
         <ul>
           {link.credentials &&

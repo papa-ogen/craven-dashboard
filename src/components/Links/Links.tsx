@@ -21,7 +21,7 @@ const LinkDistributor = () => {
         <ul className="max-w-[600px] min-w-[400px]">
           {links &&
             links.map(link => (
-              <li className="pb-4">
+              <li key={link.id} className="pb-4">
                 <Link key={link.title} link={link} />
               </li>
             ))}
@@ -31,14 +31,14 @@ const LinkDistributor = () => {
       <div>
         <ul className="max-w-[600px] min-w-[400px]">
           {firstHalf.map(link => (
-            <li className="pb-4">
+            <li key={link.id} className="pb-4">
               <Link key={link.title} link={link} />
             </li>
           ))}
         </ul>
         <ul className="max-w-[600px] min-w-[400px]">
           {secondHalf.map(link => (
-            <li className="pb-4">
+            <li key={link.id} className="pb-4">
               <Link key={link.title} link={link} />
             </li>
           ))}

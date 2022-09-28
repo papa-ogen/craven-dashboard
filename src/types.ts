@@ -1,5 +1,5 @@
 type ICredential = {
-  id: string
+  id: number
   name: string
   descr?: string
   url?: string[]
@@ -8,13 +8,14 @@ type ICredential = {
 }
 
 type ILink = {
+  id: number
   title: string
   expanded?: boolean
   credentials?: ICredential[]
 }
 
 type iTask = {
-  id: string
+  id: number
   title: string
   createdAt: number
   isCompleted?: boolean

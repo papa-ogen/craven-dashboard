@@ -11,7 +11,7 @@ export const getTasks = (): iTask[] => {
 export const addTask = (title: string): iTask[] => {
   const tasks: iTask[] = getTasks()
   const task: iTask = {
-    id: `task-${tasks.length}`,
+    id: Date.now(),
     title,
     createdAt: Date.now(),
   }
@@ -35,7 +35,7 @@ export const updateTask = (task: iTask): iTask[] => {
   return updatedTasks
 }
 
-export const deleteTask = (id: string): iTask[] => {
+export const deleteTask = (id: number): iTask[] => {
   const tasks = getTasks()
   const updatedTasks = tasks.filter(task => task.id !== id)
 

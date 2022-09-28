@@ -3,6 +3,11 @@
 export interface Typegen0 {
   '@@xstate/typegen': true
   internalEvents: {
+    'done.invoke.(machine).addingCredential:invocation[0]': {
+      type: 'done.invoke.(machine).addingCredential:invocation[0]'
+      data: unknown
+      __tip: 'See the XState TS docs to learn how to strongly type this.'
+    }
     'done.invoke.(machine).addingLink:invocation[0]': {
       type: 'done.invoke.(machine).addingLink:invocation[0]'
       data: unknown
@@ -33,9 +38,14 @@ export interface Typegen0 {
       data: unknown
       __tip: 'See the XState TS docs to learn how to strongly type this.'
     }
+    'error.platform.(machine).addingCredential:invocation[0]': {
+      type: 'error.platform.(machine).addingCredential:invocation[0]'
+      data: unknown
+    }
     'xstate.init': { type: 'xstate.init' }
   }
   invokeSrcNameMap: {
+    addCredentialService: 'done.invoke.(machine).addingCredential:invocation[0]'
     addLinkService: 'done.invoke.(machine).addingLink:invocation[0]'
     addTaskService: 'done.invoke.(machine).addingTask:invocation[0]'
     deleteTaskService: 'done.invoke.(machine).deletingTask:invocation[0]'
@@ -50,14 +60,17 @@ export interface Typegen0 {
     delays: never
   }
   eventsCausingActions: {
+    addCredential: 'done.invoke.(machine).addingCredential:invocation[0]'
     addLink: 'done.invoke.(machine).addingLink:invocation[0]'
     addTask: 'done.invoke.(machine).addingTask:invocation[0]'
     deleteTask: 'done.invoke.(machine).deletingTask:invocation[0]'
+    setError: 'error.platform.(machine).addingCredential:invocation[0]'
     setLinks: 'done.invoke.(machine).loadingLinks:invocation[0]'
     setTasks: 'done.invoke.(machine).loadingTasks:invocation[0]'
     updateTasks: 'done.invoke.(machine).updatingTasks:invocation[0]'
   }
   eventsCausingServices: {
+    addCredentialService: 'ADD_CREDENTIAL'
     addLinkService: 'ADD_LINK'
     addTaskService: 'ADD_TASK'
     deleteTaskService: 'DELETE_TASK'
@@ -68,9 +81,11 @@ export interface Typegen0 {
   eventsCausingGuards: {}
   eventsCausingDelays: {}
   matchesStates:
+    | 'addingCredential'
     | 'addingLink'
     | 'addingTask'
     | 'deletingTask'
+    | 'error'
     | 'idle'
     | 'loadingLinks'
     | 'loadingTasks'
