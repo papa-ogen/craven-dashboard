@@ -24,16 +24,19 @@ const Input = forwardRef<Ref, InputProps>((props, ref) => {
     onFocus,
     onChange,
   } = props
+
   return (
     <label className="flex flex-row pb-1" htmlFor={id}>
       {label && (
-        <span className="font-medium text-white w-24 pt-2">{label}</span>
+        <span className="block text-sm font-medium  text-white w-24 pt-2">
+          {label}
+        </span>
       )}
       <input
         ref={ref}
         id={id}
         type={type}
-        defaultValue={value || ''}
+        value={value || ''}
         className="text-darkGray rounded-sm px-1 py-0.5 w-full outline-0"
         placeholder={placeholder}
         onKeyDown={onKeyDown}

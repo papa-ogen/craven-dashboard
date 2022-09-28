@@ -18,7 +18,7 @@ const Link = ({ link }: { link: ILink }) => {
     <div>
       <LinkTitle link={link} />
       <Show
-        when={link.credentials && link.credentials.length > 0}
+        when={!!(link.credentials && link.credentials.length > 0)}
         fallback={<NoCredentialsYet linkId={link.id} />}
       >
         <ul>

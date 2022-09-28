@@ -1,32 +1,35 @@
-type ICredential = {
+export type IURL = {
+  id: number
+  url: string
+}
+
+export type ICredential = {
   id: number
   name: string
   descr?: string
-  url?: string[]
+  url?: IURL[]
   username?: string
   password?: string
 }
 
-type ILink = {
+export type ILink = {
   id: number
   title: string
   expanded?: boolean
   credentials?: ICredential[]
 }
 
-type iTask = {
+export type iTask = {
   id: number
   title: string
   createdAt: number
   isCompleted?: boolean
 }
 
-type IConfig = {
+export type IConfig = {
   dblinks?: ILink[]
   dbcountdown?: {
     reportDay?: number
   }
   tasks?: iTask[]
 }
-
-export { ICredential, ILink, IConfig, iTask }

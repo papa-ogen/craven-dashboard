@@ -29,12 +29,12 @@ const Credential = ({
       </h3>
       <div className={`p-2${!isOpen ? ' hidden' : ''}`}>
         <p className="pb-1">{descr}</p>
-        <Show when={url && url.length > 0}>
+        <Show when={!!(url && url.length > 0)}>
           <ul className="pb-1">
             {url &&
               url.map(u => (
-                <li>
-                  <Url key={u} url={u} />
+                <li key={u.id}>
+                  <Url key={u.id} url={u.url} />
                 </li>
               ))}
           </ul>

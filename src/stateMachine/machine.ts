@@ -20,8 +20,8 @@ const machine = createMachine(
     },
     initial: 'loadingTasks',
     context: {
-      tasks: null,
-      links: null,
+      tasks: [],
+      links: [],
       error: null,
     },
     states: {

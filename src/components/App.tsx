@@ -3,7 +3,7 @@ import Links from './Links'
 import { useContextMachine } from '../stateMachine'
 // import { linksSvc } from '../svc'
 
-const isLoading = state => {
+const isLoading = (state: any) => {
   return state.matches('loadingTasks')
 }
 

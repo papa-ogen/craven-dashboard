@@ -5,7 +5,7 @@ type ShowProps = {
 }
 
 const Show = ({ when, fallback, children }: ShowProps) => {
-  if (!when) return fallback
+  if (!when) return fallback || <></>
   return children
 }
 

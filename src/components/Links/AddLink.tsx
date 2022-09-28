@@ -7,12 +7,12 @@ import { ILink } from '../../types'
 const AddLink = () => {
   const [, send] = useContextMachine()
 
-  const [link, setLink] = useState<ILink>({ id: Date.now(), title: null })
+  const [link, setLink] = useState<ILink>({ id: Date.now(), title: '' })
 
   const onAddLink = () => {
     send('ADD_LINK', { link })
 
-    setLink({ id: Date.now(), title: null })
+    setLink({ id: Date.now(), title: '' })
   }
 
   return (

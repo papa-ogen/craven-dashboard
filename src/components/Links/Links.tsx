@@ -4,6 +4,7 @@ import Link from './Link'
 import AddLinkConfig from './AddLinkConfig'
 import AddLink from './AddLink'
 import { useContextMachine } from '../../stateMachine'
+import { ILink } from '../../types'
 
 const LinkDistributor = () => {
   const [state] = useContextMachine()
@@ -20,7 +21,7 @@ const LinkDistributor = () => {
       fallback={
         <ul className="max-w-[600px] min-w-[400px]">
           {links &&
-            links.map(link => (
+            links.map((link: ILink) => (
               <li key={link.id} className="pb-4">
                 <Link key={link.title} link={link} />
               </li>
