@@ -1,10 +1,14 @@
+import { useState } from 'react'
 import { AiOutlineAppstoreAdd, AiOutlineDelete } from 'react-icons/ai'
 import { useContextMachine } from '../../stateMachine'
 import { ILink } from '../../types'
 import Button from '../Button'
+import DashboardModal from '../Modal'
+import AddCredential from './AddCredential'
 
 const Toolbar = ({ linkId }: { linkId: number }) => {
   const [, send] = useContextMachine()
+  const [isOpen, setIsOpen] = useState(false)
 
   const onDeleteLink = () => {
     if (confirm('Are you sure you want to delete this link?')) {
@@ -14,9 +18,21 @@ const Toolbar = ({ linkId }: { linkId: number }) => {
 
   return (
     <div className="flex gap-2">
-      <AiOutlineAppstoreAdd title="Add New Credential" />
+      <DashboardModal
+        title="Add Credential"
+        show={isOpen}
+        onClose={() => setIsOpen(false)}
+      >
+        <AddCredential linkId={linkId} onAddClick={() => setIsOpen(false)} />
+      </DashboardModal>
+      <Button onClick={() => setIsOpen(true)} variant="transparent">
+        <AiOutlineAppstoreAdd
+          title="Add New Credential"
+          className="hover:text-green"
+        />
+      </Button>
       <Button onClick={() => onDeleteLink()} variant="transparent">
-        <AiOutlineDelete title="Delete Link" />
+        <AiOutlineDelete title="Delete Link" className="hover:text-red" />
       </Button>
     </div>
   )

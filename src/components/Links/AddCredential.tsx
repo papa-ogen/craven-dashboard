@@ -4,7 +4,13 @@ import Button from '../Button'
 import { useContextMachine } from '../../stateMachine'
 import { ICredential, IURL } from '../../types'
 
-const AddCredential = ({ linkId }: { linkId: number }) => {
+const AddCredential = ({
+  linkId,
+  onAddClick,
+}: {
+  linkId: number
+  onAddClick?: () => void
+}) => {
   const [, send] = useContextMachine()
 
   const [credential, setCredential] = useState<ICredential>({
@@ -19,6 +25,8 @@ const AddCredential = ({ linkId }: { linkId: number }) => {
       id: Date.now(),
       name: '',
     })
+
+    onAddClick && onAddClick()
   }
 
   const onAddUrl = () => {
@@ -95,12 +103,3 @@ const AddCredential = ({ linkId }: { linkId: number }) => {
 }
 
 export default AddCredential
-
-// type ICredential = {
-//   id: string
-//   name: string
-//   descr?: string
-//   url?: string[]
-//   username?: string
-//   password?: string
-// }

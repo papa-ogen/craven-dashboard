@@ -21,25 +21,19 @@ const AddLink = () => {
         htmlFor="link-title"
         className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
       >
-        Add Category Title
+        Add Link Title
       </label>
       <Input
         id="link-title"
-        placeholder="category title"
+        placeholder="link title"
         onChange={e => setLink({ ...link, title: e.target.value })}
         value={link.title}
       />
       <Button onClick={() => onAddLink()} disabled={!link.title}>
-        Add Category
+        Add Link
       </Button>
     </div>
   )
 }
 
 export default AddLink
-
-// type ILink = {
-//   title: string
-//   expanded?: boolean
-//   credentials?: ICredential[]
-// }

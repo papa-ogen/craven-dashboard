@@ -1,6 +1,8 @@
 import Tasks from './Tasks'
 import Links from './Links'
 import { useContextMachine } from '../stateMachine'
+import 'flowbite'
+
 // import { linksSvc } from '../svc'
 
 const isLoading = (state: any) => {

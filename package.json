@@ -31,7 +31,10 @@
     "typescript": "^4.8.2"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.2",
     "@xstate/react": "^3.0.1",
+    "flowbite": "^1.5.3",
+    "flowbite-react": "^0.1.11",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.4.0",
