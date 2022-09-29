@@ -29,11 +29,11 @@ const App = () => {
   return (
     <div className="flex flex-col p-4">
       <Header />
-      <div className="text-lightGray flex">
+      <div className="text-lightGray flex gap-4">
         <div className="grow">
           <Links />
         </div>
-        <div className="w-[500px]">
+        <div className="w-[500px] flex justify-end">
           <Tasks />
         </div>
       </div>

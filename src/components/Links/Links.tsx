@@ -5,6 +5,32 @@ import AddLinkConfig from './AddLinkConfig'
 import AddLink from './AddLink'
 import { useContextMachine } from '../../stateMachine'
 import { ILink } from '../../types'
+import { AiOutlineFileAdd } from 'react-icons/ai'
+import { BiSpreadsheet } from 'react-icons/bi'
+import Button from '../Button'
+
+const LinkToolbar = () => {
+  return (
+    <div className="flex gap-2 px-4 pb-2">
+      <div>
+        <Button onClick={() => console.log('hello')} variant="transparent">
+          <div className="flex items-center">
+            <AiOutlineFileAdd />
+            <span className="text-xs pl-1">Add Link</span>
+          </div>
+        </Button>
+      </div>
+      <div>
+        <Button onClick={() => console.log('hello')} variant="transparent">
+          <div className="flex items-center">
+            <BiSpreadsheet />
+            <span className="text-xs pl-1">Export config</span>
+          </div>
+        </Button>
+      </div>
+    </div>
+  )
+}
 
 const LinkDistributor = () => {
   const [state] = useContextMachine()
@@ -80,7 +106,8 @@ const Links = () => {
   const { links } = state.context
 
   return (
-    <div className="flex space-x-4">
+    <div className="flex space-x-4 flex-col">
+      <LinkToolbar />
       <Show when={links && links.length > 0} fallback={<NoLinksYet />}>
         <LinkDistributor />
       </Show>
