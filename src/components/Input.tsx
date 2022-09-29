@@ -11,6 +11,7 @@ type InputProps = {
   onKeyDown?: (e: KeyboardEvent<HTMLInputElement>) => void
   onFocus?: (e: FocusEvent<HTMLInputElement>) => void
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void
+  onDelete?: () => void
 }
 
 const Input = forwardRef<Ref, InputProps>((props, ref) => {
@@ -23,10 +24,11 @@ const Input = forwardRef<Ref, InputProps>((props, ref) => {
     onKeyDown,
     onFocus,
     onChange,
+    onDelete,
   } = props
 
   return (
-    <label className="flex flex-row pb-1" htmlFor={id}>
+    <label className="flex flex-row pb-1 relative" htmlFor={id}>
       {label && (
         <span className="block text-sm font-medium  text-white w-24 pt-2">
           {label}
@@ -43,6 +45,23 @@ const Input = forwardRef<Ref, InputProps>((props, ref) => {
         onFocus={onFocus}
         onChange={onChange}
       />
+      {onDelete && (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={1.5}
+          stroke="currentColor"
+          className="w-6 h-6 absolute right-1 top-1"
+          onClick={onDelete}
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+          />
+        </svg>
+      )}
     </label>
   )
 })
