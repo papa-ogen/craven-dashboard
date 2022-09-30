@@ -15,7 +15,7 @@ type ForProps = {
           </For> */
 }
 
-const For = ({ each }: ForProps) => {
+const For = () => {
   return <div>For</div>
 }
 

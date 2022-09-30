@@ -7,16 +7,23 @@
   "plugins": ["@typescript-eslint"],
   "extends": [
     "eslint:recommended",
+    "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
     "prettier"
   ],
   "rules": {
     "@typescript-eslint/no-unused-vars": "error",
     "@typescript-eslint/consistent-type-definitions": ["error", "type"],
-    "no-use-before-define": "error"
+    "no-use-before-define": "error",
+    "react/react-in-jsx-scope": 0
   },
   "env": {
     "browser": true,
     "es2021": true
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
   }
 }
