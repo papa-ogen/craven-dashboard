@@ -1,10 +1,11 @@
 type ButtonVariant = 'primary' | 'filled' | 'transparent' | 'small'
+
 type ButtonProps = {
   id?: string
   children: React.ReactNode
   disabled?: boolean
   variant?: ButtonVariant
-  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void
 }
 
 const generateCssClasses = (variant: ButtonVariant, disabled?: boolean) => {

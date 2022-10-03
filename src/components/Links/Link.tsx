@@ -22,7 +22,11 @@ const Link = ({ link }: { link: ILink }) => {
         <ul>
           {link.credentials &&
             link.credentials.map(credential => (
-              <Credential key={credential.id} credential={credential} />
+              <Credential
+                key={credential.id}
+                credential={credential}
+                linkId={link.id}
+              />
             ))}
         </ul>
       </Show>

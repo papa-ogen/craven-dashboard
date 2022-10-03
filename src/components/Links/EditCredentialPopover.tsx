@@ -1,9 +1,16 @@
 import { Popover, Transition } from '@headlessui/react'
 import { Fragment } from 'react'
-import { AiOutlineAppstoreAdd } from 'react-icons/ai'
+import { FiEdit } from 'react-icons/fi'
+import { ICredential } from 'types'
 import AddCredentialForm from './AddCredentialForm'
 
-const AddCredentialPopover = ({ linkId }: { linkId: number }) => {
+const EditCredentialdPopover = ({
+  linkId,
+  credential,
+}: {
+  linkId: number
+  credential: ICredential
+}) => {
   return (
     <Popover className="relative">
       {({ open }) => (
@@ -13,9 +20,9 @@ const AddCredentialPopover = ({ linkId }: { linkId: number }) => {
                 ${open ? '' : 'text-opacity-90'}
                 group inline-flex items-center bg-orange-700 mt-1.5 text-base font-medium text-white hover:text-opacity-100 focus:outline-none`}
           >
-            <AiOutlineAppstoreAdd
-              title="Add New Credential"
-              className="hover:text-green"
+            <FiEdit
+              className="mx-2 hover:text-yellow"
+              title="Edit Credential"
             />
           </Popover.Button>
           <Transition
@@ -34,6 +41,7 @@ const AddCredentialPopover = ({ linkId }: { linkId: number }) => {
                     <AddCredentialForm
                       onAddClick={() => close()}
                       linkId={linkId}
+                      credential={credential}
                     />
                   </div>
                 </div>
@@ -46,4 +54,4 @@ const AddCredentialPopover = ({ linkId }: { linkId: number }) => {
   )
 }
 
-export default AddCredentialPopover
+export default EditCredentialdPopover

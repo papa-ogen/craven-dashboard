@@ -4,16 +4,19 @@ import Input from '../Input'
 import Url from './Url'
 import Show from '../Show'
 import { useState } from 'react'
-import { useContextMachine } from '../../stateMachine'
+import EditCredentialdPopover from './EditCredentialPopover'
+
+type CredentialProps = {
+  credential: ICredential
+  linkId: number
+}
 
 const Credential = ({
+  credential,
   credential: { id, name, descr, url, username, password },
-}: {
-  credential: ICredential
-}) => {
-  const [, send] = useContextMachine()
+  linkId,
+}: CredentialProps) => {
   const [isOpen, setIsOpen] = useState(true)
-  const [descrEditMode, setDescrEditMode] = useState(false)
   const onToggle = () => {
     setIsOpen(!isOpen)
   }
@@ -22,6 +25,7 @@ const Credential = ({
     <li className="border border-black rounded-lg my-2">
       <h3 className="font-bold text-xl bg-gray py-1 px-2 rounded-md rounded-b-none flex hover:bg-opacity-70">
         <span className="grow">{name}</span>
+        <EditCredentialdPopover linkId={linkId} credential={credential} />
         <button onClick={() => onToggle()}>
           {isOpen ? (
             <BsChevronUp className="color-white text-lg" />
@@ -31,19 +35,8 @@ const Credential = ({
         </button>
       </h3>
       <div className={`p-2${!isOpen ? ' hidden' : ''}`}>
-        {!descrEditMode && (
-          <p className="pb-1" onClick={() => setDescrEditMode(true)}>
-            {descr}
-          </p>
-        )}
-        {descrEditMode && (
-          <Input
-            id="descr"
-            value={descr}
-            onChange={send('UPDATE_CREDENTIAL', { descr })} //TODO: create generic update function
-            onDelete={() => setDescrEditMode(false)}
-          />
-        )}
+        <p className="pb-1">{descr}</p>
+
         <Show when={!!(url && url.length > 0)}>
           <ul className="pb-1">
             {url &&

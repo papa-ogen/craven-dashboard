@@ -4,29 +4,23 @@ import Button from '../Button'
 import { useContextMachine } from '../../stateMachine'
 import { ICredential, IURL } from '../../types'
 
-const AddCredentialForm = ({
+const AddCredential = ({
   linkId,
   onAddClick,
-  credential: storedCredential,
 }: {
   linkId: number
   onAddClick?: () => void
-  credential?: ICredential
 }) => {
   const [, send] = useContextMachine()
-  const defaultCredentials = storedCredential || {
+
+  const [credential, setCredential] = useState<ICredential>({
     id: Date.now(),
     name: '',
-  }
-
-  console.log([defaultCredentials])
-  const [credential, setCredential] = useState<ICredential>(defaultCredentials)
+  })
   const [url, setUrl] = useState<IURL>({ id: Date.now(), url: '' })
 
   const onAddCredential = () => {
     send('ADD_CREDENTIAL', { credential, linkId })
-
-    // reset
     setCredential({
       id: Date.now(),
       name: '',
@@ -108,4 +102,4 @@ const AddCredentialForm = ({
   )
 }
 
-export default AddCredentialForm
+export default AddCredential
