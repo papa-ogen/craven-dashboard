@@ -2,23 +2,14 @@ import Show from '../Show'
 import Link from './Link'
 import { useContextMachine } from '../../stateMachine'
 import { ILink } from '../../types'
-import { BiSpreadsheet } from 'react-icons/bi'
-import Button from '../Button'
 import AddLinkPopover from './AddLinkPopover'
+import ExportConfigPopover from './ExportConfigPopover'
 
 const LinkToolbar = () => {
   return (
     <div className="flex gap-2 px-4 pb-2">
       <AddLinkPopover />
-
-      <div>
-        <Button onClick={() => console.log('hello')} variant="transparent">
-          <div className="flex items-center">
-            <BiSpreadsheet />
-            <span className="text-xs pl-1">Export config</span>
-          </div>
-        </Button>
-      </div>
+      <ExportConfigPopover />
     </div>
   )
 }
