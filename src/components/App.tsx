@@ -5,10 +5,6 @@ import 'flowbite'
 
 // import { linksSvc } from '../svc'
 
-const isLoading = (state: any) => {
-  return state.matches('loadingTasks')
-}
-
 const Header = () => {
   return (
     <h1 className="text-4xl font-extrabold tracking-wide text-center pb-2">
@@ -21,7 +17,6 @@ const Header = () => {
 const App = () => {
   const [state] = useContextMachine()
   // linksSvc.deleteAllLinks()
-  console.log(state?.context, isLoading(state), state.matches('loadingTasks'))
 
   if (state.matches('error'))
     return <p className="text-red">{state.context.error}</p>

@@ -1,3 +1,6 @@
 node_modules
 dist
 tailwind.config.js
+src/stateMachine/machine.typegen.ts
+htdocs
+docs
