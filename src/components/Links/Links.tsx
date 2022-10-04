@@ -4,12 +4,14 @@ import { useContextMachine } from '../../stateMachine'
 import { ILink } from '../../types'
 import AddLinkPopover from './AddLinkPopover'
 import ExportConfigPopover from './ExportConfigPopover'
+import ImportConfigPopover from './ImportConfigPopover'
 
 const LinkToolbar = () => {
   return (
     <div className="flex gap-2 px-4 pb-2">
       <AddLinkPopover />
       <ExportConfigPopover />
+      <ImportConfigPopover />
     </div>
   )
 }
