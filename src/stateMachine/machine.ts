@@ -45,6 +45,9 @@ const machine = createMachine(
           ADD_CREDENTIAL: {
             target: 'addingCredential',
           },
+          DELETE_CREDENTIAL: {
+            target: 'deletingCredential',
+          },
         },
       },
       loadingTasks: {
@@ -123,6 +126,15 @@ const machine = createMachine(
           },
         },
       },
+      deletingCredential: {
+        invoke: {
+          src: 'deleteCredentialService',
+          onDone: {
+            target: 'idle',
+            actions: 'deleteCredential',
+          },
+        },
+      },
       error: {},
     },
   },
@@ -146,11 +158,14 @@ const machine = createMachine(
       addLinkService: async (_, event) => {
         return linksSvc.addLink(event.link)
       },
-      deleteLinkService: async (context, event) => {
-        return linksSvc.deleteLink(context.links, event.linkId)
+      deleteLinkService: async ({ links }, { linkId }) => {
+        return linksSvc.deleteLink(links, linkId)
       },
       addCredentialService: async (_, { linkId, credential }) => {
         return linksSvc.addCredential(linkId, credential)
+      },
+      deleteCredentialService: async ({ links }, { credentialId }) => {
+        return linksSvc.deleteCredential(links, credentialId)
       },
     },
     actions: {
@@ -176,6 +191,9 @@ const machine = createMachine(
         links: (_, event) => event.data as ILink[],
       }),
       addCredential: assign({
+        links: (_, event) => event.data as ILink[],
+      }),
+      deleteCredential: assign({
         links: (_, event) => event.data as ILink[],
       }),
       setError: assign({
