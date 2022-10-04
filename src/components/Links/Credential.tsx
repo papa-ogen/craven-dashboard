@@ -63,13 +63,17 @@ const Credential = ({
           </ul>
         </Show>
         <Show when={!!username}>
-          <Input id={`${id}-username`} label="username" value={username} />
+          <Input
+            id={`${id}-username`}
+            label="username"
+            defaultValue={username}
+          />
         </Show>
         <Show when={!!password}>
           <Input
             id={`${id}-password`}
             label="password"
-            value={password}
+            defaultValue={password}
             type="password"
           />
         </Show>

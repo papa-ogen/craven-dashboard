@@ -6,6 +6,7 @@ type InputProps = {
   id: string
   label?: string
   value?: string
+  defaultValue?: string
   type?: 'text' | 'password'
   placeholder?: string
   onKeyDown?: (e: KeyboardEvent<HTMLInputElement>) => void
@@ -19,6 +20,7 @@ const Input = forwardRef<Ref, InputProps>((props, ref) => {
     id,
     label,
     value,
+    defaultValue,
     type = 'text',
     placeholder,
     onKeyDown,
@@ -26,6 +28,8 @@ const Input = forwardRef<Ref, InputProps>((props, ref) => {
     onChange,
     onDelete,
   } = props
+
+  const inpurValue = defaultValue ? undefined : value || ''
 
   return (
     <label className="flex flex-row pb-1 relative" htmlFor={id}>
@@ -38,7 +42,8 @@ const Input = forwardRef<Ref, InputProps>((props, ref) => {
         ref={ref}
         id={id}
         type={type}
-        value={value || ''}
+        defaultValue={defaultValue}
+        value={inpurValue}
         className="text-darkGray rounded-sm px-1 py-0.5 w-full outline-0"
         placeholder={placeholder}
         onKeyDown={onKeyDown}
