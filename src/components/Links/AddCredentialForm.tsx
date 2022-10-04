@@ -19,7 +19,6 @@ const AddCredentialForm = ({
     name: '',
   }
 
-  console.log([defaultCredentials])
   const [credential, setCredential] = useState<ICredential>(defaultCredentials)
   const [url, setUrl] = useState<IURL>({ id: Date.now(), url: '' })
 
@@ -101,7 +100,7 @@ const AddCredentialForm = ({
           onClick={() => onAddCredential()}
           disabled={!credential || !credential.name}
         >
-          Add Credential
+          {`${storedCredential ? 'Edit Credential' : 'Add Credential'}`}
         </Button>
       </div>
     </div>

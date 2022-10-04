@@ -1,25 +1,16 @@
-import { useState } from 'react'
 import Show from '../Show'
 import Link from './Link'
-import AddLinkConfig from './AddLinkConfig'
-import AddLink from './AddLink'
 import { useContextMachine } from '../../stateMachine'
 import { ILink } from '../../types'
-import { AiOutlineFileAdd } from 'react-icons/ai'
 import { BiSpreadsheet } from 'react-icons/bi'
 import Button from '../Button'
+import AddLinkPopover from './AddLinkPopover'
 
 const LinkToolbar = () => {
   return (
     <div className="flex gap-2 px-4 pb-2">
-      <div>
-        <Button onClick={() => console.log('hello')} variant="transparent">
-          <div className="flex items-center">
-            <AiOutlineFileAdd />
-            <span className="text-xs pl-1">Add Link</span>
-          </div>
-        </Button>
-      </div>
+      <AddLinkPopover />
+
       <div>
         <Button onClick={() => console.log('hello')} variant="transparent">
           <div className="flex items-center">
@@ -76,27 +67,9 @@ const LinkDistributor = () => {
 }
 
 const NoLinksYet = () => {
-  const [state, setState] = useState(0)
-
   return (
     <div className="flex space-y-2 flex-col">
-      <p className="text-red">No links yet</p>
-      <div className="space-x-1">
-        <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          onClick={() => setState(1)}
-        >
-          Add config file
-        </button>
-        <button
-          className="bg-green-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          onClick={() => setState(2)}
-        >
-          Add Links
-        </button>
-      </div>
-      {state === 1 && <AddLinkConfig />}
-      {state === 2 && <AddLink />}
+      <p className="text-red pl-2">No links yet</p>
     </div>
   )
 }

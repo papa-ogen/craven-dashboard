@@ -4,7 +4,11 @@ import Button from '../Button'
 import { useContextMachine } from '../../stateMachine'
 import { ILink } from '../../types'
 
-const AddLink = () => {
+type AddLinkFormProps = {
+  onAddClick?: () => void
+}
+
+const AddLinkForm = ({ onAddClick }: AddLinkFormProps) => {
   const [, send] = useContextMachine()
 
   const [link, setLink] = useState<ILink>({ id: Date.now(), title: '' })
@@ -13,6 +17,8 @@ const AddLink = () => {
     send('ADD_LINK', { link })
 
     setLink({ id: Date.now(), title: '' })
+
+    onAddClick && onAddClick()
   }
 
   return (
@@ -36,4 +42,4 @@ const AddLink = () => {
   )
 }
 
-export default AddLink
+export default AddLinkForm
