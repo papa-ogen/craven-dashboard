@@ -28,7 +28,7 @@ const App = () => {
         <div className="grow">
           <Links />
         </div>
-        <div className="w-[500px] flex justify-end">
+        <div className="w-[600px] flex justify-end">
           <Tasks />
         </div>
       </div>

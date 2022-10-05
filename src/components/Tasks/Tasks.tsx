@@ -3,7 +3,7 @@ import CompletedTasks from './CompletedTasks'
 
 const Tasks = () => {
   return (
-    <div className="flex space-x-4">
+    <div className="flex space-x-4 w-full">
       <CurrentTasks />
       <CompletedTasks />
     </div>

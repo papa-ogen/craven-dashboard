@@ -50,7 +50,7 @@ const CurrentTasks = () => {
               .map(task => (
                 <li
                   key={task.id}
-                  className="py-2 px-1 cursor-pointer hover:bg-gray"
+                  className="py-2 px-1 cursor-pointer hover:bg-gray group"
                 >
                   <CurrentTask task={task} onCompleteTask={onCompleteTask} />
                 </li>

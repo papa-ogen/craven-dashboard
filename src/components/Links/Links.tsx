@@ -23,7 +23,7 @@ const LinkDistributor = () => {
   const middleIndex = Math.ceil(links.length / 2)
 
   const firstHalf = [...links].splice(0, middleIndex)
-  const secondHalf = [...links].splice(-middleIndex)
+  const secondHalf = [...links].splice(-(middleIndex - 1))
 
   return (
     <Show
@@ -39,16 +39,15 @@ const LinkDistributor = () => {
         </ul>
       }
     >
-      <ul className="max-w-[600px] min-w-[400px]">
+      {/* <ul className="max-w-[600px] min-w-[400px]">
         {links &&
           links.map((link: ILink) => (
             <li key={link.id} className="pb-4">
               <Link key={link.title} link={link} />
             </li>
           ))}
-      </ul>
-      {/* TODO: Fix bug showing same twice */}
-      {/* <div>
+      </ul> */}
+      <div className="flex space-x-4">
         <ul className="max-w-[600px] min-w-[400px]">
           {firstHalf.map(link => (
             <li key={link.id} className="pb-4">
@@ -63,7 +62,7 @@ const LinkDistributor = () => {
             </li>
           ))}
         </ul>
-      </div> */}
+      </div>
     </Show>
   )
 }

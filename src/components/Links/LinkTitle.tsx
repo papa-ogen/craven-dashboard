@@ -25,9 +25,9 @@ const Toolbar = ({ linkId }: { linkId: number }) => {
 }
 
 const LinkTitle = ({ link }: { link: ILink }) => (
-  <div className="group border-b border-yellow flex flex-row items-center mb-2 hover:border-white">
-    <div className="group w-6 h-6 bg-yellow -mb-1 group-hover:bg-white"></div>
-    <h2 className="text-2xl font-extrabold -mb-1 pl-2 group-hover:text-white grow">
+  <div className="group border-b border-yellow flex flex-row items-center mb-2 hover:border-white ease-in-out duration-500">
+    <div className="group w-6 h-6 bg-yellow -mb-1 group-hover:bg-white ease-in-out duration-500"></div>
+    <h2 className="text-2xl font-extrabold -mb-1 pl-2 group-hover:text-white grow ease-in-out duration-500">
       {link.title}
     </h2>
     <Toolbar linkId={link.id} />

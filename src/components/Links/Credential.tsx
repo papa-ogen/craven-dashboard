@@ -53,7 +53,11 @@ const Credential = ({
           )}
         </button>
       </h3>
-      <div className={`p-2${!isOpen ? ' hidden' : ''}`}>
+      <div
+        className={`${
+          !isOpen ? 'h-0 overflow-hidden' : 'py-2 h-auto'
+        } ease-in-out duration-500 px-2`}
+      >
         <p className="pb-1">{descr}</p>
 
         <Show when={!!(url && url.length > 0)}>

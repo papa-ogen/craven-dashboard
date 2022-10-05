@@ -2,16 +2,17 @@ import { BsTrash } from 'react-icons/bs'
 import CurrentTask from './CurrentTask'
 import Show from '../Show'
 import { useContextMachine } from '../../stateMachine'
+import { iTask } from 'types'
 
 const CompletedTasks = () => {
   const [state, send] = useContextMachine()
-  const { tasks } = state.context
+  const { tasks }: { tasks: iTask[] } = state.context
 
-  const onDeleteTask = (id: string) => {
+  const onDeleteTask = (id: number) => {
     send('DELETE_TASK', { id })
   }
   return (
-    <div>
+    <div className="grow">
       <h2 className="text-1xl font-extrabold text-green">Completed Tasks</h2>
       <Show
         when={tasks && tasks.filter(t => t.isCompleted).length > 0}
