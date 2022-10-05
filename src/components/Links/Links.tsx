@@ -39,7 +39,17 @@ const LinkDistributor = () => {
         </ul>
       }
     >
-      <div>
+      <ul className="max-w-[600px] min-w-[400px]">
+        {links &&
+          links.map((link: ILink) => (
+            <li key={link.id} className="pb-4">
+              <Link key={link.title} link={link} />
+              why?
+            </li>
+          ))}
+      </ul>
+      {/* TODO: Fix bug showing same twice */}
+      {/* <div>
         <ul className="max-w-[600px] min-w-[400px]">
           {firstHalf.map(link => (
             <li key={link.id} className="pb-4">
@@ -54,7 +64,7 @@ const LinkDistributor = () => {
             </li>
           ))}
         </ul>
-      </div>
+      </div> */}
     </Show>
   )
 }
