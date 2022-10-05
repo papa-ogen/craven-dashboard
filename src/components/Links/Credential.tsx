@@ -1,5 +1,5 @@
 import { BsChevronDown, BsChevronUp } from 'react-icons/bs'
-import { ICredential } from '../../types'
+import { ICredential } from 'types'
 import Input from '../Input'
 import Url from './Url'
 import Show from '../Show'
@@ -7,7 +7,7 @@ import { useState } from 'react'
 import EditCredentialdPopover from './EditCredentialPopover'
 import Button from '../Button'
 import { AiOutlineDelete } from 'react-icons/ai'
-import { useContextMachine } from '../../stateMachine'
+import { useContextMachine } from 'stateMachine'
 
 type CredentialProps = {
   credential: ICredential
