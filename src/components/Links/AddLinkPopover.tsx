@@ -15,9 +15,11 @@ const AddLinkPopover = () => {
           >
             <AiOutlineFileAdd
               title="Add New Link"
-              className="hover:text-green"
+              className="group-hover:text-green"
             />
-            <span className="text-xs pl-1">Add Link</span>
+            <span className="text-xs pl-1 group-hover:text-green">
+              Add Link
+            </span>
           </Popover.Button>
           <Transition
             as={Fragment}

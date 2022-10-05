@@ -10,6 +10,7 @@ export type ICredential = {
   url?: IURL[]
   username?: string
   password?: string
+  expanded?: boolean
 }
 
 export type ILink = {

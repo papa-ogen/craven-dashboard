@@ -40,8 +40,8 @@ const AddCredentialForm = ({
   }
 
   return (
-    <div className="">
-      <h3 className="pb-2">Add Credential</h3>
+    <div className="font-normal ">
+      <h3 className="pb-2 text-base">Add Credential</h3>
       <Input
         id={`credential-name`}
         placeholder="name"
@@ -61,7 +61,7 @@ const AddCredentialForm = ({
         credential.url.map(u => {
           return <p key={u.id}>{u.url}</p>
         })}
-      <div className="flex">
+      <div className="flex pb-1 items-center">
         <Input
           id={`credential-url-${credential?.url?.length || 0}`}
           placeholder="url"
@@ -69,7 +69,7 @@ const AddCredentialForm = ({
           label="Url"
           value={url && url.url}
         />
-        <div className="pl-2">
+        <div className="flex pl-2 w-24 items-end place-content-end">
           <Button onClick={() => onAddUrl()} variant="small" disabled={!url}>
             Add URL
           </Button>

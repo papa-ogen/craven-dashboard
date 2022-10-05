@@ -2,14 +2,12 @@ import { Popover, Transition } from '@headlessui/react'
 import Button from '../../components/Button'
 import { Textarea } from 'flowbite-react'
 import { Fragment } from 'react'
-import { BiSpreadsheet } from 'react-icons/bi'
+import { TbDatabaseExport } from 'react-icons/tb'
 import { useContextMachine } from '../../stateMachine'
 
 const ExportConfigPopover = () => {
   const [state] = useContextMachine()
   const { tasks, links } = state.context
-
-  console.log(tasks, links)
 
   return (
     <Popover className="relative">
@@ -20,8 +18,13 @@ const ExportConfigPopover = () => {
                 ${open ? '' : 'text-opacity-90'}
                 group inline-flex items-center bg-orange-700 mt-1.5 text-base text-white hover:text-opacity-100 focus:outline-none`}
           >
-            <BiSpreadsheet title="Add New Link" className="hover:text-green" />
-            <span className="text-xs pl-1">Export config</span>
+            <TbDatabaseExport
+              title="Export Config"
+              className="group-hover:text-yellow"
+            />
+            <span className="text-xs pl-1 group-hover:text-yellow">
+              Export config
+            </span>
           </Popover.Button>
           <Transition
             as={Fragment}

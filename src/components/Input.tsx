@@ -12,6 +12,7 @@ type InputProps = {
   onKeyDown?: (e: KeyboardEvent<HTMLInputElement>) => void
   onFocus?: (e: FocusEvent<HTMLInputElement>) => void
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void
+  pb?: boolean
 }
 
 const Input = forwardRef<Ref, InputProps>((props, ref) => {
@@ -25,12 +26,13 @@ const Input = forwardRef<Ref, InputProps>((props, ref) => {
     onKeyDown,
     onFocus,
     onChange,
+    pb = true,
   } = props
 
   const inpurValue = defaultValue ? undefined : value || ''
 
   return (
-    <label className="flex flex-row pb-1 relative" htmlFor={id}>
+    <label className={`flex flex-row ${pb && 'pb-1'} relative`} htmlFor={id}>
       {label && (
         <span className="block text-sm font-medium  text-white w-24 pt-2">
           {label}

@@ -7,15 +7,16 @@ import { useContextMachine } from '../../stateMachine'
 
 const CurrentTasks = () => {
   const [state, send] = useContextMachine()
-  const { tasks } = state.context
-  const [inputValue, setInputValue] = useState<string>(null)
+  const { tasks }: { tasks: iTask[] } = state.context
+  const [inputValue, setInputValue] = useState<string | undefined>(undefined)
   const inputRef = createRef<HTMLInputElement>()
+
   const onAddTask = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       if (inputValue) {
         send('ADD_TASK', { task: inputValue })
 
-        setInputValue(null)
+        setInputValue(undefined)
       }
     }
   }

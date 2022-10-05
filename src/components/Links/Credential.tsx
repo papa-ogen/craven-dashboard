@@ -16,13 +16,17 @@ type CredentialProps = {
 
 const Credential = ({
   credential,
-  credential: { id, name, descr, url, username, password },
+  credential: { id, name, descr, url, username, password, expanded },
   linkId,
 }: CredentialProps) => {
   const [, send] = useContextMachine()
-  const [isOpen, setIsOpen] = useState(true)
+  const [isOpen, setIsOpen] = useState(expanded)
   const onToggle = () => {
     setIsOpen(!isOpen)
+    send('ADD_CREDENTIAL', {
+      linkId,
+      credential: { ...credential, expanded: !isOpen },
+    })
   }
 
   const onDeleteCredential = () => {

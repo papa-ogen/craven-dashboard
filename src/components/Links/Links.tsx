@@ -8,7 +8,7 @@ import ImportConfigPopover from './ImportConfigPopover'
 
 const LinkToolbar = () => {
   return (
-    <div className="flex gap-2 px-4 pb-2">
+    <div className="flex gap-2 px-4 pb-2 border-b-1 border-white">
       <AddLinkPopover />
       <ExportConfigPopover />
       <ImportConfigPopover />
@@ -44,7 +44,6 @@ const LinkDistributor = () => {
           links.map((link: ILink) => (
             <li key={link.id} className="pb-4">
               <Link key={link.title} link={link} />
-              why?
             </li>
           ))}
       </ul>

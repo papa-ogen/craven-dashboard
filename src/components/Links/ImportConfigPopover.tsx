@@ -2,7 +2,7 @@ import { Popover, Transition } from '@headlessui/react'
 import Button from '../Button'
 import { Textarea } from 'flowbite-react'
 import { Fragment } from 'react'
-import { BiSpreadsheet } from 'react-icons/bi'
+import { BiImport } from 'react-icons/bi'
 import { useContextMachine } from '../../stateMachine'
 
 const ImportConfigPopover = () => {
@@ -20,8 +20,10 @@ const ImportConfigPopover = () => {
                 ${open ? '' : 'text-opacity-90'}
                 group inline-flex items-center bg-orange-700 mt-1.5 text-base text-white hover:text-opacity-100 focus:outline-none`}
           >
-            <BiSpreadsheet title="Add New Link" className="hover:text-green" />
-            <span className="text-xs pl-1">Import config</span>
+            <BiImport title="Add New Link" className="group-hover:text-green" />
+            <span className="text-xs pl-1 group-hover:text-green">
+              Import config
+            </span>
           </Popover.Button>
           <Transition
             as={Fragment}
