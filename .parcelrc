@@ -3,5 +3,11 @@
   "resolvers": [
     "parcel-resolver-ts-base-url",
     "..."
-  ]
+  ],
+  "transformers": {
+    "*.{js,mjs,jsx,cjs,ts,tsx}": [
+      "@parcel/transformer-js",
+      "@parcel/transformer-react-refresh-wrap"
+    ]
+  }
 }

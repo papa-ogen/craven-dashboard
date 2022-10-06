@@ -4,10 +4,11 @@ import { Textarea } from 'flowbite-react'
 import { Fragment } from 'react'
 import { BiImport } from 'react-icons/bi'
 import { useContextMachine } from '../../stateMachine'
+import { ILink, iTask } from 'types'
 
 const ImportConfigPopover = () => {
   const [state] = useContextMachine()
-  const { tasks, links } = state.context
+  const { tasks, links }: { tasks: iTask[]; links: ILink[] } = state.context
 
   console.log(tasks, links)
 

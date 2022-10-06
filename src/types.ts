@@ -13,11 +13,13 @@ export type ICredential = {
   expanded?: boolean
 }
 
+export type LinkTitleColor = 'yellow' | 'blue' | 'green' | 'red'
+
 export type ILink = {
   id: number
   title: string
-  expanded?: boolean
   credentials?: ICredential[]
+  color?: LinkTitleColor
 }
 
 export type iTask = {
@@ -28,7 +30,7 @@ export type iTask = {
 }
 
 export type IConfig = {
-  dblinks?: ILink[]
+  links?: ILink[]
   dbcountdown?: {
     reportDay?: number
   }

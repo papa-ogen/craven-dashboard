@@ -4,10 +4,11 @@ import { Textarea } from 'flowbite-react'
 import { Fragment } from 'react'
 import { TbDatabaseExport } from 'react-icons/tb'
 import { useContextMachine } from '../../stateMachine'
+import { ILink, iTask } from 'types'
 
 const ExportConfigPopover = () => {
   const [state] = useContextMachine()
-  const { tasks, links } = state.context
+  const { tasks, links }: { tasks: iTask[]; links: ILink[] } = state.context
 
   return (
     <Popover className="relative">

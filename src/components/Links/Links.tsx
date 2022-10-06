@@ -27,7 +27,7 @@ const LinkDistributor = () => {
 
   return (
     <Show
-      when={links && links.length > 2}
+      when={links && links.length > 6}
       fallback={
         <ul className="max-w-[600px] min-w-[400px]">
           {links &&
@@ -39,14 +39,6 @@ const LinkDistributor = () => {
         </ul>
       }
     >
-      {/* <ul className="max-w-[600px] min-w-[400px]">
-        {links &&
-          links.map((link: ILink) => (
-            <li key={link.id} className="pb-4">
-              <Link key={link.title} link={link} />
-            </li>
-          ))}
-      </ul> */}
       <div className="flex space-x-4">
         <ul className="max-w-[600px] min-w-[400px]">
           {firstHalf.map(link => (

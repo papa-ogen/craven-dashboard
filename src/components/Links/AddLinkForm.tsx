@@ -3,15 +3,22 @@ import Input from '../Input'
 import Button from '../Button'
 import { useContextMachine } from '../../stateMachine'
 import { ILink } from '../../types'
+import { getLinkColor } from './Links.helper'
 
 type AddLinkFormProps = {
   onAddClick?: () => void
 }
 
 const AddLinkForm = ({ onAddClick }: AddLinkFormProps) => {
-  const [, send] = useContextMachine()
+  const [state, send] = useContextMachine()
+  const { links }: { links: ILink[] } = state.context
+  const totalLinks = links.length
 
-  const [link, setLink] = useState<ILink>({ id: Date.now(), title: '' })
+  const [link, setLink] = useState<ILink>({
+    id: Date.now(),
+    title: '',
+    color: getLinkColor(totalLinks),
+  })
 
   const onAddLink = () => {
     send('ADD_LINK', { link })
