@@ -12,7 +12,7 @@ const CompletedTasks = () => {
     send('DELETE_TASK', { id })
   }
   return (
-    <div className="grow">
+    <div className="flex-1">
       <h2 className="text-1xl font-extrabold text-green">Completed Tasks</h2>
       <Show
         when={tasks && tasks.filter(t => t.isCompleted).length > 0}

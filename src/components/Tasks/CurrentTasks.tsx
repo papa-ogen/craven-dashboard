@@ -28,7 +28,7 @@ const CurrentTasks = () => {
   }
 
   return (
-    <div>
+    <div className="flex-1">
       <h2 className="text-1xl font-extrabold text-blue">Current Tasks</h2>
       <Input
         id="add-task"

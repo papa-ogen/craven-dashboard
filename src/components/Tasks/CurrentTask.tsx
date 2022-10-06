@@ -25,8 +25,10 @@ const CurrentTask = ({
       onClick={() => onCompleteTask && onCompleteTask(task)}
       title={task.title}
     >
-      <p className="truncate pr-2 max-w-[200px]">{task.title}</p>
-      <p className="text-[10px] break-normal">{formatedDate}</p>
+      <p className="truncate pr-2 max-w-[188px] grow">{task.title}</p>
+      {!isComplete && (
+        <p className="text-[10px] break-normal w-16">{formatedDate}</p>
+      )}
       <div className="group-hover:opacity-100 opacity-0 px-2 ease-in-out duration-500">
         <BsCheck className="text-green" />
       </div>
