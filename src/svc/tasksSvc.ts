@@ -16,11 +16,11 @@ export const addTask = (title: string): iTask[] => {
     createdAt: Date.now(),
   }
 
-  const udatedTasks = [...tasks, task]
+  const updatedTasks = [...tasks, task]
 
-  localStorage.setItem(nameSpace, JSON.stringify(udatedTasks))
+  localStorage.setItem(nameSpace, JSON.stringify(updatedTasks))
 
-  return udatedTasks
+  return updatedTasks
 }
 
 export const updateTask = (task: iTask): iTask[] => {
