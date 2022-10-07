@@ -35,4 +35,5 @@ export type IConfig = {
     reportDay?: number
   }
   tasks?: iTask[]
+  allTimeTasksCount?: number
 }

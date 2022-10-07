@@ -3,6 +3,37 @@ import Input from '../Input'
 import Button from '../Button'
 import { useContextMachine } from '../../stateMachine'
 import { ICredential, IURL } from '../../types'
+import { AiOutlineDelete } from 'react-icons/ai'
+
+const CredentialUrl = ({
+  url,
+  onDeleteClick,
+  onUrlChange,
+}: {
+  url: IURL
+  onDeleteClick: (urlId: number) => void
+  onUrlChange: (url: IURL) => void
+}) => {
+  const onDelete = () => {
+    onDeleteClick(url.id)
+  }
+
+  const onUrl = (e: React.ChangeEvent<HTMLInputElement>) => {
+    onUrlChange({ ...url, url: e.target.value })
+  }
+  return (
+    <div key={url.id} className="flex text-base font-light">
+      <div className="grow">
+        <Input id={url.id.toString()} value={url.url} onChange={onUrl} />
+      </div>
+      <div className="px-2 flex items-center">
+        <Button onClick={() => onDelete()} variant="transparent">
+          <AiOutlineDelete title="Delete Link" className="hover:text-red" />
+        </Button>
+      </div>
+    </div>
+  )
+}
 
 const AddCredentialForm = ({
   linkId,
@@ -34,9 +65,36 @@ const AddCredentialForm = ({
     onAddClick && onAddClick()
   }
 
+  const onDelete = (urlId: number) => {
+    const credentialUrls = credential.url?.filter(u => u.id !== urlId)
+    send('ADD_CREDENTIAL', {
+      credential: { ...credential, url: credentialUrls },
+      linkId,
+    })
+    setCredential({ ...credential, url: credentialUrls })
+  }
+
   const onAddUrl = () => {
     setCredential({ ...credential, url: [...(credential.url || []), url] })
     setUrl({ id: Date.now(), url: '' })
+    send('ADD_CREDENTIAL', {
+      credential: { ...credential, url: [...(credential.url || []), url] },
+      linkId,
+    })
+  }
+
+  const onEditUrl = (url: IURL) => {
+    const credentialUrls = credential.url?.map(u => {
+      if (u.id === url.id) return url
+
+      return u
+    })
+
+    send('ADD_CREDENTIAL', {
+      credential: { ...credential, url: credentialUrls },
+      linkId,
+    })
+    setCredential({ ...credential, url: credentialUrls })
   }
 
   return (
@@ -57,10 +115,6 @@ const AddCredentialForm = ({
         value={credential && credential.descr}
       />
       <hr className="pb-1" />
-      {credential.url &&
-        credential.url.map(u => {
-          return <p key={u.id}>{u.url}</p>
-        })}
       <div className="flex pb-1 items-center">
         <Input
           id={`credential-url-${credential?.url?.length || 0}`}
@@ -69,12 +123,23 @@ const AddCredentialForm = ({
           label="Url"
           value={url && url.url}
         />
-        <div className="flex pl-2 w-24 items-end place-content-end">
+        <div className="flex pl-2 w-[90px] items-end place-content-end">
           <Button onClick={() => onAddUrl()} variant="small" disabled={!url}>
             Add URL
           </Button>
         </div>
       </div>
+      {credential.url &&
+        credential.url.map(u => {
+          return (
+            <CredentialUrl
+              key={u.id}
+              url={u}
+              onDeleteClick={onDelete}
+              onUrlChange={onEditUrl}
+            />
+          )
+        })}
       <hr className="pb-1" />
       <Input
         id={`credential-username`}

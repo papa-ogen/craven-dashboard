@@ -1,14 +1,10 @@
 import { createMachine, assign } from 'xstate'
-import { ILink, iTask } from '../types'
+import { IConfig, ILink, iTask } from '../types'
 import { linksSvc, tasksSvc } from '../svc/'
 import { StateEvent } from './events.type'
 import { StateService } from './service.type'
 
-export type StateContext = {
-  tasks: iTask[]
-  links: ILink[]
-  error: unknown
-}
+export type StateContext = { links: ILink[]; error: unknown } & IConfig
 
 const machine = createMachine(
   {
@@ -21,6 +17,7 @@ const machine = createMachine(
     initial: 'loadingTasks',
     context: {
       tasks: [],
+      allTimeTasksCount: 0,
       links: [],
       error: null,
     },
