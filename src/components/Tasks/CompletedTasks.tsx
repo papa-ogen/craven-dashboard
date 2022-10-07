@@ -25,18 +25,17 @@ const CompletedTasks = () => {
               .map(task => (
                 <li
                   key={task.id}
-                  className="py-2 px-1 cursor-pointer hover:bg-gray flex"
+                  className="py-2 px-1 cursor-pointer hover:bg-gray flex items-center group"
+                  onClick={() => onDeleteTask(task.id)}
                 >
                   <div className="grow">
                     <CurrentTask task={task} isComplete />
                   </div>
-                  <button type="button" onClick={() => onDeleteTask(task.id)}>
-                    <BsTrash
-                      size={24}
-                      className="text-red hover:text-white"
-                      title="Delete task"
-                    />
-                  </button>
+                  <BsTrash
+                    size={16}
+                    className="text-red hover:text-white group-hover:opacity-100 opacity-0 ease-in-out duration-500"
+                    title="Delete task"
+                  />
                 </li>
               ))}
         </ul>

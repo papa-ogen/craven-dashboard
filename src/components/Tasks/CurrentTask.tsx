@@ -29,9 +29,11 @@ const CurrentTask = ({
       {!isComplete && (
         <p className="text-[10px] break-normal w-16">{formatedDate}</p>
       )}
-      <div className="group-hover:opacity-100 opacity-0 px-2 ease-in-out duration-500">
-        <BsCheck className="text-green" />
-      </div>
+      {!isComplete && (
+        <div className="group-hover:opacity-100 opacity-0 px-2 ease-in-out duration-500">
+          <BsCheck className="text-green" />
+        </div>
+      )}
     </div>
   )
 }
