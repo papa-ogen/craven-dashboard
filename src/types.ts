@@ -13,7 +13,8 @@ export type ICredential = {
   expanded?: boolean
 }
 
-export type LinkTitleColor = 'yellow' | 'blue' | 'green' | 'red'
+export const colors = ['yellow', 'blue', 'green', 'red'] as const
+export type LinkTitleColor = typeof colors[number]
 
 export type ILink = {
   id: number

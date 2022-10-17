@@ -3,6 +3,7 @@ import { useContextMachine } from '../../stateMachine'
 import { ILink } from '../../types'
 import Button from '../Button'
 import AddCredentialPopover from './AddCredentialPopover'
+import EditLinkTitlePopover from './EditLinktitlePopover'
 
 const Toolbar = ({ linkId }: { linkId: number }) => {
   const [, send] = useContextMachine()
@@ -32,9 +33,9 @@ const LinkTitle = ({ link }: { link: ILink }) => {
       <div
         className={`group w-6 h-6 bg-${link.color} -mb-1 group-hover:bg-white ease-in-out duration-500`}
       ></div>
-      <h2 className="text-2xl font-extrabold -mb-1 pl-2 group-hover:text-white grow ease-in-out duration-500">
-        {link.title}
-      </h2>
+      <div className="grow">
+        <EditLinkTitlePopover link={link} />
+      </div>
       <Toolbar linkId={link.id} />
     </div>
   )

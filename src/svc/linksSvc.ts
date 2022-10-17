@@ -15,6 +15,23 @@ export const addLinks = (links: ILink[]): ILink[] => {
 }
 export const addLink = (link: ILink): ILink[] => {
   const links = getLinks()
+
+  const editMode = !!links?.find(l => l.id === link.id)
+
+  if (editMode) {
+    const updatedLinks = links.map(l => {
+      if (l.id === link.id) {
+        return link
+      }
+
+      return l
+    })
+
+    localStorage.setItem(nameSpace, JSON.stringify(updatedLinks))
+
+    return updatedLinks
+  }
+
   const updatedLinks = [...links, link]
   localStorage.setItem(nameSpace, JSON.stringify(updatedLinks))
 
