@@ -11,11 +11,11 @@ const AddCredentialPopover = ({ linkId }: { linkId: number }) => {
           <Popover.Button
             className={`
                 ${open ? '' : 'text-opacity-90'}
-                group inline-flex items-center bg-orange-700 mt-1.5 text-base font-medium text-white hover:text-opacity-100 focus:outline-none`}
+                group inline-flex items-center mt-1.5 text-base font-medium text-white hover:text-opacity-100 focus:outline-none`}
           >
             <AiOutlineAppstoreAdd
               title="Add New Credential"
-              className="hover:text-green"
+              className="hover:text-lime-500"
             />
           </Popover.Button>
           <Transition

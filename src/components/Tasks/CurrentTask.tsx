@@ -31,7 +31,7 @@ const CurrentTask = ({
       )}
       {!isComplete && (
         <div className="group-hover:opacity-100 opacity-0 px-2 ease-in-out duration-500">
-          <BsCheck className="text-green" />
+          <BsCheck className="text-lime-500" />
         </div>
       )}
     </div>

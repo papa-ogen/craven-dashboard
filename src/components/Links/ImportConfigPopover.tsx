@@ -19,10 +19,13 @@ const ImportConfigPopover = () => {
           <Popover.Button
             className={`
                 ${open ? '' : 'text-opacity-90'}
-                group inline-flex items-center bg-orange-700 mt-1.5 text-base text-white hover:text-opacity-100 focus:outline-none`}
+                group inline-flex items-center mt-1.5 text-base text-white hover:text-opacity-100 focus:outline-none`}
           >
-            <BiImport title="Add New Link" className="group-hover:text-green" />
-            <span className="text-xs pl-1 group-hover:text-green">
+            <BiImport
+              title="Add New Link"
+              className="group-hover:text-lime-500"
+            />
+            <span className="text-xs pl-1 group-hover:text-lime-500">
               Import config
             </span>
           </Popover.Button>

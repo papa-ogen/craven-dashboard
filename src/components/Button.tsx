@@ -17,13 +17,13 @@ const generateCssClasses = (variant: ButtonVariant, disabled?: boolean) => {
       return `${
         disabled
           ? 'bg-darkGray text-gray border-gray'
-          : 'bg-blue text-white border-blue hover:border-white'
+          : 'bg-blue-400 text-white border-blue-400 hover:border-white'
       } ${baseClasses}`
     case 'primary':
       return `${
         disabled
           ? 'bg-darkGray text-gray border-gray'
-          : 'bg-blue text-white border-blue hover:border-white'
+          : 'bg-blue-400 text-white border-blue-400 hover:border-white'
       } ${baseClasses}`
     case 'transparent':
       return 'border-0'
@@ -31,7 +31,7 @@ const generateCssClasses = (variant: ButtonVariant, disabled?: boolean) => {
       return `${
         disabled
           ? 'bg-darkGray text-gray border-gray'
-          : 'bg-blue text-white border-blue hover:border-white'
+          : 'bg-blue-400 text-white border-blue-400 hover:border-white'
       } ${baseClassesSmall}`
   }
 }

@@ -62,7 +62,7 @@ const LinkDistributor = () => {
 const NoLinksYet = () => {
   return (
     <div className="flex space-y-2 flex-col">
-      <p className="text-red pl-2">No links yet</p>
+      <p className="text-red-600 pl-2">No links yet</p>
     </div>
   )
 }

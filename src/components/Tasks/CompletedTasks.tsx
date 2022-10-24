@@ -13,7 +13,7 @@ const CompletedTasks = () => {
   }
   return (
     <div className="flex-1">
-      <h2 className="text-1xl font-extrabold text-green">Completed Tasks</h2>
+      <h2 className="text-1xl font-extrabold text-lime-500">Completed Tasks</h2>
       <Show
         when={tasks && tasks.filter(t => t.isCompleted).length > 0}
         fallback={<p className="text-red">No tasks yet</p>}
@@ -33,7 +33,7 @@ const CompletedTasks = () => {
                   </div>
                   <BsTrash
                     size={16}
-                    className="text-red hover:text-white group-hover:opacity-100 opacity-0 ease-in-out duration-500"
+                    className="hover:text-red-600 group-hover:opacity-100 opacity-0 ease-in-out duration-500"
                     title="Delete task"
                   />
                 </li>

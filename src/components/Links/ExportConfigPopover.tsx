@@ -17,13 +17,13 @@ const ExportConfigPopover = () => {
           <Popover.Button
             className={`
                 ${open ? '' : 'text-opacity-90'}
-                group inline-flex items-center bg-orange-700 mt-1.5 text-base text-white hover:text-opacity-100 focus:outline-none`}
+                group inline-flex items-center mt-1.5 text-base text-white hover:text-opacity-100 focus:outline-none`}
           >
             <TbDatabaseExport
               title="Export Config"
-              className="group-hover:text-yellow"
+              className="group-hover:text-yellow-300"
             />
-            <span className="text-xs pl-1 group-hover:text-yellow">
+            <span className="text-xs pl-1 group-hover:text-yellow-300">
               Export config
             </span>
           </Popover.Button>

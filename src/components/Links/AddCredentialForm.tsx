@@ -28,7 +28,7 @@ const CredentialUrl = ({
       </div>
       <div className="px-2 flex items-center">
         <Button onClick={() => onDelete()} variant="transparent">
-          <AiOutlineDelete title="Delete Link" className="hover:text-red" />
+          <AiOutlineDelete title="Delete Link" className="hover:text-red-600" />
         </Button>
       </div>
     </div>

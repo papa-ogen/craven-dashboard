@@ -4,8 +4,38 @@ import { Fragment } from 'react'
 import { useContextMachine } from '../../stateMachine'
 import { ILink, LinkTitleColor, colors } from '../../types'
 
+const linkColorMapper = (
+  color?: LinkTitleColor
+): { bg: string; border: string } => {
+  switch (color) {
+    case 'yellow':
+      return {
+        border: 'border-yellow-300',
+        bg: 'bg-yellow-300',
+      }
+    case 'blue':
+      return {
+        border: 'border-blue-400',
+        bg: 'bg-blue-400',
+      }
+    case 'red':
+      return {
+        border: 'border-red-600',
+        bg: 'bg-red-600',
+      }
+    case 'green':
+    default:
+      return {
+        border: 'border-lime-500',
+        bg: 'bg-lime-500',
+      }
+  }
+}
+
 const ColorBox = ({ color }: { color: LinkTitleColor }) => {
-  return <div className={`w-10 h-10 bg-${color}`}></div>
+  const { bg } = linkColorMapper(color)
+  console.log(bg)
+  return <div className={`w-10 h-10 ${bg}`}></div>
 }
 
 const EditLinkTitlePopover = ({ link }: { link: ILink }) => {
@@ -27,7 +57,7 @@ const EditLinkTitlePopover = ({ link }: { link: ILink }) => {
         leaveFrom="opacity-100 translate-y-0"
         leaveTo="opacity-0 translate-y-1"
       >
-        <Popover.Panel className="absolute left-0 z-10  transform sm:px-0 w-auto bg-gray">
+        <Popover.Panel className="absolute left-0 z-10 transform sm:px-0 w-auto bg-gray-800">
           {({ close }) => (
             <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
               <div className="flex p-2 space-x-4">

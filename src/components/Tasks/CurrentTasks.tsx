@@ -29,7 +29,7 @@ const CurrentTasks = () => {
 
   return (
     <div className="flex-1">
-      <h2 className="text-1xl font-extrabold text-blue">Current Tasks</h2>
+      <h2 className="text-1xl font-extrabold text-blue-400">Current Tasks</h2>
       <Input
         id="add-task"
         onKeyDown={onAddTask}
@@ -41,7 +41,7 @@ const CurrentTasks = () => {
       />
       <Show
         when={tasks && tasks.filter(t => !t.isCompleted).length > 0}
-        fallback={<p className="text-red">No tasks yet</p>}
+        fallback={<p className="text-red-600">No tasks yet</p>}
       >
         <ul>
           {tasks &&

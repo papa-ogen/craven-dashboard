@@ -6,7 +6,7 @@ import Show from '../Show'
 const NoCredentialsYet = () => {
   return (
     <div>
-      <p className="text-red">No credentials</p>
+      <p className="text-red-600">No credentials</p>
     </div>
   )
 }

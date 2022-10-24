@@ -34,7 +34,7 @@ const Input = forwardRef<Ref, InputProps>((props, ref) => {
   return (
     <label className={`flex flex-row ${pb && 'pb-1'} relative`} htmlFor={id}>
       {label && (
-        <span className="block text-sm font-medium  text-white w-24 pt-2">
+        <span className="block text-sm font-medium text-white w-24 pt-2">
           {label}
         </span>
       )}
@@ -44,7 +44,7 @@ const Input = forwardRef<Ref, InputProps>((props, ref) => {
         type={type}
         defaultValue={defaultValue}
         value={inpurValue}
-        className="text-darkGray rounded-sm px-1 py-0.5 w-full outline-0"
+        className="text-gray-800 rounded-sm px-1 py-0.5 w-full outline-0"
         placeholder={placeholder}
         onKeyDown={onKeyDown}
         onFocus={onFocus}

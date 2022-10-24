@@ -42,7 +42,10 @@ const Credential = ({
         <EditCredentialdPopover linkId={linkId} credential={credential} />
         <div className="pr-2 flex items-center">
           <Button onClick={() => onDeleteCredential()} variant="transparent">
-            <AiOutlineDelete title="Delete Link" className="hover:text-red" />
+            <AiOutlineDelete
+              title="Delete Link"
+              className="hover:text-red-600"
+            />
           </Button>
         </div>
         <button onClick={() => onToggle()}>

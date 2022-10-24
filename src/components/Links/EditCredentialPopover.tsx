@@ -18,10 +18,10 @@ const EditCredentialdPopover = ({
           <Popover.Button
             className={`
                 ${open ? '' : 'text-opacity-90'}
-                group inline-flex items-center bg-orange-700 mt-1.5 text-base font-medium text-white hover:text-opacity-100 focus:outline-none`}
+                group inline-flex items-center mt-1.5 text-base font-medium text-white hover:text-opacity-100 focus:outline-none`}
           >
             <FiEdit
-              className="mx-2 hover:text-yellow"
+              className="mx-2 hover:text-yellow-300"
               title="Edit Credential"
             />
           </Popover.Button>
