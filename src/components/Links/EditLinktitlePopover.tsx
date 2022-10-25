@@ -3,34 +3,7 @@ import { Popover, Transition } from '@headlessui/react'
 import { Fragment } from 'react'
 import { useContextMachine } from '../../stateMachine'
 import { ILink, LinkTitleColor, colors } from '../../types'
-
-const linkColorMapper = (
-  color?: LinkTitleColor
-): { bg: string; border: string } => {
-  switch (color) {
-    case 'yellow':
-      return {
-        border: 'border-yellow-300',
-        bg: 'bg-yellow-300',
-      }
-    case 'blue':
-      return {
-        border: 'border-blue-400',
-        bg: 'bg-blue-400',
-      }
-    case 'red':
-      return {
-        border: 'border-red-600',
-        bg: 'bg-red-600',
-      }
-    case 'green':
-    default:
-      return {
-        border: 'border-lime-500',
-        bg: 'bg-lime-500',
-      }
-  }
-}
+import { linkColorMapper } from './Links.helper'
 
 const ColorBox = ({ color }: { color: LinkTitleColor }) => {
   const { bg } = linkColorMapper(color)

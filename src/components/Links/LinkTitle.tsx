@@ -1,37 +1,10 @@
 import { AiOutlineDelete } from 'react-icons/ai'
 import { useContextMachine } from '../../stateMachine'
-import { ILink, LinkTitleColor } from '../../types'
+import { ILink } from '../../types'
 import Button from '../Form/Button'
 import AddCredentialPopover from './AddCredentialPopover'
 import EditLinkTitlePopover from './EditLinktitlePopover'
-
-const linkColorMapper = (
-  color?: LinkTitleColor
-): { bg: string; border: string } => {
-  switch (color) {
-    case 'yellow':
-      return {
-        border: 'border-yellow-300',
-        bg: 'bg-yellow-300',
-      }
-    case 'blue':
-      return {
-        border: 'border-blue-400',
-        bg: 'bg-blue-400',
-      }
-    case 'red':
-      return {
-        border: 'border-red-600',
-        bg: 'bg-red-600',
-      }
-    case 'green':
-    default:
-      return {
-        border: 'border-lime-500',
-        bg: 'bg-lime-500',
-      }
-  }
-}
+import { linkColorMapper } from './Links.helper'
 
 const Toolbar = ({ linkId }: { linkId: number }) => {
   const [, send] = useContextMachine()

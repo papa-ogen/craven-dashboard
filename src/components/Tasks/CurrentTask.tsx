@@ -19,6 +19,7 @@ const CurrentTask = ({
   isComplete?: boolean
 }) => {
   const formatedDate = formatDate(task.createdAt)
+
   return (
     <div
       className={`flex items-center${isComplete ? ' line-through' : ''}`}

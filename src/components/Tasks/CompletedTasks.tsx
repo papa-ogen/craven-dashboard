@@ -7,15 +7,19 @@ import { iTask } from 'types'
 const CompletedTasks = () => {
   const [state, send] = useContextMachine()
   const { tasks }: { tasks: iTask[] } = state.context
+  const completedTasks = tasks.filter(t => t.isCompleted).length
 
   const onDeleteTask = (id: number) => {
     send('DELETE_TASK', { id })
   }
   return (
     <div className="flex-1">
-      <h2 className="text-1xl font-extrabold text-lime-500">Completed Tasks</h2>
+      <h2 className="text-1xl font-extrabold text-lime-500">
+        Completed Tasks
+        {completedTasks ? ` (${completedTasks})` : null}
+      </h2>
       <Show
-        when={tasks && tasks.filter(t => t.isCompleted).length > 0}
+        when={tasks && completedTasks > 0}
         fallback={<p className="text-red">No tasks yet</p>}
       >
         <ul>
