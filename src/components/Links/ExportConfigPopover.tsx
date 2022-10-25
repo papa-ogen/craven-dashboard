@@ -1,5 +1,5 @@
 import { Popover, Transition } from '@headlessui/react'
-import Button from '../../components/Button'
+import Button from '../Form/Button'
 import { Textarea } from 'flowbite-react'
 import { Fragment } from 'react'
 import { TbDatabaseExport } from 'react-icons/tb'

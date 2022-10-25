@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import Input from '../Input'
-import Button from '../Button'
+import Input from '../Form/Input'
+import Button from '../Form/Button'
 import { useContextMachine } from '../../stateMachine'
 import { ICredential, IURL } from '../../types'
 import { AiOutlineDelete } from 'react-icons/ai'
@@ -99,7 +99,9 @@ const AddCredentialForm = ({
 
   return (
     <div className="font-normal ">
-      <h3 className="pb-2 text-base">Add Credential</h3>
+      <h3 className="pb-2 text-base">
+        {storedCredential ? 'Edit Credential' : 'Add Credential'}
+      </h3>
       <Input
         id={`credential-name`}
         placeholder="name"

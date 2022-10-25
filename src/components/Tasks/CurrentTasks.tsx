@@ -1,5 +1,5 @@
 import { iTask } from '../../types'
-import Input from '../Input'
+import Input from '../Form/Input'
 import CurrentTask from './CurrentTask'
 import Show from '../Show'
 import { createRef, KeyboardEvent, useState } from 'react'

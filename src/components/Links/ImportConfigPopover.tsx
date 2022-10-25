@@ -1,5 +1,5 @@
 import { Popover, Transition } from '@headlessui/react'
-import Button from '../Button'
+import Button from '../Form/Button'
 import { Textarea } from 'flowbite-react'
 import { Fragment } from 'react'
 import { BiImport } from 'react-icons/bi'
@@ -43,7 +43,7 @@ const ImportConfigPopover = () => {
                 <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
                   <div className="relative p-7">
                     <Textarea
-                      defaultValue={JSON.stringify({ tasks, links }, null, 4)}
+                      defaultValue={'// PASTE JSON HERE'}
                       color="#000000"
                       style={{ height: 400, width: '100%' }}
                     />

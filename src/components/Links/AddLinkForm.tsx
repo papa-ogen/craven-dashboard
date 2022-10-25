@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import Input from '../Input'
-import Button from '../Button'
+import Input from '../Form/Input'
+import Button from '../Form/Button'
 import { useContextMachine } from '../../stateMachine'
 import { ILink } from '../../types'
 import { getLinkColor } from './Links.helper'
@@ -29,11 +29,8 @@ const AddLinkForm = ({ onAddClick }: AddLinkFormProps) => {
   }
 
   return (
-    <div>
-      <label
-        htmlFor="link-title"
-        className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-      >
+    <div className="bg-gray-900 text-gray-300 p-4">
+      <label htmlFor="link-title" className="block mb-2 text-sm font-medium">
         Add Link Title
       </label>
       <Input

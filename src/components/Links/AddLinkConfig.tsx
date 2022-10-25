@@ -5,9 +5,9 @@ const AddLinkConfig = () => {
   let textarea: HTMLTextAreaElement
   const onAddlinks = () => {
     try {
-      const { dblinks } = JSON.parse(textarea.value) as IConfig
-      if (dblinks) {
-        addLinks(dblinks)
+      const { links } = JSON.parse(textarea.value) as IConfig
+      if (links) {
+        addLinks(links)
         // setLinks(dblinks)
         return
       }

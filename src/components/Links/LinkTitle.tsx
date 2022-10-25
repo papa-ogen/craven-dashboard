@@ -1,7 +1,7 @@
 import { AiOutlineDelete } from 'react-icons/ai'
 import { useContextMachine } from '../../stateMachine'
 import { ILink, LinkTitleColor } from '../../types'
-import Button from '../Button'
+import Button from '../Form/Button'
 import AddCredentialPopover from './AddCredentialPopover'
 import EditLinkTitlePopover from './EditLinktitlePopover'
 

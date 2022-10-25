@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import Input from '../Input'
-import Button from '../Button'
+import Input from '../Form/Input'
+import Button from '../Form/Button'
 import { useContextMachine } from '../../stateMachine'
 import { ICredential, IURL } from '../../types'
 
