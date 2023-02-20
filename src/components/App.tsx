@@ -22,7 +22,7 @@ const App = () => {
     return <p className="text-red-600">{state.context.error}</p>
 
   return (
-    <div className="flex flex-col p-4">
+    <div className="flex flex-col p-4 min-h-screen bg-hero">
       <Header />
       <div className="text-gray-300 flex gap-4">
         <div className="grow">

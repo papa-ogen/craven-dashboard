@@ -29,20 +29,22 @@ const CurrentTasks = () => {
   }
 
   return (
-    <div className="flex-1">
+    <div>
       <h2 className="text-1xl font-extrabold text-blue-400">
         Current Tasks
         {inCompletedTasks ? ` (${inCompletedTasks})` : null}
       </h2>
-      <Input
-        id="add-task"
-        onKeyDown={onAddTask}
-        placeholder="Add task"
-        ref={inputRef}
-        onFocus={() => inputRef?.current?.select()}
-        value={inputValue}
-        onChange={e => setInputValue(e.target.value)}
-      />
+      <div className="max-w-sm">
+        <Input
+          id="add-task"
+          onKeyDown={onAddTask}
+          placeholder="Add task"
+          ref={inputRef}
+          onFocus={() => inputRef?.current?.select()}
+          value={inputValue}
+          onChange={e => setInputValue(e.target.value)}
+        />
+      </div>
       <Show
         when={tasks && inCompletedTasks > 0}
         fallback={<p className="text-red-600">No tasks yet</p>}

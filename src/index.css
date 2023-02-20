@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.logo-bg {
+  background: url(logo.svg),
+    linear-gradient(90deg, rgba(54, 54, 54, 1) 0%, rgba(37, 37, 37, 1) 100%);
+  background-repeat: no-repeat, repeat;
+  background-position: 0 0;
+  background-size: 50px 50px, cover;
+}

@@ -37,7 +37,7 @@ const CurrentTask = ({
       title={task.title}
     >
       {!isComplete && <TaskIcon task={task} />}
-      <p className="truncate pr-2 max-w-[200px]">{task.title}</p>
+      <p className="flex-grow pr-2 min-w-fit">{task.title}</p>
       {!isComplete && (
         <p className="text-[10px] break-normal w-16 justify-self-end">
           {formatedDate}

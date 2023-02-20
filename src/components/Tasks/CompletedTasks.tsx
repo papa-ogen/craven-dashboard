@@ -10,10 +10,12 @@ const CompletedTasks = () => {
   const completedTasks = tasks.filter(t => t.isCompleted).length
 
   const onDeleteTask = (id: number) => {
-    send('DELETE_TASK', { id })
+    if (confirm('Are you sure?')) {
+      send('DELETE_TASK', { id })
+    }
   }
   return (
-    <div className="flex-1">
+    <div className="">
       <h2 className="text-1xl font-extrabold text-lime-500">
         Completed Tasks
         {completedTasks ? ` (${completedTasks})` : null}
