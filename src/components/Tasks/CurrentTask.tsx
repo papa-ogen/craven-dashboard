@@ -1,4 +1,4 @@
-import { BsCheck } from 'react-icons/bs'
+import { BsCheck, BsBug } from 'react-icons/bs'
 import { iTask } from '../../types'
 
 const formatDate = (date: number): string => {
@@ -7,6 +7,16 @@ const formatDate = (date: number): string => {
   const day = String(d.getDate()).padStart(2, '0')
 
   return `${d.getFullYear()}-${month}-${day}`
+}
+
+const BugTask = () => (
+  <span className="align-middle mr-2">
+    <BsBug className="text-red-600" />
+  </span>
+)
+
+const TaskIcon = ({ task }: { task: iTask }) => {
+  return task.title.startsWith('bug:') ? <BugTask /> : null
 }
 
 const CurrentTask = ({
@@ -26,12 +36,15 @@ const CurrentTask = ({
       onClick={() => onCompleteTask && onCompleteTask(task)}
       title={task.title}
     >
-      <p className="truncate pr-2 max-w-[188px] grow">{task.title}</p>
+      {!isComplete && <TaskIcon task={task} />}
+      <p className="truncate pr-2 max-w-[200px]">{task.title}</p>
       {!isComplete && (
-        <p className="text-[10px] break-normal w-16">{formatedDate}</p>
+        <p className="text-[10px] break-normal w-16 justify-self-end">
+          {formatedDate}
+        </p>
       )}
       {!isComplete && (
-        <div className="group-hover:opacity-100 opacity-0 px-2 ease-in-out duration-500">
+        <div className="group-hover:opacity-100 opacity-0 px-2 ease-in-out duration-500 justify-self-end">
           <BsCheck className="text-lime-500" />
         </div>
       )}
