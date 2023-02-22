@@ -8,8 +8,8 @@ import 'flowbite'
 const Header = () => {
   return (
     <h1 className="text-4xl font-extrabold tracking-wide text-center pb-2">
-      <span className="text-orange-500">craven</span>
-      <span className="text-gray-300">Dashboard</span>
+      <span className="tk-uniwars text-primary-orange">Craven</span>
+      <span className="text-gray-300 font-zonapro zonapro">Dashboard</span>
     </h1>
   )
 }
